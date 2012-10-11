@@ -1,4 +1,4 @@
-PROGRAMA ::= 'program' '(' 'id' ')' '{' VARS* FUNCTION* ESTATUTO* '}'
+PROGRAMA ::= 'program' '(' 'id' ')' '{' (VARS* FUNCTION* ESTATUTO*)* '}'
 VARS ::= TIPO 'id' (',' 'id')* ('=' EXP)? ';'
 FUNCTION ::= TIPO 'id' '(' PARAMS (',' PARAMS)* ')' '{' VARS* ESTATUTO* '}'
 PARAMS ::= TIPO 'id'
