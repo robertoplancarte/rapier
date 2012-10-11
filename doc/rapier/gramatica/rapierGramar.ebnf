@@ -1,18 +1,17 @@
-PROGRAMA ::= 'program' '(' 'id' ')' '{' (VARS* FUNCTION* ESTATUTO*)* '}'
+PROGRAMA ::= 'program' '(' 'id' ')' BLOQUE
+BLOQUE ::= '{' (VARS* FUNCTION* ESTATUTO*)* '}'
 VARS ::= TIPO 'id' (',' 'id')* ('=' EXP)? ';'
-FUNCTION ::= TIPO 'id' '(' PARAMS (',' PARAMS)* ')' '{' VARS* ESTATUTO* '}'
-PARAMS ::= TIPO 'id'
+FUNCTION ::= TIPO 'id' '(' TIPO 'id' (',' TIPO 'id')* ')' BLOQUE
 TIPO ::= ( 'int' | 'float' | 'char' | 'string' )?
-BLOQUE ::= '{' ESTATUTO* '}'
 ESTATUTO ::= (ASIGNACION | CONDICION | ESCRITURA | LECTURA | CICLO)
-ASIGNACION ::= 'id' '=' '(' EXPRESION ')' ';'
+ASIGNACION ::= 'id' '=' EXPRESION ';'
+CONDICION ::= 'if' '(' EXPRESION ')' BLOQUE ('else' BLOQUE)?
 ESCRITURA ::= ('out' '(' (EXPRESION | 'string') ')' ';' | 'fout' '(' (EXPRESION | 'string') ',' 'cte file' ')' ';' )
 LECTURA ::= ('in' '(' 'id' ')' ';' | 'fin' '(' 'id' ',' 'cte file' ')' ';' )
-EXPRESION ::= EXP (( '>' | '<' | '<>' ) EXP )?
-CONDICION ::= 'if' '(' EXPRESION ')' BLOQUE ('else' BLOQUE)?
 CICLO ::= (WHILE | FOR)?
 WHILE ::= 'while' '(' EXPRESION ')' BLOQUE
 FOR ::= 'for' '(' ASIGNACION ';' EXPRECION ';' ASIGNACION ')' BLOQUE
+EXPRESION ::= EXP (( '>' | '<' | '<>' ) EXP )?
 EXP ::= (TERMINO | ('+' | '-'))
 TERMINO ::= (FACTOR | ('*' | '/'))
 FACTOR ::= ('(' EXPRESION ')' | ('+' | '-')? VAR_CTE)
