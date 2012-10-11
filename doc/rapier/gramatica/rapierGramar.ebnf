@@ -1,5 +1,7 @@
-PROGRAMA ::= 'program' '(' 'id' ')' '{' VARS* BLOQUE* '}'
-VARS ::= 'var' ('id' ',')+ ':' TIPO ';'
+PROGRAMA ::= 'program' '(' 'id' ')' '{' VARS* FUNCTION* ESTATUTO* '}'
+VARS ::= TIPO 'id' (',' 'id')* ('=' EXP)? ';'
+FUNCTION ::= TIPO 'id' '(' PARAMS (',' PARAMS)* ')' '{' VARS* ESTATUTO* '}'
+PARAMS ::= TIPO 'id'
 TIPO ::= ( 'int' | 'float' | 'char' | 'string' )?
 BLOQUE ::= '{' ESTATUTO* '}'
 ESTATUTO ::= (ASIGNACION | CONDICION | ESCRITURA | LECTURA | CICLO)
@@ -14,4 +16,4 @@ FOR ::= 'for' '(' ASIGNACION ';' EXPRECION ';' ASIGNACION ')' BLOQUE
 EXP ::= (TERMINO | ('+' | '-'))
 TERMINO ::= (FACTOR | ('*' | '/'))
 FACTOR ::= ('(' EXPRESION ')' | ('+' | '-')? VAR_CTE)
-VAR_CTE ::= ( 'id' | 'cte int' | 'cte float' | 'cte char' | 'cte string' | 'cte file')?
+VAR_CTE ::= ( 'ID' | 'cte int' | 'cte float' | 'cte char' | 'cte string' | 'cte file')?
