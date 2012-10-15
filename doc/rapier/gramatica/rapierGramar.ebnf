@@ -1,6 +1,6 @@
 PROGRAMA ::= 'program' '(' 'id' ')' BLOQUE
 BLOQUE ::= '{' (VARS* FUNCTION* ESTATUTO*)* '}'
-VARS ::= TIPO 'id' (',' 'id')* ('=' EXP)? ';'
+VARS ::= TIPO 'id' ('=' EXP)? ';'
 FUNCTION ::= TIPO 'id' '(' TIPO 'id' (',' TIPO 'id')* ')' BLOQUE
 TIPO ::= ( 'int' | 'float' | 'char' | 'string' )?
 ESTATUTO ::= (ASIGNACION | CONDICION | ESCRITURA | LECTURA | CICLO)
