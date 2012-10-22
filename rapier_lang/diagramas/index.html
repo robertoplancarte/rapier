@@ -1,0 +1,200 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta content="Railroad Diagram Generator 1.23.451" name="generator"><style type="text/css">
+    ::-moz-selection
+    {
+      color: #FFFCF0;
+      background: #4D3D00;
+    }
+    ::selection
+    {
+      color: #FFFCF0;
+      background: #4D3D00;
+    }      
+    .ebnf a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover
+    {
+      color: #1A1400;
+      text-decoration: underline;
+    }    
+    .signature
+    {
+      color: #806600;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #4D3D00;
+      background: #FFFCF0;
+    }
+    a:link, a:visited
+    {
+      color: #4D3D00;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #806600;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #806600;
+      background: #F1E8C6;
+      color: #806600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover, #tabs li a:hover
+    {
+      color: #1A1400;
+      background: #FFF5CC;
+      border-color: #1A1400;       
+    }     
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #4D3D00;
+    }  
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {     
+      border-bottom: 1px solid #4D3D00;
+    }
+    #tabs li a.active
+    {
+      color: #4D3D00;
+      background: #FFFCF0;
+      border-color: #4D3D00;
+      border-bottom: 1px solid #FFFCF0;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #806600;
+      background: #FFFEFA;
+      color: #1A1400;
+    }
+    td.time
+    {
+      vertical-align: top;
+    }
+    span.time
+    {
+      font-size: 9px;
+      visibility: hidden;
+    }
+    td.time:hover span.time
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display:none;
+      background:#FFFCF0;
+      position:absolute;
+      right:34px;
+      top:94px;
+      padding:10px;
+      border:1px dotted #4D3D00;
+    }
+    #divs div.ebnf, div.ebnf
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px; 
+      padding-bottom: 2px; 
+      background:#FFF5CC;"
+    }
+  </style></head>
+   <body>
+      <p style="font-size: 14px; font-weight:bold"><a name="program">program:</a></p><img border="0" height="68" src="diagram/program.png" usemap="#program.map" width="190"><map name="program.map">
+         <area coords="69,17,121,49" href="#comp" shape="rect" title="comp"></map><p>
+         <div class="ebnf"><pre><a href="#program" title="program">program</a>  ::= <a href="#comp" title="comp">comp</a>*</pre></div>
+      </p>
+      <p>no references</p><br><p style="font-size: 14px; font-weight:bold"><a name="comp">comp:</a></p><img border="0" height="96" src="diagram/comp.png" usemap="#comp.map" width="304"><map name="comp.map">
+         <area coords="29,1,77,33" href="#expr" shape="rect" title="expr">
+         <area coords="207,1,255,33" href="#expr" shape="rect" title="expr"></map><p>
+         <div class="ebnf"><pre><a href="#comp" title="comp">comp</a>     ::= <a href="#expr" title="expr">expr</a> ( ( '&gt;' | '&lt;' ) <a href="#expr" title="expr">expr</a> )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#program" title="program">program</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="expr">expr:</a></p><img border="0" height="124" src="diagram/expr.png" usemap="#expr.map" width="226"><map name="expr.map">
+         <area coords="49,89,97,121" href="#term" shape="rect" title="term"></map><p>
+         <div class="ebnf"><pre><a href="#expr" title="expr">expr</a>     ::= <a href="#term" title="term">term</a> '#4' ( ( '+' | '-' ) '#2' <a href="#term" title="term">term</a> '#4' )*</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#comp" title="comp">comp</a></li>
+            <li><a href="#factor" title="factor">factor</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="term">term:</a></p><img border="0" height="124" src="diagram/term.png" usemap="#term.map" width="224"><map name="term.map">
+         <area coords="49,89,105,121" href="#factor" shape="rect" title="factor"></map><p>
+         <div class="ebnf"><pre><a href="#term" title="term">term</a>     ::= <a href="#factor" title="factor">factor</a> '#3' ( ( '*' | '/' ) '#2' <a href="#factor" title="factor">factor</a> '#3' )*</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#expr" title="expr">expr</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="factor">factor:</a></p><img border="0" height="124" src="diagram/factor.png" usemap="#factor.map" width="264"><map name="factor.map">
+         <area coords="69,1,99,33" href="#id" shape="rect" title="id">
+         <area coords="69,45,137,77" href="#number" shape="rect" title="number">
+         <area coords="95,89,143,121" href="#expr" shape="rect" title="expr"></map><p>
+         <div class="ebnf"><pre><a href="#factor" title="factor">factor</a>   ::= ( <a href="#id" title="id">id</a> | <a href="#number" title="number">number</a> ) '#1'
+           | '(' <a href="#expr" title="expr">expr</a> ')'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#term" title="term">term</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="number">number:</a></p><img border="0" height="68" src="diagram/number.png" width="334"><p>
+         <div class="ebnf"><pre><a href="#number" title="number">number</a>   ::= '0..9'+ ( '.' '0..9'+ )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#factor" title="factor">factor</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="id">id:</a></p><img border="0" height="52" src="diagram/id.png" width="142"><p>
+         <div class="ebnf"><pre><a href="#id" title="id">id</a>       ::= 'a..Z'+</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#factor" title="factor">factor</a></li>
+         </ul>
+      </p><br><hr>
+      <p>
+         <table border="0" class="signature">
+            <tr>
+               <td style="width: 100%">&nbsp;</td>
+               <td valign="top">
+                  <nobr class="signature">... generated by <a class="signature" href="http://railroad.my28msec.com/" name="Railroad-Diagram-Generator" title="http://railroad.my28msec.com/">Railroad Diagram Generator</a></nobr>
+               </td>
+               <td><img border="0" height="16" src="diagram/.png" width="16"></td>
+            </tr>
+         </table>
+      </p>
+   </body>
+</html>
