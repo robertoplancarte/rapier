@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-10-21 20:22:35
+# Generated at: 2012-10-22 23:03:15
 # 
 
 # ~~~> start load path setup
@@ -66,9 +66,11 @@ module Rapier
   module TokenData
 
     # define the token constants
-    define_tokens( :GRTH => 10, :WS => 15, :LPAR => 8, :NUMBER => 13, :RPAR => 9, 
-                   :PLUS => 4, :DIGIT => 14, :DIV => 7, :MINUS => 5, :MULT => 6, 
-                   :ID => 12, :EOF => -1, :LSTH => 11 )
+    define_tokens( :EQLS => 12, :T__23 => 23, :T__22 => 22, :T__21 => 21, 
+                   :T__20 => 20, :NUMBER => 15, :MINUS => 5, :MULT => 6, 
+                   :ID => 14, :EOF => -1, :LSTH => 11, :QTS => 13, :GRTH => 10, 
+                   :T__19 => 19, :WS => 18, :LPAR => 8, :PLUS => 4, :RPAR => 9, 
+                   :DIGIT => 17, :DIV => 7, :STRING => 16 )
 
     # register the proper human-readable name or literal value
     # for each token type
@@ -77,7 +79,8 @@ module Rapier
     # created from literal values in the grammar, do not
     # have descriptive names
     register_names( "PLUS", "MINUS", "MULT", "DIV", "LPAR", "RPAR", "GRTH", 
-                    "LSTH", "ID", "NUMBER", "DIGIT", "WS" )
+                    "LSTH", "EQLS", "QTS", "ID", "NUMBER", "STRING", "DIGIT", 
+                    "WS", "'var'", "'int'", "'float'", "'string'", "'boolean'" )
     
   end
 
@@ -85,7 +88,8 @@ module Rapier
   class Parser < ANTLR3::Parser
     @grammar_home = Rapier
 
-    RULE_METHODS = [ :program, :comp, :expr, :term, :factor ].freeze
+    RULE_METHODS = [ :prog, :est, :dclr, :asign, :comp, :expr, :term, :factor, 
+                     :elem, :type ].freeze
 
 
     include TokenData
@@ -107,6 +111,7 @@ module Rapier
         @pilaO = []
         @pilaS = []
         @cuadruplos = []
+        require_relative 'Cuadruplo.rb'
         require_relative 'AGCs.rb'
 
       # - - - - - - end action @parser::init - - - - - - -
@@ -116,40 +121,40 @@ module Rapier
     # - - - - - - - - - - - - Rules - - - - - - - - - - - - -
 
     # 
-    # parser rule program
+    # parser rule prog
     # 
     # (in Rapier.g)
-    # 24:1: program : ( comp )* ;
+    # 27:1: prog : ( est )* ;
     # 
-    def program
+    def prog
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 1 )
 
       begin
-        # at line 24:11: ( comp )*
-        # at line 24:11: ( comp )*
+        # at line 27:11: ( est )*
+        # at line 27:11: ( est )*
         while true # decision 1
           alt_1 = 2
           look_1_0 = @input.peek( 1 )
 
-          if ( look_1_0 == LPAR || look_1_0.between?( ID, NUMBER ) )
+          if ( look_1_0 == LPAR || look_1_0.between?( ID, STRING ) || look_1_0 == T__19 )
             alt_1 = 1
 
           end
           case alt_1
           when 1
-            # at line 24:12: comp
-            @state.following.push( TOKENS_FOLLOWING_comp_IN_program_128 )
-            comp
+            # at line 27:11: est
+            @state.following.push( TOKENS_FOLLOWING_est_IN_prog_153 )
+            est
             @state.following.pop
-            # --> action
-            agc_6
-            # <-- action
 
           else
             break # out of loop for decision 1
           end
         end # loop for decision 1
+        # --> action
+        agc_8
+        # <-- action
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -166,63 +171,52 @@ module Rapier
 
 
     # 
-    # parser rule comp
+    # parser rule est
     # 
     # (in Rapier.g)
-    # 25:1: comp : expr ( ( GRTH | LSTH ) expr )? ;
+    # 28:1: est : ( dclr | asign | comp ) ;
     # 
-    def comp
+    def est
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 2 )
 
       begin
-        # at line 25:11: expr ( ( GRTH | LSTH ) expr )?
-        @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_142 )
-        expr
-        @state.following.pop
-        # at line 25:16: ( ( GRTH | LSTH ) expr )?
-        alt_3 = 2
-        look_3_0 = @input.peek( 1 )
+        # at line 28:11: ( dclr | asign | comp )
+        # at line 28:11: ( dclr | asign | comp )
+        alt_2 = 3
+        case look_2 = @input.peek( 1 )
+        when T__19 then alt_2 = 1
+        when ID then look_2_2 = @input.peek( 2 )
 
-        if ( look_3_0.between?( GRTH, LSTH ) )
-          alt_3 = 1
-        end
-        case alt_3
-        when 1
-          # at line 25:17: ( GRTH | LSTH ) expr
-          # at line 25:17: ( GRTH | LSTH )
+        if ( look_2_2 == EQLS )
           alt_2 = 2
-          look_2_0 = @input.peek( 1 )
-
-          if ( look_2_0 == GRTH )
-            alt_2 = 1
-          elsif ( look_2_0 == LSTH )
-            alt_2 = 2
-          else
-            raise NoViableAlternative( "", 2, 0 )
-          end
-          case alt_2
-          when 1
-            # at line 25:18: GRTH
-            match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_146 )
-            # --> action
-            agc_2('>')
-            # <-- action
-
-          when 2
-            # at line 25:35: LSTH
-            match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_149 )
-            # --> action
-            agc_2('<')
-            # <-- action
-
-          end
-          @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_154 )
-          expr
+        elsif ( look_2_2 == EOF || look_2_2.between?( PLUS, LPAR ) || look_2_2.between?( GRTH, LSTH ) || look_2_2.between?( ID, STRING ) || look_2_2 == T__19 )
+          alt_2 = 3
+        else
+          raise NoViableAlternative( "", 2, 2 )
+        end
+        when LPAR, NUMBER, STRING then alt_2 = 3
+        else
+          raise NoViableAlternative( "", 2, 0 )
+        end
+        case alt_2
+        when 1
+          # at line 28:12: dclr
+          @state.following.push( TOKENS_FOLLOWING_dclr_IN_est_169 )
+          dclr
           @state.following.pop
-          # --> action
-          agc_5
-          # <-- action
+
+        when 2
+          # at line 28:19: asign
+          @state.following.push( TOKENS_FOLLOWING_asign_IN_est_173 )
+          asign
+          @state.following.pop
+
+        when 3
+          # at line 28:27: comp
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_est_177 )
+          comp
+          @state.following.pop
 
         end
 
@@ -241,82 +235,49 @@ module Rapier
 
 
     # 
-    # parser rule expr
+    # parser rule dclr
     # 
     # (in Rapier.g)
-    # 26:1: expr : ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )* ;
+    # 29:1: dclr : 'var' b= type a= ID ( '=' comp )? ;
     # 
-    def expr
+    def dclr
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 3 )
+      a = nil
+      b = nil
 
       begin
-        # at line 26:11: ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )*
-        # at line 26:11: ( term )
-        # at line 26:12: term
-        @state.following.push( TOKENS_FOLLOWING_term_IN_expr_170 )
-        term
+        # at line 29:11: 'var' b= type a= ID ( '=' comp )?
+        match( T__19, TOKENS_FOLLOWING_T__19_IN_dclr_190 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_dclr_194 )
+        b = type
         @state.following.pop
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_dclr_198 )
         # --> action
-        agc_4
+        agc_1(a,b)
         # <-- action
+        # at line 29:42: ( '=' comp )?
+        alt_3 = 2
+        look_3_0 = @input.peek( 1 )
 
-        # at line 26:25: ( ( ( PLUS | MINUS ) ) ( term ) )*
-        while true # decision 5
-          alt_5 = 2
-          look_5_0 = @input.peek( 1 )
+        if ( look_3_0 == EQLS )
+          alt_3 = 1
+        end
+        case alt_3
+        when 1
+          # at line 29:43: '=' comp
+          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclr_203 )
+          # --> action
+          agc_2('=')
+          # <-- action
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_dclr_208 )
+          comp
+          @state.following.pop
+          # --> action
+          agc_6
+          # <-- action
 
-          if ( look_5_0.between?( PLUS, MINUS ) )
-            alt_5 = 1
-
-          end
-          case alt_5
-          when 1
-            # at line 26:26: ( ( PLUS | MINUS ) ) ( term )
-            # at line 26:26: ( ( PLUS | MINUS ) )
-            # at line 26:27: ( PLUS | MINUS )
-            # at line 26:27: ( PLUS | MINUS )
-            alt_4 = 2
-            look_4_0 = @input.peek( 1 )
-
-            if ( look_4_0 == PLUS )
-              alt_4 = 1
-            elsif ( look_4_0 == MINUS )
-              alt_4 = 2
-            else
-              raise NoViableAlternative( "", 4, 0 )
-            end
-            case alt_4
-            when 1
-              # at line 26:29: PLUS
-              match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_178 )
-              # --> action
-              agc_2('+')
-              # <-- action
-
-            when 2
-              # at line 26:48: MINUS
-              match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_183 )
-              # --> action
-              agc_2('-')
-              # <-- action
-
-            end
-
-            # at line 26:70: ( term )
-            # at line 26:71: term
-            @state.following.push( TOKENS_FOLLOWING_term_IN_expr_191 )
-            term
-            @state.following.pop
-            # --> action
-            agc_4
-            # <-- action
-
-
-          else
-            break # out of loop for decision 5
-          end
-        end # loop for decision 5
+        end
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -333,82 +294,32 @@ module Rapier
 
 
     # 
-    # parser rule term
+    # parser rule asign
     # 
     # (in Rapier.g)
-    # 27:1: term : ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )* ;
+    # 30:1: asign : a= ID EQLS comp ;
     # 
-    def term
+    def asign
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 4 )
+      a = nil
 
       begin
-        # at line 27:11: ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )*
-        # at line 27:11: ( factor )
-        # at line 27:12: factor
-        @state.following.push( TOKENS_FOLLOWING_factor_IN_term_209 )
-        factor
+        # at line 30:11: a= ID EQLS comp
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_asign_224 )
+        match( EQLS, TOKENS_FOLLOWING_EQLS_IN_asign_226 )
+        # --> action
+        agc_2('=')
+        # <-- action
+        # --> action
+        agc_1(a)
+        # <-- action
+        @state.following.push( TOKENS_FOLLOWING_comp_IN_asign_231 )
+        comp
         @state.following.pop
         # --> action
-        agc_3
+        agc_6
         # <-- action
-
-        # at line 27:28: ( ( ( MULT | DIV ) ) ( factor ) )*
-        while true # decision 7
-          alt_7 = 2
-          look_7_0 = @input.peek( 1 )
-
-          if ( look_7_0.between?( MULT, DIV ) )
-            alt_7 = 1
-
-          end
-          case alt_7
-          when 1
-            # at line 27:29: ( ( MULT | DIV ) ) ( factor )
-            # at line 27:29: ( ( MULT | DIV ) )
-            # at line 27:30: ( MULT | DIV )
-            # at line 27:30: ( MULT | DIV )
-            alt_6 = 2
-            look_6_0 = @input.peek( 1 )
-
-            if ( look_6_0 == MULT )
-              alt_6 = 1
-            elsif ( look_6_0 == DIV )
-              alt_6 = 2
-            else
-              raise NoViableAlternative( "", 6, 0 )
-            end
-            case alt_6
-            when 1
-              # at line 27:32: MULT
-              match( MULT, TOKENS_FOLLOWING_MULT_IN_term_218 )
-              # --> action
-              agc_2('*')
-              # <-- action
-
-            when 2
-              # at line 27:51: DIV
-              match( DIV, TOKENS_FOLLOWING_DIV_IN_term_223 )
-              # --> action
-              agc_2('/')
-              # <-- action
-
-            end
-
-            # at line 27:70: ( factor )
-            # at line 27:71: factor
-            @state.following.push( TOKENS_FOLLOWING_factor_IN_term_230 )
-            factor
-            @state.following.pop
-            # --> action
-            agc_3
-            # <-- action
-
-
-          else
-            break # out of loop for decision 7
-          end
-        end # loop for decision 7
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -425,65 +336,83 @@ module Rapier
 
 
     # 
-    # parser rule factor
+    # parser rule comp
     # 
     # (in Rapier.g)
-    # 28:1: factor : ( (a= ID | a= NUMBER ) | LPAR expr RPAR );
+    # 32:1: comp : ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )* ;
     # 
-    def factor
+    def comp
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 5 )
-      a = nil
 
       begin
-        # at line 28:9: ( (a= ID | a= NUMBER ) | LPAR expr RPAR )
-        alt_9 = 2
-        look_9_0 = @input.peek( 1 )
+        # at line 32:11: ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )*
+        # at line 32:11: ( expr )
+        # at line 32:12: expr
+        @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_246 )
+        expr
+        @state.following.pop
+        # --> action
+        agc_5
+        # <-- action
 
-        if ( look_9_0.between?( ID, NUMBER ) )
-          alt_9 = 1
-        elsif ( look_9_0 == LPAR )
-          alt_9 = 2
-        else
-          raise NoViableAlternative( "", 9, 0 )
-        end
-        case alt_9
-        when 1
-          # at line 28:11: (a= ID | a= NUMBER )
-          # at line 28:11: (a= ID | a= NUMBER )
-          alt_8 = 2
-          look_8_0 = @input.peek( 1 )
+        # at line 32:25: ( ( ( LSTH | GRTH ) ) ( expr ) )*
+        while true # decision 5
+          alt_5 = 2
+          look_5_0 = @input.peek( 1 )
 
-          if ( look_8_0 == ID )
-            alt_8 = 1
-          elsif ( look_8_0 == NUMBER )
-            alt_8 = 2
-          else
-            raise NoViableAlternative( "", 8, 0 )
+          if ( look_5_0.between?( GRTH, LSTH ) )
+            alt_5 = 1
+
           end
-          case alt_8
+          case alt_5
           when 1
-            # at line 28:12: a= ID
-            a = match( ID, TOKENS_FOLLOWING_ID_IN_factor_248 )
+            # at line 32:26: ( ( LSTH | GRTH ) ) ( expr )
+            # at line 32:26: ( ( LSTH | GRTH ) )
+            # at line 32:27: ( LSTH | GRTH )
+            # at line 32:27: ( LSTH | GRTH )
+            alt_4 = 2
+            look_4_0 = @input.peek( 1 )
 
-          when 2
-            # at line 28:19: a= NUMBER
-            a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_factor_254 )
+            if ( look_4_0 == LSTH )
+              alt_4 = 1
+            elsif ( look_4_0 == GRTH )
+              alt_4 = 2
+            else
+              raise NoViableAlternative( "", 4, 0 )
+            end
+            case alt_4
+            when 1
+              # at line 32:29: LSTH
+              match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_254 )
+              # --> action
+              agc_2('<')
+              # <-- action
 
+            when 2
+              # at line 32:48: GRTH
+              match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_259 )
+              # --> action
+              agc_2('>')
+              # <-- action
+
+            end
+
+            # at line 32:69: ( expr )
+            # at line 32:70: expr
+            @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_267 )
+            expr
+            @state.following.pop
+            # --> action
+            agc_5
+            # <-- action
+
+
+          else
+            break # out of loop for decision 5
           end
-          # --> action
-          agc_1(a)
-          # <-- action
+        end # loop for decision 5
 
-        when 2
-          # at line 28:42: LPAR expr RPAR
-          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_261 )
-          @state.following.push( TOKENS_FOLLOWING_expr_IN_factor_263 )
-          expr
-          @state.following.pop
-          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_265 )
-
-        end
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
         recover(re)
@@ -498,25 +427,408 @@ module Rapier
     end
 
 
+    # 
+    # parser rule expr
+    # 
+    # (in Rapier.g)
+    # 33:1: expr : ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )* ;
+    # 
+    def expr
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 6 )
 
-    TOKENS_FOLLOWING_comp_IN_program_128 = Set[ 1, 8, 12, 13 ]
-    TOKENS_FOLLOWING_expr_IN_comp_142 = Set[ 1, 10, 11 ]
-    TOKENS_FOLLOWING_GRTH_IN_comp_146 = Set[ 8, 12, 13 ]
-    TOKENS_FOLLOWING_LSTH_IN_comp_149 = Set[ 8, 12, 13 ]
-    TOKENS_FOLLOWING_expr_IN_comp_154 = Set[ 1 ]
-    TOKENS_FOLLOWING_term_IN_expr_170 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_PLUS_IN_expr_178 = Set[ 4, 5, 8, 12, 13 ]
-    TOKENS_FOLLOWING_MINUS_IN_expr_183 = Set[ 4, 5, 8, 12, 13 ]
-    TOKENS_FOLLOWING_term_IN_expr_191 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_factor_IN_term_209 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_MULT_IN_term_218 = Set[ 6, 7, 8, 12, 13 ]
-    TOKENS_FOLLOWING_DIV_IN_term_223 = Set[ 6, 7, 8, 12, 13 ]
-    TOKENS_FOLLOWING_factor_IN_term_230 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_ID_IN_factor_248 = Set[ 1 ]
-    TOKENS_FOLLOWING_NUMBER_IN_factor_254 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_factor_261 = Set[ 8, 9, 12, 13 ]
-    TOKENS_FOLLOWING_expr_IN_factor_263 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_factor_265 = Set[ 1 ]
+      begin
+        # at line 33:11: ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )*
+        # at line 33:11: ( term )
+        # at line 33:12: term
+        @state.following.push( TOKENS_FOLLOWING_term_IN_expr_285 )
+        term
+        @state.following.pop
+        # --> action
+        agc_4
+        # <-- action
+
+        # at line 33:25: ( ( ( PLUS | MINUS ) ) ( term ) )*
+        while true # decision 7
+          alt_7 = 2
+          look_7_0 = @input.peek( 1 )
+
+          if ( look_7_0.between?( PLUS, MINUS ) )
+            alt_7 = 1
+
+          end
+          case alt_7
+          when 1
+            # at line 33:26: ( ( PLUS | MINUS ) ) ( term )
+            # at line 33:26: ( ( PLUS | MINUS ) )
+            # at line 33:27: ( PLUS | MINUS )
+            # at line 33:27: ( PLUS | MINUS )
+            alt_6 = 2
+            look_6_0 = @input.peek( 1 )
+
+            if ( look_6_0 == PLUS )
+              alt_6 = 1
+            elsif ( look_6_0 == MINUS )
+              alt_6 = 2
+            else
+              raise NoViableAlternative( "", 6, 0 )
+            end
+            case alt_6
+            when 1
+              # at line 33:29: PLUS
+              match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_293 )
+              # --> action
+              agc_2('+')
+              # <-- action
+
+            when 2
+              # at line 33:48: MINUS
+              match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_298 )
+              # --> action
+              agc_2('-')
+              # <-- action
+
+            end
+
+            # at line 33:70: ( term )
+            # at line 33:71: term
+            @state.following.push( TOKENS_FOLLOWING_term_IN_expr_306 )
+            term
+            @state.following.pop
+            # --> action
+            agc_4
+            # <-- action
+
+
+          else
+            break # out of loop for decision 7
+          end
+        end # loop for decision 7
+
+      rescue ANTLR3::Error::RecognitionError => re
+        report_error(re)
+        recover(re)
+
+      ensure
+        # -> uncomment the next line to manually enable rule tracing
+        # trace_out( __method__, 6 )
+
+      end
+      
+      return 
+    end
+
+
+    # 
+    # parser rule term
+    # 
+    # (in Rapier.g)
+    # 34:1: term : ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )* ;
+    # 
+    def term
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 7 )
+
+      begin
+        # at line 34:11: ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )*
+        # at line 34:11: ( factor )
+        # at line 34:12: factor
+        @state.following.push( TOKENS_FOLLOWING_factor_IN_term_324 )
+        factor
+        @state.following.pop
+        # --> action
+        agc_3
+        # <-- action
+
+        # at line 34:28: ( ( ( MULT | DIV ) ) ( factor ) )*
+        while true # decision 9
+          alt_9 = 2
+          look_9_0 = @input.peek( 1 )
+
+          if ( look_9_0.between?( MULT, DIV ) )
+            alt_9 = 1
+
+          end
+          case alt_9
+          when 1
+            # at line 34:29: ( ( MULT | DIV ) ) ( factor )
+            # at line 34:29: ( ( MULT | DIV ) )
+            # at line 34:30: ( MULT | DIV )
+            # at line 34:30: ( MULT | DIV )
+            alt_8 = 2
+            look_8_0 = @input.peek( 1 )
+
+            if ( look_8_0 == MULT )
+              alt_8 = 1
+            elsif ( look_8_0 == DIV )
+              alt_8 = 2
+            else
+              raise NoViableAlternative( "", 8, 0 )
+            end
+            case alt_8
+            when 1
+              # at line 34:32: MULT
+              match( MULT, TOKENS_FOLLOWING_MULT_IN_term_333 )
+              # --> action
+              agc_2('*')
+              # <-- action
+
+            when 2
+              # at line 34:51: DIV
+              match( DIV, TOKENS_FOLLOWING_DIV_IN_term_338 )
+              # --> action
+              agc_2('/')
+              # <-- action
+
+            end
+
+            # at line 34:70: ( factor )
+            # at line 34:71: factor
+            @state.following.push( TOKENS_FOLLOWING_factor_IN_term_345 )
+            factor
+            @state.following.pop
+            # --> action
+            agc_3
+            # <-- action
+
+
+          else
+            break # out of loop for decision 9
+          end
+        end # loop for decision 9
+
+      rescue ANTLR3::Error::RecognitionError => re
+        report_error(re)
+        recover(re)
+
+      ensure
+        # -> uncomment the next line to manually enable rule tracing
+        # trace_out( __method__, 7 )
+
+      end
+      
+      return 
+    end
+
+
+    # 
+    # parser rule factor
+    # 
+    # (in Rapier.g)
+    # 35:1: factor : ( elem | LPAR expr RPAR );
+    # 
+    def factor
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 8 )
+
+      begin
+        # at line 35:9: ( elem | LPAR expr RPAR )
+        alt_10 = 2
+        look_10_0 = @input.peek( 1 )
+
+        if ( look_10_0.between?( ID, STRING ) )
+          alt_10 = 1
+        elsif ( look_10_0 == LPAR )
+          alt_10 = 2
+        else
+          raise NoViableAlternative( "", 10, 0 )
+        end
+        case alt_10
+        when 1
+          # at line 35:11: elem
+          @state.following.push( TOKENS_FOLLOWING_elem_IN_factor_360 )
+          elem
+          @state.following.pop
+
+        when 2
+          # at line 35:18: LPAR expr RPAR
+          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_364 )
+          # --> action
+          agc_1('(')
+          # <-- action
+          @state.following.push( TOKENS_FOLLOWING_expr_IN_factor_368 )
+          expr
+          @state.following.pop
+          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_370 )
+          # --> action
+          agc_7
+          # <-- action
+
+        end
+      rescue ANTLR3::Error::RecognitionError => re
+        report_error(re)
+        recover(re)
+
+      ensure
+        # -> uncomment the next line to manually enable rule tracing
+        # trace_out( __method__, 8 )
+
+      end
+      
+      return 
+    end
+
+
+    # 
+    # parser rule elem
+    # 
+    # (in Rapier.g)
+    # 36:1: elem : (a= NUMBER | a= ID | a= STRING );
+    # 
+    def elem
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 9 )
+      a = nil
+
+      begin
+        # at line 36:9: (a= NUMBER | a= ID | a= STRING )
+        alt_11 = 3
+        case look_11 = @input.peek( 1 )
+        when NUMBER then alt_11 = 1
+        when ID then alt_11 = 2
+        when STRING then alt_11 = 3
+        else
+          raise NoViableAlternative( "", 11, 0 )
+        end
+        case alt_11
+        when 1
+          # at line 36:11: a= NUMBER
+          a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_385 )
+          # --> action
+          agc_1(a, 'int')
+          # <-- action
+
+        when 2
+          # at line 36:40: a= ID
+          a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_393 )
+          # --> action
+          agc_1(a, 'var')
+          # <-- action
+
+        when 3
+          # at line 36:65: a= STRING
+          a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_401 )
+          # --> action
+          agc_1(a, 'string')
+          # <-- action
+
+        end
+      rescue ANTLR3::Error::RecognitionError => re
+        report_error(re)
+        recover(re)
+
+      ensure
+        # -> uncomment the next line to manually enable rule tracing
+        # trace_out( __method__, 9 )
+
+      end
+      
+      return 
+    end
+
+
+    # 
+    # parser rule type
+    # 
+    # (in Rapier.g)
+    # 37:1: type returns [string t] : ( 'int' | 'float' | 'string' | 'boolean' );
+    # 
+    def type
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 10 )
+      t = nil
+
+      begin
+        # at line 37:27: ( 'int' | 'float' | 'string' | 'boolean' )
+        alt_12 = 4
+        case look_12 = @input.peek( 1 )
+        when T__20 then alt_12 = 1
+        when T__21 then alt_12 = 2
+        when T__22 then alt_12 = 3
+        when T__23 then alt_12 = 4
+        else
+          raise NoViableAlternative( "", 12, 0 )
+        end
+        case alt_12
+        when 1
+          # at line 37:29: 'int'
+          match( T__20, TOKENS_FOLLOWING_T__20_IN_type_417 )
+          # --> action
+          t='int'
+          # <-- action
+
+        when 2
+          # at line 37:48: 'float'
+          match( T__21, TOKENS_FOLLOWING_T__21_IN_type_423 )
+          # --> action
+          t='float'
+          # <-- action
+
+        when 3
+          # at line 37:71: 'string'
+          match( T__22, TOKENS_FOLLOWING_T__22_IN_type_429 )
+          # --> action
+          t='string'
+          # <-- action
+
+        when 4
+          # at line 37:96: 'boolean'
+          match( T__23, TOKENS_FOLLOWING_T__23_IN_type_435 )
+          # --> action
+          t='boolean'
+          # <-- action
+
+        end
+      rescue ANTLR3::Error::RecognitionError => re
+        report_error(re)
+        recover(re)
+
+      ensure
+        # -> uncomment the next line to manually enable rule tracing
+        # trace_out( __method__, 10 )
+
+      end
+      
+      return t
+    end
+
+
+
+    TOKENS_FOLLOWING_est_IN_prog_153 = Set[ 1, 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_dclr_IN_est_169 = Set[ 1 ]
+    TOKENS_FOLLOWING_asign_IN_est_173 = Set[ 1 ]
+    TOKENS_FOLLOWING_comp_IN_est_177 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__19_IN_dclr_190 = Set[ 20, 21, 22, 23 ]
+    TOKENS_FOLLOWING_type_IN_dclr_194 = Set[ 14 ]
+    TOKENS_FOLLOWING_ID_IN_dclr_198 = Set[ 1, 12 ]
+    TOKENS_FOLLOWING_EQLS_IN_dclr_203 = Set[ 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_comp_IN_dclr_208 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_asign_224 = Set[ 12 ]
+    TOKENS_FOLLOWING_EQLS_IN_asign_226 = Set[ 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_comp_IN_asign_231 = Set[ 1 ]
+    TOKENS_FOLLOWING_expr_IN_comp_246 = Set[ 1, 10, 11 ]
+    TOKENS_FOLLOWING_LSTH_IN_comp_254 = Set[ 8, 10, 11, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_GRTH_IN_comp_259 = Set[ 8, 10, 11, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_expr_IN_comp_267 = Set[ 1, 10, 11 ]
+    TOKENS_FOLLOWING_term_IN_expr_285 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_PLUS_IN_expr_293 = Set[ 4, 5, 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_MINUS_IN_expr_298 = Set[ 4, 5, 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_term_IN_expr_306 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_factor_IN_term_324 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_MULT_IN_term_333 = Set[ 6, 7, 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_DIV_IN_term_338 = Set[ 6, 7, 8, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_factor_IN_term_345 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_elem_IN_factor_360 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_factor_364 = Set[ 8, 9, 14, 15, 16, 19 ]
+    TOKENS_FOLLOWING_expr_IN_factor_368 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_factor_370 = Set[ 1 ]
+    TOKENS_FOLLOWING_NUMBER_IN_elem_385 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_elem_393 = Set[ 1 ]
+    TOKENS_FOLLOWING_STRING_IN_elem_401 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__20_IN_type_417 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__21_IN_type_423 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__22_IN_type_429 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__23_IN_type_435 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 
