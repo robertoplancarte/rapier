@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-10-22 23:03:16
+# Generated at: 2012-10-22 23:23:12
 # 
 
 # ~~~> start load path setup
@@ -472,7 +472,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 39:11: 'a' .. 'z'
+      # at line 38:11: 'a' .. 'z'
       match_range( 0x61, 0x7a )
 
       
@@ -496,8 +496,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 40:11: ( DIGIT )+
-      # at file 40:11: ( DIGIT )+
+      # at line 39:11: ( DIGIT )+
+      # at file 39:11: ( DIGIT )+
       match_count_1 = 0
       while true
         alt_1 = 2
@@ -509,7 +509,7 @@ module Rapier
         end
         case alt_1
         when 1
-          # at line 40:12: DIGIT
+          # at line 39:12: DIGIT
           digit!
 
         else
@@ -544,7 +544,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 41:11: ( ' ' | '\\t' | '\\r' | '\\n' )
+      # at line 40:11: ( ' ' | '\\t' | '\\r' | '\\n' )
       if @input.peek( 1 ).between?( 0x9, 0xa ) || @input.peek(1) == 0xd || @input.peek(1) == 0x20
         @input.consume
       else
@@ -579,9 +579,9 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 42:9: QTS (~ '\\n' )* QTS
+      # at line 41:9: QTS (~ '\\n' )* QTS
       qts!
-      # at line 42:13: (~ '\\n' )*
+      # at line 41:13: (~ '\\n' )*
       while true # decision 2
         alt_2 = 2
         look_2_0 = @input.peek( 1 )
@@ -599,7 +599,7 @@ module Rapier
         end
         case alt_2
         when 1
-          # at line 42:14: ~ '\\n'
+          # at line 41:14: ~ '\\n'
           if @input.peek( 1 ).between?( 0x0, 0x9 ) || @input.peek( 1 ).between?( 0xb, 0xff )
             @input.consume
           else
@@ -634,7 +634,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 43:19: '0' .. '9'
+      # at line 42:19: '0' .. '9'
       match_range( 0x30, 0x39 )
 
     ensure
