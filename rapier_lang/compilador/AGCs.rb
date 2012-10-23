@@ -45,9 +45,7 @@ end
 #saca fondo falso a @pilaO
 def agc_7
   if @pilaO[-2] == '('
-    temp = @pilaO.pop
-    @pilaO.pop
-    agc_1(temp)
+    agc_1( @pilaO.pop(2).last)
   end
 end
 

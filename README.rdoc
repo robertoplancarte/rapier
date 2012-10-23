@@ -1,0 +1,2 @@
+rapier_app: app de rails para la entrada gráfica de rapier
+rapier_lang: compilador para rapier

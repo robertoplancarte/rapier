@@ -1,0 +1,2 @@
+App web del lenguaje Rapier.
+El app crea una interfaz web gráfica para la generación de código en el lenguaje Rapier, facilitando el aprendizaje de la programación.

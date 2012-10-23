@@ -1,0 +1,323 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta content="Railroad Diagram Generator 1.23.451" name="generator"><style type="text/css">
+    ::-moz-selection
+    {
+      color: #FFFCF0;
+      background: #4D3D00;
+    }
+    ::selection
+    {
+      color: #FFFCF0;
+      background: #4D3D00;
+    }      
+    .ebnf a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover
+    {
+      color: #1A1400;
+      text-decoration: underline;
+    }    
+    .signature
+    {
+      color: #806600;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #4D3D00;
+      background: #FFFCF0;
+    }
+    a:link, a:visited
+    {
+      color: #4D3D00;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #806600;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #806600;
+      background: #F1E8C6;
+      color: #806600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover, #tabs li a:hover
+    {
+      color: #1A1400;
+      background: #FFF5CC;
+      border-color: #1A1400;       
+    }     
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #4D3D00;
+    }  
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {     
+      border-bottom: 1px solid #4D3D00;
+    }
+    #tabs li a.active
+    {
+      color: #4D3D00;
+      background: #FFFCF0;
+      border-color: #4D3D00;
+      border-bottom: 1px solid #FFFCF0;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #806600;
+      background: #FFFEFA;
+      color: #1A1400;
+    }
+    td.time
+    {
+      vertical-align: top;
+    }
+    span.time
+    {
+      font-size: 9px;
+      visibility: hidden;
+    }
+    td.time:hover span.time
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display:none;
+      background:#FFFCF0;
+      position:absolute;
+      right:34px;
+      top:94px;
+      padding:10px;
+      border:1px dotted #4D3D00;
+    }
+    #divs div.ebnf, div.ebnf
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px; 
+      padding-bottom: 2px; 
+      background:#FFF5CC;"
+    }
+  </style></head>
+   <body>
+      <p style="font-size: 14px; font-weight:bold"><a name="PROGRAMA">PROGRAMA:</a></p><img border="0" height="36" src="diagram/PROGRAMA.png" usemap="#PROGRAMA.map" width="370"><map name="PROGRAMA.map">
+         <area coords="269,1,341,33" href="#BLOQUE" shape="rect" title="BLOQUE"></map><p>
+         <div class="ebnf"><pre><a href="#PROGRAMA" title="PROGRAMA">PROGRAMA</a> ::= 'program' '(' 'id' ')' <a href="#BLOQUE" title="BLOQUE">BLOQUE</a></pre></div>
+      </p>
+      <p>no references</p><br><p style="font-size: 14px; font-weight:bold"><a name="BLOQUE">BLOQUE:</a></p><img border="0" height="100" src="diagram/BLOQUE.png" usemap="#BLOQUE.map" width="734"><map name="BLOQUE.map">
+         <area coords="157,33,209,65" href="#VARS" shape="rect" title="VARS">
+         <area coords="309,33,393,65" href="#FUNCTION" shape="rect" title="FUNCTION">
+         <area coords="493,33,577,65" href="#ESTATUTO" shape="rect" title="ESTATUTO"></map><p>
+         <div class="ebnf"><pre><a href="#BLOQUE" title="BLOQUE">BLOQUE</a>   ::= '{' ( <a href="#VARS" title="VARS">VARS</a>* <a href="#FUNCTION" title="FUNCTION">FUNCTION</a>* <a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a>* )* '}'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#CONDICION" title="CONDICION">CONDICION</a></li>
+            <li><a href="#FOR" title="FOR">FOR</a></li>
+            <li><a href="#FUNCTION" title="FUNCTION">FUNCTION</a></li>
+            <li><a href="#PROGRAMA" title="PROGRAMA">PROGRAMA</a></li>
+            <li><a href="#WHILE" title="WHILE">WHILE</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="VARS">VARS:</a></p><img border="0" height="52" src="diagram/VARS.png" usemap="#VARS.map" width="358"><map name="VARS.map">
+         <area coords="29,1,79,33" href="#TIPO" shape="rect" title="TIPO">
+         <area coords="221,1,265,33" href="#EXP" shape="rect" title="EXP"></map><p>
+         <div class="ebnf"><pre><a href="#VARS" title="VARS">VARS</a>     ::= <a href="#TIPO" title="TIPO">TIPO</a> 'id' ( '=' <a href="#EXP" title="EXP">EXP</a> )? ';'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#BLOQUE" title="BLOQUE">BLOQUE</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FUNCTION">FUNCTION:</a></p><img border="0" height="80" src="diagram/FUNCTION.png" usemap="#FUNCTION.map" width="506"><map name="FUNCTION.map">
+         <area coords="29,45,79,77" href="#TIPO" shape="rect" title="TIPO">
+         <area coords="217,45,267,77" href="#TIPO" shape="rect" title="TIPO">
+         <area coords="405,45,477,77" href="#BLOQUE" shape="rect" title="BLOQUE"></map><p>
+         <div class="ebnf"><pre><a href="#FUNCTION" title="FUNCTION">FUNCTION</a> ::= <a href="#TIPO" title="TIPO">TIPO</a> 'id' '(' <a href="#TIPO" title="TIPO">TIPO</a> 'id' ( ',' <a href="#TIPO" title="TIPO">TIPO</a> 'id' )* ')' <a href="#BLOQUE" title="BLOQUE">BLOQUE</a></pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#BLOQUE" title="BLOQUE">BLOQUE</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="TIPO">TIPO:</a></p><img border="0" height="184" src="diagram/TIPO.png" width="156"><p>
+         <div class="ebnf"><pre><a href="#TIPO" title="TIPO">TIPO</a>     ::= ( 'int' | 'float' | 'char' | 'string' )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#FUNCTION" title="FUNCTION">FUNCTION</a></li>
+            <li><a href="#VARS" title="VARS">VARS</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="ESTATUTO">ESTATUTO:</a></p><img border="0" height="212" src="diagram/ESTATUTO.png" usemap="#ESTATUTO.map" width="198"><map name="ESTATUTO.map">
+         <area coords="49,1,149,33" href="#ASIGNACION" shape="rect" title="ASIGNACION">
+         <area coords="49,45,143,77" href="#CONDICION" shape="rect" title="CONDICION">
+         <area coords="49,89,139,121" href="#ESCRITURA" shape="rect" title="ESCRITURA">
+         <area coords="49,133,125,165" href="#LECTURA" shape="rect" title="LECTURA">
+         <area coords="49,177,109,209" href="#CICLO" shape="rect" title="CICLO"></map><p>
+         <div class="ebnf"><pre><a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a> ::= <a href="#ASIGNACION" title="ASIGNACION">ASIGNACION</a>
+           | <a href="#CONDICION" title="CONDICION">CONDICION</a>
+           | <a href="#ESCRITURA" title="ESCRITURA">ESCRITURA</a>
+           | <a href="#LECTURA" title="LECTURA">LECTURA</a>
+           | <a href="#CICLO" title="CICLO">CICLO</a></pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#BLOQUE" title="BLOQUE">BLOQUE</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="ASIGNACION">ASIGNACION:</a></p><img border="0" height="36" src="diagram/ASIGNACION.png" usemap="#ASIGNACION.map" width="296"><map name="ASIGNACION.map">
+         <area coords="131,1,223,33" href="#EXPRESION" shape="rect" title="EXPRESION"></map><p>
+         <div class="ebnf"><pre><a href="#ASIGNACION" title="ASIGNACION">ASIGNACION</a>
+         ::= 'id' '=' <a href="#EXPRESION" title="EXPRESION">EXPRESION</a> ';'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a></li>
+            <li><a href="#FOR" title="FOR">FOR</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="CONDICION">CONDICION:</a></p><img border="0" height="52" src="diagram/CONDICION.png" usemap="#CONDICION.map" width="580"><map name="CONDICION.map">
+         <area coords="123,1,215,33" href="#EXPRESION" shape="rect" title="EXPRESION">
+         <area coords="281,1,353,33" href="#BLOQUE" shape="rect" title="BLOQUE">
+         <area coords="459,1,531,33" href="#BLOQUE" shape="rect" title="BLOQUE"></map><p>
+         <div class="ebnf"><pre><a href="#CONDICION" title="CONDICION">CONDICION</a>
+         ::= 'if' '(' <a href="#EXPRESION" title="EXPRESION">EXPRESION</a> ')' <a href="#BLOQUE" title="BLOQUE">BLOQUE</a> ( 'else' <a href="#BLOQUE" title="BLOQUE">BLOQUE</a> )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="ESCRITURA">ESCRITURA:</a></p><img border="0" height="168" src="diagram/ESCRITURA.png" usemap="#ESCRITURA.map" width="560"><map name="ESCRITURA.map">
+         <area coords="175,1,267,33" href="#EXPRESION" shape="rect" title="EXPRESION">
+         <area coords="181,89,273,121" href="#EXPRESION" shape="rect" title="EXPRESION"></map><p>
+         <div class="ebnf"><pre><a href="#ESCRITURA" title="ESCRITURA">ESCRITURA</a>
+         ::= 'out' '(' ( <a href="#EXPRESION" title="EXPRESION">EXPRESION</a> | 'string' ) ')' ';'
+           | 'fout' '(' ( <a href="#EXPRESION" title="EXPRESION">EXPRESION</a> | 'string' ) ',' 'cte file' ')' ';'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="LECTURA">LECTURA:</a></p><img border="0" height="80" src="diagram/LECTURA.png" width="450"><p>
+         <div class="ebnf"><pre><a href="#LECTURA" title="LECTURA">LECTURA</a>  ::= 'in' '(' 'id' ')' ';'
+           | 'fin' '(' 'id' ',' 'cte file' ')' ';'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="CICLO">CICLO:</a></p><img border="0" height="96" src="diagram/CICLO.png" usemap="#CICLO.map" width="160"><map name="CICLO.map">
+         <area coords="49,1,111,33" href="#WHILE" shape="rect" title="WHILE">
+         <area coords="49,45,93,77" href="#FOR" shape="rect" title="FOR"></map><p>
+         <div class="ebnf"><pre><a href="#CICLO" title="CICLO">CICLO</a>    ::= ( <a href="#WHILE" title="WHILE">WHILE</a> | <a href="#FOR" title="FOR">FOR</a> )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#ESTATUTO" title="ESTATUTO">ESTATUTO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="WHILE">WHILE:</a></p><img border="0" height="36" src="diagram/WHILE.png" usemap="#WHILE.map" width="410"><map name="WHILE.map">
+         <area coords="151,1,243,33" href="#EXPRESION" shape="rect" title="EXPRESION">
+         <area coords="309,1,381,33" href="#BLOQUE" shape="rect" title="BLOQUE"></map><p>
+         <div class="ebnf"><pre><a href="#WHILE" title="WHILE">WHILE</a>    ::= 'while' '(' <a href="#EXPRESION" title="EXPRESION">EXPRESION</a> ')' <a href="#BLOQUE" title="BLOQUE">BLOQUE</a></pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#CICLO" title="CICLO">CICLO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FOR">FOR:</a></p><img border="0" height="36" src="diagram/FOR.png" usemap="#FOR.map" width="720"><map name="FOR.map">
+         <area coords="133,1,233,33" href="#ASIGNACION" shape="rect" title="ASIGNACION">
+         <area coords="297,1,389,33" href="#EXPRECION" shape="rect" title="EXPRECION">
+         <area coords="453,1,553,33" href="#ASIGNACION" shape="rect" title="ASIGNACION">
+         <area coords="619,1,691,33" href="#BLOQUE" shape="rect" title="BLOQUE"></map><p>
+         <div class="ebnf"><pre><a href="#FOR" title="FOR">FOR</a>      ::= 'for' '(' <a href="#ASIGNACION" title="ASIGNACION">ASIGNACION</a> ';' <a href="#EXPRECION" title="EXPRECION">EXPRECION</a> ';' <a href="#ASIGNACION" title="ASIGNACION">ASIGNACION</a> ')' <a href="#BLOQUE" title="BLOQUE">BLOQUE</a></pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#CICLO" title="CICLO">CICLO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="EXPRESION">EXPRESION:</a></p><img border="0" height="140" src="diagram/EXPRESION.png" usemap="#EXPRESION.map" width="306"><map name="EXPRESION.map">
+         <area coords="29,1,73,33" href="#EXP" shape="rect" title="EXP">
+         <area coords="213,1,257,33" href="#EXP" shape="rect" title="EXP"></map><p>
+         <div class="ebnf"><pre><a href="#EXPRESION" title="EXPRESION">EXPRESION</a>
+         ::= <a href="#EXP" title="EXP">EXP</a> ( ( '&gt;' | '&lt;' | '&lt;&gt;' ) <a href="#EXP" title="EXP">EXP</a> )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#ASIGNACION" title="ASIGNACION">ASIGNACION</a></li>
+            <li><a href="#CONDICION" title="CONDICION">CONDICION</a></li>
+            <li><a href="#ESCRITURA" title="ESCRITURA">ESCRITURA</a></li>
+            <li><a href="#FACTOR" title="FACTOR">FACTOR</a></li>
+            <li><a href="#WHILE" title="WHILE">WHILE</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="EXP">EXP:</a></p><img border="0" height="124" src="diagram/EXP.png" usemap="#EXP.map" width="186"><map name="EXP.map">
+         <area coords="49,89,125,121" href="#TERMINO" shape="rect" title="TERMINO"></map><p>
+         <div class="ebnf"><pre><a href="#EXP" title="EXP">EXP</a>      ::= <a href="#TERMINO" title="TERMINO">TERMINO</a> ( ( '+' '#2' | '-' '#2' ) <a href="#TERMINO" title="TERMINO">TERMINO</a> )*</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#EXPRESION" title="EXPRESION">EXPRESION</a></li>
+            <li><a href="#VARS" title="VARS">VARS</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="TERMINO">TERMINO:</a></p><img border="0" height="124" src="diagram/TERMINO.png" usemap="#TERMINO.map" width="184"><map name="TERMINO.map">
+         <area coords="49,89,117,121" href="#FACTOR" shape="rect" title="FACTOR"></map><p>
+         <div class="ebnf"><pre><a href="#TERMINO" title="TERMINO">TERMINO</a>  ::= <a href="#FACTOR" title="FACTOR">FACTOR</a> ( ( '*' '#2' | '/' '#2' ) <a href="#FACTOR" title="FACTOR">FACTOR</a> )*</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#EXP" title="EXP">EXP</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FACTOR">FACTOR:</a></p><img border="0" height="140" src="diagram/FACTOR.png" usemap="#FACTOR.map" width="322"><map name="FACTOR.map">
+         <area coords="95,1,187,33" href="#EXPRESION" shape="rect" title="EXPRESION">
+         <area coords="139,45,215,77" href="#VAR_CTE" shape="rect" title="VAR_CTE"></map><p>
+         <div class="ebnf"><pre><a href="#FACTOR" title="FACTOR">FACTOR</a>   ::= '(' <a href="#EXPRESION" title="EXPRESION">EXPRESION</a> ')'
+           | ( '+' | '-' )? <a href="#VAR_CTE" title="VAR_CTE">VAR_CTE</a> '#1'</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#TERMINO" title="TERMINO">TERMINO</a></li>
+         </ul>
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="VAR_CTE">VAR_CTE:</a></p><img border="0" height="228" src="diagram/VAR_CTE.png" width="180"><p>
+         <div class="ebnf"><pre><a href="#VAR_CTE" title="VAR_CTE">VAR_CTE</a>  ::= ( 'id' | 'cte int' | 'cte float' | 'cte char' | 'cte string' )?</pre></div>
+      </p>
+      <p>referenced by:
+         <ul>
+            <li><a href="#FACTOR" title="FACTOR">FACTOR</a></li>
+         </ul>
+      </p><br><hr>
+      <p>
+         <table border="0" class="signature">
+            <tr>
+               <td style="width: 100%">&nbsp;</td>
+               <td valign="top">
+                  <nobr class="signature">... generated by <a class="signature" href="http://railroad.my28msec.com/" name="Railroad-Diagram-Generator" title="http://railroad.my28msec.com/">Railroad Diagram Generator</a></nobr>
+               </td>
+               <td><img border="0" height="16" src="diagram/.png" width="16"></td>
+            </tr>
+         </table>
+      </p>
+   </body>
+</html>

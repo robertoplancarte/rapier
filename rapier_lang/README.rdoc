@@ -1,0 +1,11 @@
+Compilador de rapier.
+Diagramas: diagramas de sintaxis e información de acciones de generación de código para el lenguaje rapier.
+Programas: programas de prueba en lenguaje rapier.
+Compilador: Lexer, Parser, acciones de generación de código y clase cuadruplo; todo lo que se ocupa para compilar rapier.
+Rapier.g: gramática antlr con ruby embebido que genera Lexer y Parser
+
+Para correr las pruebas:
+Generar archivos de compilador:
+  antlr4ruby -fo compilador/ Rapier.g
+Generar cuádruplos:
+  ruby compilador/RapierParser.rb programas/helloworld.rr 
