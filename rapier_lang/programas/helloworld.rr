@@ -1,3 +1,7 @@
 main{
- x<3+4
+  var int x = 0
+  if(x<3+4){
+    var int y = 0
+    5*(2+3)
+  }
 }

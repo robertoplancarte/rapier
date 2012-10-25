@@ -7,6 +7,6 @@ class Cuadruplo
     @respuesta = respuesta
   end
   def inspect
-    puts "[#{@operador}, #{operando1}, #{operando2}, #{@respuesta}]"
+    puts "[#{operador}, #{operando1}, #{operando2}, #{respuesta}]"
   end
 end
