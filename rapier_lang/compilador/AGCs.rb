@@ -50,7 +50,8 @@ def agc_7
 end
 
 def agc_8
-  @cuadruplos.each do  |c|
-    puts c.inspect
-  end
+  puts @cuadruplos.inspect
+  puts @pilaO.inspect
+  puts @pilaS.inspect
+  puts @pOper.inspect
 end

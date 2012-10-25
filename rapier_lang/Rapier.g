@@ -9,10 +9,14 @@ tokens {
   DIV     ='/';
   LPAR    ='(';
   RPAR    =')';
+  LKEY    ='{';
+  RKEY    ='}';
   GRTH    ='>';
   LSTH    ='<';
   EQLS    ='=';
   QTS     ='"';
+  MAIN    ='main';
+  IF      ='if';
 }
 @lexer::init{}
 @parser::init{
@@ -24,8 +28,10 @@ tokens {
   require_relative 'AGCs.rb'
 }
 
-prog    : est* {agc_8} ;
-est     : (dclr | asign | comp ) ;
+prog    : MAIN bloq {agc_8} ;
+bloq    : LKEY est* RKEY ;
+est     : (dclr | asign | comp | sIf ) ;
+sIf     : IF LPAR comp RPAR bloq ;
 dclr    : 'var' b=type a=ID {agc_1(a,b)} ('='  {agc_2('=')} comp {agc_6})? ;
 asign   : a=ID EQLS {agc_2('=')}{agc_1(a)} comp {agc_6} ;
 comp    : (expr {agc_5})((( LSTH {agc_2('<')}| GRTH {agc_2('>')}))  (expr  {agc_5}))* ;
