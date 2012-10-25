@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-10-25 13:17:47
+# Generated at: 2012-10-25 15:47:17
 # 
 
 # ~~~> start load path setup
@@ -295,9 +295,15 @@ module Rapier
         comp
         @state.following.pop
         match( RPAR, TOKENS_FOLLOWING_RPAR_IN_sIf_289 )
-        @state.following.push( TOKENS_FOLLOWING_bloq_IN_sIf_291 )
+        # --> action
+        agc_4
+        # <-- action
+        @state.following.push( TOKENS_FOLLOWING_bloq_IN_sIf_293 )
         bloq
         @state.following.pop
+        # --> action
+        agc_5
+        # <-- action
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -327,11 +333,11 @@ module Rapier
 
       begin
         # at line 38:11: 'var' b= type a= ID ( '=' comp )?
-        match( T__25, TOKENS_FOLLOWING_T__25_IN_dclr_302 )
-        @state.following.push( TOKENS_FOLLOWING_type_IN_dclr_306 )
+        match( T__25, TOKENS_FOLLOWING_T__25_IN_dclr_306 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_dclr_310 )
         b = type
         @state.following.pop
-        a = match( ID, TOKENS_FOLLOWING_ID_IN_dclr_310 )
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_dclr_314 )
         # --> action
         agc_1(a,b)
         # <-- action
@@ -345,15 +351,15 @@ module Rapier
         case alt_3
         when 1
           # at line 38:43: '=' comp
-          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclr_315 )
+          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclr_319 )
           # --> action
           agc_2('=')
           # <-- action
-          @state.following.push( TOKENS_FOLLOWING_comp_IN_dclr_320 )
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_dclr_324 )
           comp
           @state.following.pop
           # --> action
-          agc_0
+          agc_3
           # <-- action
 
         end
@@ -385,19 +391,19 @@ module Rapier
 
       begin
         # at line 39:11: a= ID EQLS comp
-        a = match( ID, TOKENS_FOLLOWING_ID_IN_asign_336 )
-        match( EQLS, TOKENS_FOLLOWING_EQLS_IN_asign_338 )
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_asign_340 )
+        match( EQLS, TOKENS_FOLLOWING_EQLS_IN_asign_342 )
         # --> action
         agc_2('=')
         # <-- action
         # --> action
         agc_1(a)
         # <-- action
-        @state.following.push( TOKENS_FOLLOWING_comp_IN_asign_343 )
+        @state.following.push( TOKENS_FOLLOWING_comp_IN_asign_347 )
         comp
         @state.following.pop
         # --> action
-        agc_0
+        agc_3
         # <-- action
 
       rescue ANTLR3::Error::RecognitionError => re
@@ -428,11 +434,11 @@ module Rapier
         # at line 40:11: ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )*
         # at line 40:11: ( expr )
         # at line 40:12: expr
-        @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_357 )
+        @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_361 )
         expr
         @state.following.pop
         # --> action
-        agc_0(['<','>'])
+        agc_3(['<','>'])
         # <-- action
 
         # at line 40:36: ( ( ( LSTH | GRTH ) ) ( expr ) )*
@@ -463,14 +469,14 @@ module Rapier
             case alt_4
             when 1
               # at line 40:40: LSTH
-              match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_365 )
+              match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_369 )
               # --> action
               agc_2('<')
               # <-- action
 
             when 2
               # at line 40:59: GRTH
-              match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_370 )
+              match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_374 )
               # --> action
               agc_2('>')
               # <-- action
@@ -479,11 +485,11 @@ module Rapier
 
             # at line 40:80: ( expr )
             # at line 40:81: expr
-            @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_378 )
+            @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_382 )
             expr
             @state.following.pop
             # --> action
-            agc_0(['<','>'])
+            agc_3(['<','>'])
             # <-- action
 
 
@@ -520,11 +526,11 @@ module Rapier
         # at line 41:11: ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )*
         # at line 41:11: ( term )
         # at line 41:12: term
-        @state.following.push( TOKENS_FOLLOWING_term_IN_expr_396 )
+        @state.following.push( TOKENS_FOLLOWING_term_IN_expr_400 )
         term
         @state.following.pop
         # --> action
-        agc_0(['+','-'])
+        agc_3(['+','-'])
         # <-- action
 
         # at line 41:36: ( ( ( PLUS | MINUS ) ) ( term ) )*
@@ -555,14 +561,14 @@ module Rapier
             case alt_6
             when 1
               # at line 41:40: PLUS
-              match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_404 )
+              match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_408 )
               # --> action
               agc_2('+')
               # <-- action
 
             when 2
               # at line 41:59: MINUS
-              match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_409 )
+              match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_413 )
               # --> action
               agc_2('-')
               # <-- action
@@ -571,11 +577,11 @@ module Rapier
 
             # at line 41:81: ( term )
             # at line 41:82: term
-            @state.following.push( TOKENS_FOLLOWING_term_IN_expr_417 )
+            @state.following.push( TOKENS_FOLLOWING_term_IN_expr_421 )
             term
             @state.following.pop
             # --> action
-            agc_0(['+','-'])
+            agc_3(['+','-'])
             # <-- action
 
 
@@ -612,11 +618,11 @@ module Rapier
         # at line 42:11: ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )*
         # at line 42:11: ( factor )
         # at line 42:12: factor
-        @state.following.push( TOKENS_FOLLOWING_factor_IN_term_435 )
+        @state.following.push( TOKENS_FOLLOWING_factor_IN_term_439 )
         factor
         @state.following.pop
         # --> action
-        agc_0(['*','/'])
+        agc_3(['*','/'])
         # <-- action
 
         # at line 42:39: ( ( ( MULT | DIV ) ) ( factor ) )*
@@ -647,14 +653,14 @@ module Rapier
             case alt_8
             when 1
               # at line 42:43: MULT
-              match( MULT, TOKENS_FOLLOWING_MULT_IN_term_444 )
+              match( MULT, TOKENS_FOLLOWING_MULT_IN_term_448 )
               # --> action
               agc_2('*')
               # <-- action
 
             when 2
               # at line 42:62: DIV
-              match( DIV, TOKENS_FOLLOWING_DIV_IN_term_449 )
+              match( DIV, TOKENS_FOLLOWING_DIV_IN_term_453 )
               # --> action
               agc_2('/')
               # <-- action
@@ -663,11 +669,11 @@ module Rapier
 
             # at line 42:81: ( factor )
             # at line 42:82: factor
-            @state.following.push( TOKENS_FOLLOWING_factor_IN_term_456 )
+            @state.following.push( TOKENS_FOLLOWING_factor_IN_term_460 )
             factor
             @state.following.pop
             # --> action
-            agc_0(['*','/'])
+            agc_3(['*','/'])
             # <-- action
 
 
@@ -715,22 +721,22 @@ module Rapier
         case alt_10
         when 1
           # at line 43:11: elem
-          @state.following.push( TOKENS_FOLLOWING_elem_IN_factor_471 )
+          @state.following.push( TOKENS_FOLLOWING_elem_IN_factor_475 )
           elem
           @state.following.pop
 
         when 2
           # at line 43:18: LPAR expr RPAR
-          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_475 )
+          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_479 )
           # --> action
           agc_1('(')
           # <-- action
-          @state.following.push( TOKENS_FOLLOWING_expr_IN_factor_479 )
+          @state.following.push( TOKENS_FOLLOWING_expr_IN_factor_483 )
           expr
           @state.following.pop
-          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_481 )
+          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_485 )
           # --> action
-          agc_0
+          agc_3
           # <-- action
 
         end
@@ -772,21 +778,21 @@ module Rapier
         case alt_11
         when 1
           # at line 44:11: a= NUMBER
-          a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_496 )
+          a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_500 )
           # --> action
           agc_1(a, 'int')
           # <-- action
 
         when 2
           # at line 44:40: a= ID
-          a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_504 )
+          a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_508 )
           # --> action
           agc_1(a, 'var')
           # <-- action
 
         when 3
           # at line 44:65: a= STRING
-          a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_512 )
+          a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_516 )
           # --> action
           agc_1(a, 'string')
           # <-- action
@@ -831,28 +837,28 @@ module Rapier
         case alt_12
         when 1
           # at line 45:29: 'int'
-          match( T__26, TOKENS_FOLLOWING_T__26_IN_type_528 )
+          match( T__26, TOKENS_FOLLOWING_T__26_IN_type_532 )
           # --> action
           t='int'
           # <-- action
 
         when 2
           # at line 45:48: 'float'
-          match( T__27, TOKENS_FOLLOWING_T__27_IN_type_534 )
+          match( T__27, TOKENS_FOLLOWING_T__27_IN_type_538 )
           # --> action
           t='float'
           # <-- action
 
         when 3
           # at line 45:71: 'string'
-          match( T__28, TOKENS_FOLLOWING_T__28_IN_type_540 )
+          match( T__28, TOKENS_FOLLOWING_T__28_IN_type_544 )
           # --> action
           t='string'
           # <-- action
 
         when 4
           # at line 45:96: 'boolean'
-          match( T__29, TOKENS_FOLLOWING_T__29_IN_type_546 )
+          match( T__29, TOKENS_FOLLOWING_T__29_IN_type_550 )
           # --> action
           t='boolean'
           # <-- action
@@ -886,38 +892,38 @@ module Rapier
     TOKENS_FOLLOWING_LPAR_IN_sIf_285 = Set[ 8, 20, 21, 22 ]
     TOKENS_FOLLOWING_comp_IN_sIf_287 = Set[ 9 ]
     TOKENS_FOLLOWING_RPAR_IN_sIf_289 = Set[ 10 ]
-    TOKENS_FOLLOWING_bloq_IN_sIf_291 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__25_IN_dclr_302 = Set[ 26, 27, 28, 29 ]
-    TOKENS_FOLLOWING_type_IN_dclr_306 = Set[ 20 ]
-    TOKENS_FOLLOWING_ID_IN_dclr_310 = Set[ 1, 16 ]
-    TOKENS_FOLLOWING_EQLS_IN_dclr_315 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_comp_IN_dclr_320 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_asign_336 = Set[ 16 ]
-    TOKENS_FOLLOWING_EQLS_IN_asign_338 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_comp_IN_asign_343 = Set[ 1 ]
-    TOKENS_FOLLOWING_expr_IN_comp_357 = Set[ 1, 12, 13 ]
-    TOKENS_FOLLOWING_LSTH_IN_comp_365 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_GRTH_IN_comp_370 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_expr_IN_comp_378 = Set[ 1, 12, 13 ]
-    TOKENS_FOLLOWING_term_IN_expr_396 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_PLUS_IN_expr_404 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_MINUS_IN_expr_409 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_term_IN_expr_417 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_factor_IN_term_435 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_MULT_IN_term_444 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_DIV_IN_term_449 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_factor_IN_term_456 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_elem_IN_factor_471 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_factor_475 = Set[ 8, 20, 21, 22 ]
-    TOKENS_FOLLOWING_expr_IN_factor_479 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_factor_481 = Set[ 1 ]
-    TOKENS_FOLLOWING_NUMBER_IN_elem_496 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_elem_504 = Set[ 1 ]
-    TOKENS_FOLLOWING_STRING_IN_elem_512 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__26_IN_type_528 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__27_IN_type_534 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__28_IN_type_540 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__29_IN_type_546 = Set[ 1 ]
+    TOKENS_FOLLOWING_bloq_IN_sIf_293 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__25_IN_dclr_306 = Set[ 26, 27, 28, 29 ]
+    TOKENS_FOLLOWING_type_IN_dclr_310 = Set[ 20 ]
+    TOKENS_FOLLOWING_ID_IN_dclr_314 = Set[ 1, 16 ]
+    TOKENS_FOLLOWING_EQLS_IN_dclr_319 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_comp_IN_dclr_324 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_asign_340 = Set[ 16 ]
+    TOKENS_FOLLOWING_EQLS_IN_asign_342 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_comp_IN_asign_347 = Set[ 1 ]
+    TOKENS_FOLLOWING_expr_IN_comp_361 = Set[ 1, 12, 13 ]
+    TOKENS_FOLLOWING_LSTH_IN_comp_369 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_GRTH_IN_comp_374 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_expr_IN_comp_382 = Set[ 1, 12, 13 ]
+    TOKENS_FOLLOWING_term_IN_expr_400 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_PLUS_IN_expr_408 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_MINUS_IN_expr_413 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_term_IN_expr_421 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_factor_IN_term_439 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_MULT_IN_term_448 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_DIV_IN_term_453 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_factor_IN_term_460 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_elem_IN_factor_475 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_factor_479 = Set[ 8, 20, 21, 22 ]
+    TOKENS_FOLLOWING_expr_IN_factor_483 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_factor_485 = Set[ 1 ]
+    TOKENS_FOLLOWING_NUMBER_IN_elem_500 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_elem_508 = Set[ 1 ]
+    TOKENS_FOLLOWING_STRING_IN_elem_516 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__26_IN_type_532 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__27_IN_type_538 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__28_IN_type_544 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__29_IN_type_550 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 

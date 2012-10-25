@@ -34,13 +34,13 @@ tokens {
 prog    : MAIN bloq {agc_8} ;
 bloq    : LKEY est* RKEY ;
 est     : (dclr | asign | comp | sIf ) ;
-sIf     : IF LPAR comp RPAR bloq ;
-dclr    : 'var' b=type a=ID {agc_1(a,b)} ('='  {agc_2('=')} comp {agc_0})? ;
-asign   : a=ID EQLS {agc_2('=')}{agc_1(a)} comp {agc_0} ;
-comp    : (expr {agc_0(['<','>'])})((( LSTH {agc_2('<')}| GRTH {agc_2('>')}))  (expr  {agc_0(['<','>'])}))* ;
-expr    : (term {agc_0(['+','-'])})((( PLUS {agc_2('+')}| MINUS {agc_2('-')}))  (term  {agc_0(['+','-'])}))* ;
-term    : (factor {agc_0(['*','/'])}) ((( MULT {agc_2('*')}| DIV {agc_2('/')})) (factor {agc_0(['*','/'])}) )* ;
-factor  : elem | LPAR {agc_1('(')} expr RPAR {agc_0} ;
+sIf     : IF LPAR comp RPAR {agc_4} bloq {agc_5} ;
+dclr    : 'var' b=type a=ID {agc_1(a,b)} ('='  {agc_2('=')} comp {agc_3})? ;
+asign   : a=ID EQLS {agc_2('=')}{agc_1(a)} comp {agc_3} ;
+comp    : (expr {agc_3(['<','>'])})((( LSTH {agc_2('<')}| GRTH {agc_2('>')}))  (expr  {agc_3(['<','>'])}))* ;
+expr    : (term {agc_3(['+','-'])})((( PLUS {agc_2('+')}| MINUS {agc_2('-')}))  (term  {agc_3(['+','-'])}))* ;
+term    : (factor {agc_3(['*','/'])}) ((( MULT {agc_2('*')}| DIV {agc_2('/')})) (factor {agc_3(['*','/'])}) )* ;
+factor  : elem | LPAR {agc_1('(')} expr RPAR {agc_3} ;
 elem    : a=NUMBER {agc_1(a, 'int')} | a=ID {agc_1(a, 'var')} | a=STRING {agc_1(a, 'string')} ;
 type returns [string t]   : 'int' {$t='int'} | 'float' {$t='float'} | 'string' {$t='string'} | 'boolean' {$t='boolean'} ;
 
