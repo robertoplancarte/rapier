@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-10-25 15:47:17
+# Generated at: 2012-10-25 16:29:48
 # 
 
 # ~~~> start load path setup
@@ -114,8 +114,9 @@ module Rapier
         @pilaS = []
         @cuadruplos = []
         @counter = 0
-        require_relative 'Cuadruplo.rb'
-        require_relative 'AGCs.rb'
+        require_relative 'CUA.rb'
+        require_relative 'AGC.rb'
+        require_relative 'DIR.rb'
 
       # - - - - - - end action @parser::init - - - - - - -
 
@@ -127,14 +128,14 @@ module Rapier
     # parser rule prog
     # 
     # (in Rapier.g)
-    # 34:1: prog : MAIN bloq ;
+    # 35:1: prog : MAIN bloq ;
     # 
     def prog
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 1 )
 
       begin
-        # at line 34:11: MAIN bloq
+        # at line 35:11: MAIN bloq
         match( MAIN, TOKENS_FOLLOWING_MAIN_IN_prog_224 )
         @state.following.push( TOKENS_FOLLOWING_bloq_IN_prog_226 )
         bloq
@@ -161,16 +162,16 @@ module Rapier
     # parser rule bloq
     # 
     # (in Rapier.g)
-    # 35:1: bloq : LKEY ( est )* RKEY ;
+    # 36:1: bloq : LKEY ( est )* RKEY ;
     # 
     def bloq
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 2 )
 
       begin
-        # at line 35:11: LKEY ( est )* RKEY
+        # at line 36:11: LKEY ( est )* RKEY
         match( LKEY, TOKENS_FOLLOWING_LKEY_IN_bloq_239 )
-        # at line 35:16: ( est )*
+        # at line 36:16: ( est )*
         while true # decision 1
           alt_1 = 2
           look_1_0 = @input.peek( 1 )
@@ -181,7 +182,7 @@ module Rapier
           end
           case alt_1
           when 1
-            # at line 35:16: est
+            # at line 36:16: est
             @state.following.push( TOKENS_FOLLOWING_est_IN_bloq_241 )
             est
             @state.following.pop
@@ -210,15 +211,15 @@ module Rapier
     # parser rule est
     # 
     # (in Rapier.g)
-    # 36:1: est : ( dclr | asign | comp | sIf ) ;
+    # 37:1: est : ( dclr | asign | comp | sIf ) ;
     # 
     def est
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 3 )
 
       begin
-        # at line 36:11: ( dclr | asign | comp | sIf )
-        # at line 36:11: ( dclr | asign | comp | sIf )
+        # at line 37:11: ( dclr | asign | comp | sIf )
+        # at line 37:11: ( dclr | asign | comp | sIf )
         alt_2 = 4
         case look_2 = @input.peek( 1 )
         when T__25 then alt_2 = 1
@@ -238,25 +239,25 @@ module Rapier
         end
         case alt_2
         when 1
-          # at line 36:12: dclr
+          # at line 37:12: dclr
           @state.following.push( TOKENS_FOLLOWING_dclr_IN_est_257 )
           dclr
           @state.following.pop
 
         when 2
-          # at line 36:19: asign
+          # at line 37:19: asign
           @state.following.push( TOKENS_FOLLOWING_asign_IN_est_261 )
           asign
           @state.following.pop
 
         when 3
-          # at line 36:27: comp
+          # at line 37:27: comp
           @state.following.push( TOKENS_FOLLOWING_comp_IN_est_265 )
           comp
           @state.following.pop
 
         when 4
-          # at line 36:34: sIf
+          # at line 37:34: sIf
           @state.following.push( TOKENS_FOLLOWING_sIf_IN_est_269 )
           sIf
           @state.following.pop
@@ -281,14 +282,14 @@ module Rapier
     # parser rule sIf
     # 
     # (in Rapier.g)
-    # 37:1: sIf : IF LPAR comp RPAR bloq ;
+    # 38:1: sIf : IF LPAR comp RPAR bloq ;
     # 
     def sIf
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 4 )
 
       begin
-        # at line 37:11: IF LPAR comp RPAR bloq
+        # at line 38:11: IF LPAR comp RPAR bloq
         match( IF, TOKENS_FOLLOWING_IF_IN_sIf_283 )
         match( LPAR, TOKENS_FOLLOWING_LPAR_IN_sIf_285 )
         @state.following.push( TOKENS_FOLLOWING_comp_IN_sIf_287 )
@@ -323,7 +324,7 @@ module Rapier
     # parser rule dclr
     # 
     # (in Rapier.g)
-    # 38:1: dclr : 'var' b= type a= ID ( '=' comp )? ;
+    # 39:1: dclr : 'var' b= type a= ID ( '=' comp )? ;
     # 
     def dclr
       # -> uncomment the next line to manually enable rule tracing
@@ -332,7 +333,7 @@ module Rapier
       b = nil
 
       begin
-        # at line 38:11: 'var' b= type a= ID ( '=' comp )?
+        # at line 39:11: 'var' b= type a= ID ( '=' comp )?
         match( T__25, TOKENS_FOLLOWING_T__25_IN_dclr_306 )
         @state.following.push( TOKENS_FOLLOWING_type_IN_dclr_310 )
         b = type
@@ -341,7 +342,7 @@ module Rapier
         # --> action
         agc_1(a,b)
         # <-- action
-        # at line 38:42: ( '=' comp )?
+        # at line 39:42: ( '=' comp )?
         alt_3 = 2
         look_3_0 = @input.peek( 1 )
 
@@ -350,7 +351,7 @@ module Rapier
         end
         case alt_3
         when 1
-          # at line 38:43: '=' comp
+          # at line 39:43: '=' comp
           match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclr_319 )
           # --> action
           agc_2('=')
@@ -382,7 +383,7 @@ module Rapier
     # parser rule asign
     # 
     # (in Rapier.g)
-    # 39:1: asign : a= ID EQLS comp ;
+    # 40:1: asign : a= ID EQLS comp ;
     # 
     def asign
       # -> uncomment the next line to manually enable rule tracing
@@ -390,7 +391,7 @@ module Rapier
       a = nil
 
       begin
-        # at line 39:11: a= ID EQLS comp
+        # at line 40:11: a= ID EQLS comp
         a = match( ID, TOKENS_FOLLOWING_ID_IN_asign_340 )
         match( EQLS, TOKENS_FOLLOWING_EQLS_IN_asign_342 )
         # --> action
@@ -424,16 +425,16 @@ module Rapier
     # parser rule comp
     # 
     # (in Rapier.g)
-    # 40:1: comp : ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )* ;
+    # 41:1: comp : ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )* ;
     # 
     def comp
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 7 )
 
       begin
-        # at line 40:11: ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )*
-        # at line 40:11: ( expr )
-        # at line 40:12: expr
+        # at line 41:11: ( expr ) ( ( ( LSTH | GRTH ) ) ( expr ) )*
+        # at line 41:11: ( expr )
+        # at line 41:12: expr
         @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_361 )
         expr
         @state.following.pop
@@ -441,7 +442,7 @@ module Rapier
         agc_3(['<','>'])
         # <-- action
 
-        # at line 40:36: ( ( ( LSTH | GRTH ) ) ( expr ) )*
+        # at line 41:36: ( ( ( LSTH | GRTH ) ) ( expr ) )*
         while true # decision 5
           alt_5 = 2
           look_5_0 = @input.peek( 1 )
@@ -452,10 +453,10 @@ module Rapier
           end
           case alt_5
           when 1
-            # at line 40:37: ( ( LSTH | GRTH ) ) ( expr )
-            # at line 40:37: ( ( LSTH | GRTH ) )
-            # at line 40:38: ( LSTH | GRTH )
-            # at line 40:38: ( LSTH | GRTH )
+            # at line 41:37: ( ( LSTH | GRTH ) ) ( expr )
+            # at line 41:37: ( ( LSTH | GRTH ) )
+            # at line 41:38: ( LSTH | GRTH )
+            # at line 41:38: ( LSTH | GRTH )
             alt_4 = 2
             look_4_0 = @input.peek( 1 )
 
@@ -468,14 +469,14 @@ module Rapier
             end
             case alt_4
             when 1
-              # at line 40:40: LSTH
+              # at line 41:40: LSTH
               match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_369 )
               # --> action
               agc_2('<')
               # <-- action
 
             when 2
-              # at line 40:59: GRTH
+              # at line 41:59: GRTH
               match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_374 )
               # --> action
               agc_2('>')
@@ -483,8 +484,8 @@ module Rapier
 
             end
 
-            # at line 40:80: ( expr )
-            # at line 40:81: expr
+            # at line 41:80: ( expr )
+            # at line 41:81: expr
             @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_382 )
             expr
             @state.following.pop
@@ -516,16 +517,16 @@ module Rapier
     # parser rule expr
     # 
     # (in Rapier.g)
-    # 41:1: expr : ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )* ;
+    # 42:1: expr : ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )* ;
     # 
     def expr
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 8 )
 
       begin
-        # at line 41:11: ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )*
-        # at line 41:11: ( term )
-        # at line 41:12: term
+        # at line 42:11: ( term ) ( ( ( PLUS | MINUS ) ) ( term ) )*
+        # at line 42:11: ( term )
+        # at line 42:12: term
         @state.following.push( TOKENS_FOLLOWING_term_IN_expr_400 )
         term
         @state.following.pop
@@ -533,7 +534,7 @@ module Rapier
         agc_3(['+','-'])
         # <-- action
 
-        # at line 41:36: ( ( ( PLUS | MINUS ) ) ( term ) )*
+        # at line 42:36: ( ( ( PLUS | MINUS ) ) ( term ) )*
         while true # decision 7
           alt_7 = 2
           look_7_0 = @input.peek( 1 )
@@ -544,10 +545,10 @@ module Rapier
           end
           case alt_7
           when 1
-            # at line 41:37: ( ( PLUS | MINUS ) ) ( term )
-            # at line 41:37: ( ( PLUS | MINUS ) )
-            # at line 41:38: ( PLUS | MINUS )
-            # at line 41:38: ( PLUS | MINUS )
+            # at line 42:37: ( ( PLUS | MINUS ) ) ( term )
+            # at line 42:37: ( ( PLUS | MINUS ) )
+            # at line 42:38: ( PLUS | MINUS )
+            # at line 42:38: ( PLUS | MINUS )
             alt_6 = 2
             look_6_0 = @input.peek( 1 )
 
@@ -560,14 +561,14 @@ module Rapier
             end
             case alt_6
             when 1
-              # at line 41:40: PLUS
+              # at line 42:40: PLUS
               match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_408 )
               # --> action
               agc_2('+')
               # <-- action
 
             when 2
-              # at line 41:59: MINUS
+              # at line 42:59: MINUS
               match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_413 )
               # --> action
               agc_2('-')
@@ -575,8 +576,8 @@ module Rapier
 
             end
 
-            # at line 41:81: ( term )
-            # at line 41:82: term
+            # at line 42:81: ( term )
+            # at line 42:82: term
             @state.following.push( TOKENS_FOLLOWING_term_IN_expr_421 )
             term
             @state.following.pop
@@ -608,16 +609,16 @@ module Rapier
     # parser rule term
     # 
     # (in Rapier.g)
-    # 42:1: term : ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )* ;
+    # 43:1: term : ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )* ;
     # 
     def term
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 9 )
 
       begin
-        # at line 42:11: ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )*
-        # at line 42:11: ( factor )
-        # at line 42:12: factor
+        # at line 43:11: ( factor ) ( ( ( MULT | DIV ) ) ( factor ) )*
+        # at line 43:11: ( factor )
+        # at line 43:12: factor
         @state.following.push( TOKENS_FOLLOWING_factor_IN_term_439 )
         factor
         @state.following.pop
@@ -625,7 +626,7 @@ module Rapier
         agc_3(['*','/'])
         # <-- action
 
-        # at line 42:39: ( ( ( MULT | DIV ) ) ( factor ) )*
+        # at line 43:39: ( ( ( MULT | DIV ) ) ( factor ) )*
         while true # decision 9
           alt_9 = 2
           look_9_0 = @input.peek( 1 )
@@ -636,10 +637,10 @@ module Rapier
           end
           case alt_9
           when 1
-            # at line 42:40: ( ( MULT | DIV ) ) ( factor )
-            # at line 42:40: ( ( MULT | DIV ) )
-            # at line 42:41: ( MULT | DIV )
-            # at line 42:41: ( MULT | DIV )
+            # at line 43:40: ( ( MULT | DIV ) ) ( factor )
+            # at line 43:40: ( ( MULT | DIV ) )
+            # at line 43:41: ( MULT | DIV )
+            # at line 43:41: ( MULT | DIV )
             alt_8 = 2
             look_8_0 = @input.peek( 1 )
 
@@ -652,14 +653,14 @@ module Rapier
             end
             case alt_8
             when 1
-              # at line 42:43: MULT
+              # at line 43:43: MULT
               match( MULT, TOKENS_FOLLOWING_MULT_IN_term_448 )
               # --> action
               agc_2('*')
               # <-- action
 
             when 2
-              # at line 42:62: DIV
+              # at line 43:62: DIV
               match( DIV, TOKENS_FOLLOWING_DIV_IN_term_453 )
               # --> action
               agc_2('/')
@@ -667,8 +668,8 @@ module Rapier
 
             end
 
-            # at line 42:81: ( factor )
-            # at line 42:82: factor
+            # at line 43:81: ( factor )
+            # at line 43:82: factor
             @state.following.push( TOKENS_FOLLOWING_factor_IN_term_460 )
             factor
             @state.following.pop
@@ -700,14 +701,14 @@ module Rapier
     # parser rule factor
     # 
     # (in Rapier.g)
-    # 43:1: factor : ( elem | LPAR expr RPAR );
+    # 44:1: factor : ( elem | LPAR expr RPAR );
     # 
     def factor
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 10 )
 
       begin
-        # at line 43:9: ( elem | LPAR expr RPAR )
+        # at line 44:9: ( elem | LPAR expr RPAR )
         alt_10 = 2
         look_10_0 = @input.peek( 1 )
 
@@ -720,13 +721,13 @@ module Rapier
         end
         case alt_10
         when 1
-          # at line 43:11: elem
+          # at line 44:11: elem
           @state.following.push( TOKENS_FOLLOWING_elem_IN_factor_475 )
           elem
           @state.following.pop
 
         when 2
-          # at line 43:18: LPAR expr RPAR
+          # at line 44:18: LPAR expr RPAR
           match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_479 )
           # --> action
           agc_1('(')
@@ -758,7 +759,7 @@ module Rapier
     # parser rule elem
     # 
     # (in Rapier.g)
-    # 44:1: elem : (a= NUMBER | a= ID | a= STRING );
+    # 45:1: elem : (a= NUMBER | a= ID | a= STRING );
     # 
     def elem
       # -> uncomment the next line to manually enable rule tracing
@@ -766,7 +767,7 @@ module Rapier
       a = nil
 
       begin
-        # at line 44:9: (a= NUMBER | a= ID | a= STRING )
+        # at line 45:9: (a= NUMBER | a= ID | a= STRING )
         alt_11 = 3
         case look_11 = @input.peek( 1 )
         when NUMBER then alt_11 = 1
@@ -777,21 +778,21 @@ module Rapier
         end
         case alt_11
         when 1
-          # at line 44:11: a= NUMBER
+          # at line 45:11: a= NUMBER
           a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_500 )
           # --> action
           agc_1(a, 'int')
           # <-- action
 
         when 2
-          # at line 44:40: a= ID
+          # at line 45:40: a= ID
           a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_508 )
           # --> action
           agc_1(a, 'var')
           # <-- action
 
         when 3
-          # at line 44:65: a= STRING
+          # at line 45:65: a= STRING
           a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_516 )
           # --> action
           agc_1(a, 'string')
@@ -816,7 +817,7 @@ module Rapier
     # parser rule type
     # 
     # (in Rapier.g)
-    # 45:1: type returns [string t] : ( 'int' | 'float' | 'string' | 'boolean' );
+    # 46:1: type returns [string t] : ( 'int' | 'float' | 'string' | 'boolean' );
     # 
     def type
       # -> uncomment the next line to manually enable rule tracing
@@ -824,7 +825,7 @@ module Rapier
       t = nil
 
       begin
-        # at line 45:27: ( 'int' | 'float' | 'string' | 'boolean' )
+        # at line 46:27: ( 'int' | 'float' | 'string' | 'boolean' )
         alt_12 = 4
         case look_12 = @input.peek( 1 )
         when T__26 then alt_12 = 1
@@ -836,28 +837,28 @@ module Rapier
         end
         case alt_12
         when 1
-          # at line 45:29: 'int'
+          # at line 46:29: 'int'
           match( T__26, TOKENS_FOLLOWING_T__26_IN_type_532 )
           # --> action
           t='int'
           # <-- action
 
         when 2
-          # at line 45:48: 'float'
+          # at line 46:48: 'float'
           match( T__27, TOKENS_FOLLOWING_T__27_IN_type_538 )
           # --> action
           t='float'
           # <-- action
 
         when 3
-          # at line 45:71: 'string'
+          # at line 46:71: 'string'
           match( T__28, TOKENS_FOLLOWING_T__28_IN_type_544 )
           # --> action
           t='string'
           # <-- action
 
         when 4
-          # at line 45:96: 'boolean'
+          # at line 46:96: 'boolean'
           match( T__29, TOKENS_FOLLOWING_T__29_IN_type_550 )
           # --> action
           t='boolean'

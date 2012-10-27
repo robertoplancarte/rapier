@@ -27,8 +27,9 @@ tokens {
   @pilaS = []
   @cuadruplos = []
   @counter = 0
-  require_relative 'Cuadruplo.rb'
-  require_relative 'AGCs.rb'
+  require_relative 'CUA.rb'
+  require_relative 'AGC.rb'
+  require_relative 'DIR.rb'
 }
 
 prog    : MAIN bloq {agc_8} ;
