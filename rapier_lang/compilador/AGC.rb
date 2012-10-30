@@ -9,7 +9,7 @@ end
 def agc_3(operador=[])
   if @pilaO[-2] == '('
     agc_1( @pilaO.pop(2).last)
-  elsif @pOper[-1] == '='
+  elsif operador.include? '='
     @cuadruplos << Cuadruplo.new(@pOper.pop,nil,@pilaO.pop,@pilaO.pop)
     agc_1("resp_#{@counter}")
     @counter +=1
@@ -21,6 +21,7 @@ def agc_3(operador=[])
 end
 
 def agc_4
+  puts @pOper.inspect
   @cuadruplos << Cuadruplo.new("GoF",@pilaO.pop,nil)
   @pilaS<<(@cuadruplos.count - 1)
 end
