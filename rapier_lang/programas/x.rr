@@ -1,6 +1,4 @@
-main {
-  12
-  4.57
-  "xfws"
-  false
+program {
+  var int x = 0.6
+  x<12.0
 }

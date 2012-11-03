@@ -1,8 +1,7 @@
-main{
-  var int x = 0
-  if(x<3+4){
+program{
+  var float x = 0.3
+  if(x>3+4){
     var int y = x
-    5*(2+3)
   }
   9+12
 }
