@@ -1,12 +1,13 @@
 def agc_1(operando, tipo='ini')
-  unless @tab_var[operando.to_s] or operando.to_s == '('
-    @tab_var[operando.to_s] = []
-    @tab_var[operando.to_s] << operando.to_s << tipo
-  end
-  if @tab_var[operando.to_s] && operando.to_s != '('
+  if operando.to_s != '('
+    if !@tab_var[operando.to_s]
+      @tab_var[operando.to_s] = []
+      @tab_var[operando.to_s] << operando.to_s << tipo
+    end
     @pilaO << [operando.to_s,@tab_var[operando.to_s][1]]
   else
-    abort("no declarasete la variable #{operando.to_s}")
+    abort("no declarasete la variable #{operando.to_s}") if !@tab_var[operando.to_s]
+    @pilaO << [operando.to_s,tipo]
   end
 end
 
@@ -31,18 +32,19 @@ def agc_4
   @cuadruplos << Cuadruplo.new("GoF",@pilaO.pop,[])
   @pilaS<<(@cuadruplos.count - 1)
 end
+
 def agc_5
   @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count
 end
+
 def agc_6
-
 end
-def agc_7
 
+def agc_7
 end
 
 def agc_8
   @cuadruplos.each do |c|
-    puts c.human_prt
+    puts c.debug_prt
   end
 end

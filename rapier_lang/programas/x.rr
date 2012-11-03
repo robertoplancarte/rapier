@@ -1,4 +1,4 @@
 program {
-  var int x = 0.6
-  x<12.0
+  var int x = 0
+  5+x
 }
