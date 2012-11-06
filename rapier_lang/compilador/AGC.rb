@@ -1,14 +1,12 @@
-def agc_1(operando, tipo='ini')
-  if operando.to_s != '('
-    if !@tab_var[operando.to_s]
-      @tab_var[operando.to_s] = []
-      @tab_var[operando.to_s] << operando.to_s << tipo
-    end
-    @pilaO << [operando.to_s,@tab_var[operando.to_s][1]]
-  else
-    abort("no declarasete la variable #{operando.to_s}") if !@tab_var[operando.to_s]
-    @pilaO << [operando.to_s,tipo]
-  end
+def agc_0(operando)
+end
+
+def agc_1(operando, tipo='ini', declaracion=false)
+  operando = operando.to_s
+  abort("Ya tenias #{operando} declarado") if (@tab_var[operando] && declaracion)
+  @tab_var[operando] = [operando,tipo] if !@tab_var[operando]
+  tipo = @tab_var[operando][1] if  tipo == 'ini' if @tab_var[operando]
+  @pilaO << [operando,tipo]
 end
 
 def agc_2(operador)
@@ -16,10 +14,15 @@ def agc_2(operador)
 end
 
 def agc_3(operador=[])
-  if @pilaO[-2] == '('
-    agc_1( @pilaO.pop(2).last)
-  elsif operador.include? '='
+  if @pOper[-1] == '('
+    @pOper.pop
+  elsif operador == 'out'
+    @cuadruplos << Cuadruplo.new('out',[],[],@pilaO.last)
+  elsif operador == 'in'
+    @cuadruplos << Cuadruplo.new('in',[],[],@pilaO.last)
+  elsif operador == '='
     @cuadruplos << Cuadruplo.new(@pOper.pop,[],@pilaO.pop,@pilaO.pop)
+    res_type(@cuadruplos.last)
   elsif operador.include? @pOper[-1]
     @cuadruplos << Cuadruplo.new(@pOper.pop,@pilaO.pop,@pilaO.pop,[])
     agc_1("t_#{@counter}", res_type(@cuadruplos.last))
@@ -28,13 +31,15 @@ def agc_3(operador=[])
   end
 end
 
-def agc_4
-  @cuadruplos << Cuadruplo.new("GoF",@pilaO.pop,[])
-  @pilaS<<(@cuadruplos.count - 1)
+def agc_4(estatuto)
+  @cuadruplos << Cuadruplo.new("GoF",@pilaO.pop,[]) if estatuto == 'if'
+  @cuadruplos << Cuadruplo.new("Go",[],[]) if estatuto == 'else'
+  @pilaS << (@cuadruplos.count - 1)
 end
 
-def agc_5
-  @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count
+def agc_5(estatuto)
+  @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count + 1 if estatuto == 'if'
+  @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count if estatuto == 'else'
 end
 
 def agc_6
@@ -44,7 +49,7 @@ def agc_7
 end
 
 def agc_8
-  @cuadruplos.each do |c|
-    puts c.debug_prt
+  @cuadruplos.each_with_index do |c,i|
+    puts "#{i} #{c.debug_prt}"
   end
 end

@@ -8,12 +8,12 @@ class Cuadruplo
     @respuesta = respuesta
   end
   def human_prt
-    puts "[#{operador}, #{operando1[0]}, #{operando2[0]}, #{respuesta[0]}]"
+    "[#{operador}, #{operando1[0]}, #{operando2[0]}, #{respuesta[0]}]"
   end
   def debug_prt
-    puts "[#{operador}, #{operando1}, #{operando2}, #{respuesta}]"
+    "[#{operador}, #{operando1}, #{operando2}, #{respuesta}]"
   end
   def compiler_prt
-    puts "[#{operador}, #{operando1[2]}, #{operando2[2]}, #{respuesta[2]}]"
+    "[#{operador}, #{operando1[2]}, #{operando2[2]}, #{respuesta[2]}]"
   end
 end

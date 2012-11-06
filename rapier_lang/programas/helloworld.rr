@@ -1,7 +1,5 @@
 program{
-  var float x = 0.3
-  if(x>3+4){
-    var int y = x
+  int:main(){
+    out("Hello World!")
   }
-  9+12
 }

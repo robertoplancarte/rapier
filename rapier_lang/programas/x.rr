@@ -1,4 +1,4 @@
 program {
-  var int x = 0
-  5+x
+  var int x = 1
+  var int x = 1
 }
