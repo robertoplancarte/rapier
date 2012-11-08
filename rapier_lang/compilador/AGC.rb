@@ -1,18 +1,22 @@
-def agc_0(operando)
+def agc_0
+  puts "fuck"
 end
-
+#mete operndo a la pila de operandos
 def agc_1(operando, tipo='ini', declaracion=false)
   operando = operando.to_s
   abort("Ya tenias #{operando} declarado") if (@tab_var[operando] && declaracion)
   @tab_var[operando] = [operando,tipo] if !@tab_var[operando]
   tipo = @tab_var[operando][1] if  tipo == 'ini' if @tab_var[operando]
+  abort("No tienes #{operando} declarado") if (@tab_var[operando][1]=='ini')
   @pilaO << [operando,tipo]
 end
 
+#mete operador a la pila de operadores
 def agc_2(operador)
   @pOper << operador
 end
 
+#crea cuadruplos para las expreciones matemáticas
 def agc_3(operador=[])
   if @pOper[-1] == '('
     @pOper.pop
@@ -31,15 +35,20 @@ def agc_3(operador=[])
   end
 end
 
-def agc_4(estatuto)
+#crea cuadruplos para control de flujo
+def agc_4(estatuto=nil)
+  @pilaS << (@cuadruplos.count )
   @cuadruplos << Cuadruplo.new("GoF",@pilaO.pop,[]) if estatuto == 'if'
   @cuadruplos << Cuadruplo.new("Go",[],[]) if estatuto == 'else'
-  @pilaS << (@cuadruplos.count - 1)
+  @cuadruplos << Cuadruplo.new("GoF",@pilaO.pop,[]) if estatuto == 'while'
 end
 
+#actualiza cuadruplos para control de flujo
 def agc_5(estatuto)
   @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count + 1 if estatuto == 'if'
   @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count if estatuto == 'else'
+  @cuadruplos[@pilaS.pop].respuesta = @cuadruplos.count + 1 if estatuto == 'while'
+  @cuadruplos << Cuadruplo.new("Go",[],[], @pilaS.pop) if estatuto == 'while'
 end
 
 def agc_6
@@ -50,6 +59,6 @@ end
 
 def agc_8
   @cuadruplos.each_with_index do |c,i|
-    puts "#{i} #{c.debug_prt}"
+    puts "#{i} #{c.human_prt}"
   end
 end

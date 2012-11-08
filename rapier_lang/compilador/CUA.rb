@@ -1,6 +1,6 @@
 #clase cuadruplo que junta strings. los operandos son arreglos de strings donde [0]:nombre, [1]:tipo y [2]:dir_mem
 class Cuadruplo
-  attr_accessor :operador, :operando2, :operando1, :respuesta
+  attr_accessor :operador, :operando1, :operando2, :respuesta
   def initialize(operador, operando2, operando1, respuesta='resp')
     @operador = operador
     @operando1 = operando1

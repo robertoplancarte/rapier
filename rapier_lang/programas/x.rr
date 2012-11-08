@@ -1,4 +1,6 @@
 program {
-  var int x = 1
-  var int x = 1
+  int:main(){
+    var int x = 1
+    var int x = 1
+  }
 }
