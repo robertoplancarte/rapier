@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Rapier::Application.config.secret_token = '74f3b7292e8059be3ab3081e9e8fac2cee5d15e5bc38e37d08fea21fd73cc15b35322027f9d07fa076a4beb79b8ca09da0d3d1ac95d493da773196a44871e4a9'
+Rapier::Application.config.secret_token = '6de380273660127a558f55e2e5775b8e2da93ee6d88c4575ab4105dadf32be17174607ae4ddab9000eed266ec61dd816db2bdd7e4a748337b4ff29c967236c3a'

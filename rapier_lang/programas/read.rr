@@ -1,5 +1,6 @@
 program{
   int:main(){
-    out("Hello World!");
+    var int x = 0
+    in(x)
   }
 }

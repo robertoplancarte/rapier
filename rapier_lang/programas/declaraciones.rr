@@ -1,0 +1,8 @@
+program{
+  int:main(){
+    var int x = 0
+    var float y = -0.1
+    var string z = "l337 \#%$ :D"
+    var boolean a = true
+  }
+}

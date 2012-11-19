@@ -1,0 +1,10 @@
+program{
+  int:main(){
+    var int x = 0;
+    if(true){
+      while(x<3 + 5){
+        out(5);
+      }
+    }
+  }
+}

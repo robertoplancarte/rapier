@@ -1,0 +1,6 @@
+program{
+  int:main(){
+    var int x = 0
+    var float x = 0
+  }
+}

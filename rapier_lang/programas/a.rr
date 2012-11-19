@@ -1,5 +1,6 @@
 program{
   int:main(){
-    out("Hello World!");
+    -5;
+    out(-3/5);
   }
 }

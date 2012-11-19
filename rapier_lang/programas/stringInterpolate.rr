@@ -1,0 +1,7 @@
+program{
+  int:main(){
+    if(true){
+      5+4;
+    }
+  }
+}

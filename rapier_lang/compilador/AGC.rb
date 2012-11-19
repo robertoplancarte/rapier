@@ -1,6 +1,3 @@
-def agc_0
-  puts "fuck"
-end
 #mete operndo a la pila de operandos
 def agc_1(operando, tipo='ini', declaracion=false)
   operando = operando.to_s
@@ -19,6 +16,7 @@ end
 #crea cuadruplos para las expreciones matemáticas
 def agc_3(operador=[])
   if @pOper[-1] == '('
+  puts operador.inspect
     @pOper.pop
   elsif operador == 'out'
     @cuadruplos << Cuadruplo.new('out',[],[],@pilaO.last)
@@ -59,6 +57,6 @@ end
 
 def agc_8
   @cuadruplos.each_with_index do |c,i|
-    puts "#{i} #{c.human_prt}"
+    puts "#{i} #{c.debug_prt}"
   end
 end
