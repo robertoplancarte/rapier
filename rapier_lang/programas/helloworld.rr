@@ -1,5 +1,5 @@
 program{
   int:main(){
-    out("Hello World!");
+    out("\"\"");
   }
 }

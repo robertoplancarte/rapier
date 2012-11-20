@@ -1,10 +1,7 @@
 program{
   int:main(){
-    var int x = 0;
-    if(true){
-      while(x<3 + 5){
-        out(5);
-      }
-    }
+    var int x = 10;
+    x = -x;
+    1+3;
   }
 }

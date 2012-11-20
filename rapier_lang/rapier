@@ -1,4 +1,3 @@
 #!/bin/bash
 
-antlr4ruby -fo compilador/ Rapier.g
-ruby compilador/RapierParser.rb $1
+ruby RVM.rb $1

@@ -1,11 +1,19 @@
+
 #mete operndo a la pila de operandos
-def agc_1(operando, tipo='ini', declaracion=false)
+def agc_1(operando, tipo='ini', declaracion=false, constante=false, temporal=false)
   operando = operando.to_s
   abort("Ya tenias #{operando} declarado") if (@tab_var[operando] && declaracion)
-  @tab_var[operando] = [operando,tipo] if !@tab_var[operando]
-  tipo = @tab_var[operando][1] if  tipo == 'ini' if @tab_var[operando]
+  if constante
+    @tab_var[operando] = [operando,tipo,"c_#{@c_c}"] if !@tab_var[operando]
+    @c_c += 1
+  elsif temporal
+    @tab_var[operando] = [operando,tipo,operando] if !@tab_var[operando]
+  else
+    @tab_var[operando] = [operando,tipo,"l_#{@c_l}"] if !@tab_var[operando]
+    @c_l += 1
+  end
   abort("No tienes #{operando} declarado") if (@tab_var[operando][1]=='ini')
-  @pilaO << [operando,tipo]
+  @pilaO << @tab_var[operando]
 end
 
 #mete operador a la pila de operadores
@@ -16,7 +24,6 @@ end
 #crea cuadruplos para las expreciones matemáticas
 def agc_3(operador=[])
   if @pOper[-1] == '('
-  puts operador.inspect
     @pOper.pop
   elsif operador == 'out'
     @cuadruplos << Cuadruplo.new('out',[],[],@pilaO.last)
@@ -27,9 +34,10 @@ def agc_3(operador=[])
     res_type(@cuadruplos.last)
   elsif operador.include? @pOper[-1]
     @cuadruplos << Cuadruplo.new(@pOper.pop,@pilaO.pop,@pilaO.pop,[])
-    agc_1("t_#{@counter}", res_type(@cuadruplos.last))
+    agc_1("t_#{@c_t}", res_type(@cuadruplos.last),false,false,true)
+    @c_t +=1
     @cuadruplos.last.respuesta = @pilaO[-1]
-    @counter +=1
+
   end
 end
 
@@ -57,6 +65,6 @@ end
 
 def agc_8
   @cuadruplos.each_with_index do |c,i|
-    puts "#{i} #{c.debug_prt}"
+    puts Marshal.dump(c.human_prt)
   end
 end
