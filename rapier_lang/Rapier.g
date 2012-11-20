@@ -12,6 +12,7 @@ tokens {
   @pilaS = []
   @cuadruplos = []
   @tab_var = {}
+  @tab_con = []
   @c_g = 0 #globales
   @c_c = 0 #constantes
   @c_l = 0 #locales

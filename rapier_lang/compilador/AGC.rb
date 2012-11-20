@@ -5,6 +5,7 @@ def agc_1(operando, tipo='ini', declaracion=false, constante=false, temporal=fal
   abort("Ya tenias #{operando} declarado") if (@tab_var[operando] && declaracion)
   if constante
     @tab_var[operando] = [operando,tipo,"c:#{tipo[0]}:#{@c_c}"] if !@tab_var[operando]
+    @tab_con << ["c:#{tipo[0]}:#{@c_c}", operando]
     @c_c += 1
   elsif temporal
     @tab_var[operando] = [operando,tipo,"t:#{tipo[0]}:#{@c_t}"] if !@tab_var[operando]
@@ -64,11 +65,8 @@ def agc_7
 end
 
 def agc_8
-  puts "constantes:"
-
-  puts "cuadruplos:"
   @cuadruplos.each_with_index do |c,i|
-    #puts Marshal.dump(c.human_prt)
-    puts c.debug_prt
+    @cuadruplos[i] = c.compiler_prt
   end
+  puts Marshal.dump([@tab_con, @cuadruplos])
 end
