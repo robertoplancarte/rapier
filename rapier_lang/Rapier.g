@@ -41,10 +41,10 @@ fun     : b=type ':' a=ID LPAR RPAR bloq ;
 bloq    : LKEY ((est(';'|')'))| sIf | sWhile)* RKEY ;
 est     : (dclr | asign | comp | prt | red );
 prt     : OUT LPAR comp? RPAR {agc_3('out')} ;
-red     : IN LPAR ID RPAR {agc_3('in')} ;
+red     : (a=ID {agc_1(a)} EQLS {agc_2('=')})? IN LPAR b=type RPAR {agc_3('in',b)} {agc_3('=')} ;
 sIf     : IF LPAR comp RPAR {agc_4('if')} bloq {agc_5('if')} {agc_4('else')} (ELSE bloq)? {agc_5('else')} ;
 sWhile  : WHILE {agc_4()} LPAR comp? RPAR {agc_4('while')} bloq {agc_5('while')} ;
-dclr    : 'var' b=type a=ID {agc_1(a,b,true)} ('='  {agc_2('=')} comp {agc_3('=')})? ;
+dclr    : b=type a=ID {agc_1(a,b,true)} ('='  {agc_2('=')} comp {agc_3('=')})? ;
 asign   : a=ID {agc_1(a)} EQLS {agc_2('=')} comp {agc_3('=')} ;
 comp    : (expr{agc_3(['<','>','>=','<=','==','&','|'])})
           (((LSTHE {agc_2('<=')}|GRTHE{agc_2('>=')}|LSTH{agc_2('<')}|GRTH{agc_2('>')}|EXEQ{agc_2('==')}|AND{agc_2('&')}|OR{agc_2('|')}))
@@ -67,7 +67,7 @@ fragment LOWER: 'a'..'z';
 fragment UPPER: 'A'..'Z';
 fragment DIGIT: '0'..'9';
 fragment SPACE: ' ' | '\t';
-fragment SYMBOL: '!' | '#'..'/' | ':'..'@' | '['..'`' | '{'..'~' | '\\\"' | 'á'| 'é'| 'í'| 'ó' | 'ú';
+fragment SYMBOL: '!' | '#'..'/' | ':'..'@' | '['..'`' | '{'..'~' | '\\\"' | 'á'| 'é'| 'í'| 'ó' | 'ú'| 'ñ' ;
 WS : ( ' '| '\t'| '\r'| '\n' ) {$channel=HIDDEN;};
 
 /*

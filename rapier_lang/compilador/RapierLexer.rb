@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-11-20 04:58:11
+# Generated at: 2012-11-20 07:50:08
 # 
 
 # ~~~> start load path setup
@@ -70,12 +70,12 @@ module Rapier
                    :AND => 17, :SPACE => 37, :EOF => -1, :IF => 22, :IN => 26, 
                    :LPAR => 8, :RKEY => 11, :PLUS => 4, :DIGIT => 34, :INTEGER => 32, 
                    :T__42 => 42, :T__43 => 43, :EQLS => 19, :T__41 => 41, 
-                   :T__46 => 46, :T__47 => 47, :T__44 => 44, :SYMBOL => 36, 
-                   :T__45 => 45, :ELSE => 23, :LSTHE => 15, :NUMBER => 28, 
-                   :BOOL => 30, :LKEY => 10, :MULT => 6, :MINUS => 5, :EXEQ => 16, 
-                   :GRTHE => 14, :LSTH => 13, :QTS => 20, :GRTH => 12, :WS => 40, 
-                   :NONCONTROL_CHAR => 35, :OUT => 25, :OR => 18, :PROGRAM => 21, 
-                   :RPAR => 9, :LOWER => 38, :DIV => 7, :UPPER => 39, :STRING => 31 )
+                   :T__46 => 46, :T__44 => 44, :T__45 => 45, :SYMBOL => 36, 
+                   :ELSE => 23, :LSTHE => 15, :NUMBER => 28, :BOOL => 30, 
+                   :LKEY => 10, :MULT => 6, :MINUS => 5, :EXEQ => 16, :GRTHE => 14, 
+                   :LSTH => 13, :QTS => 20, :GRTH => 12, :WS => 40, :NONCONTROL_CHAR => 35, 
+                   :OUT => 25, :OR => 18, :RPAR => 9, :PROGRAM => 21, :LOWER => 38, 
+                   :DIV => 7, :UPPER => 39, :STRING => 31 )
     
   end
 
@@ -95,16 +95,16 @@ module Rapier
                      "RKEY", "GRTH", "LSTH", "GRTHE", "LSTHE", "EXEQ", "AND", 
                      "OR", "EQLS", "QTS", "PROGRAM", "IF", "ELSE", "WHILE", 
                      "OUT", "IN", "T__41", "T__42", "T__43", "T__44", "T__45", 
-                     "T__46", "T__47", "BOOL", "NUMBER", "FLOAT", "ID", 
-                     "STRING", "NONCONTROL_CHAR", "LETTER", "INTEGER", "LOWER", 
-                     "UPPER", "DIGIT", "SPACE", "SYMBOL", "WS" ].freeze
+                     "T__46", "BOOL", "NUMBER", "FLOAT", "ID", "STRING", 
+                     "NONCONTROL_CHAR", "LETTER", "INTEGER", "LOWER", "UPPER", 
+                     "DIGIT", "SPACE", "SYMBOL", "WS" ].freeze
     RULE_METHODS = [ :plus!, :minus!, :mult!, :div!, :lpar!, :rpar!, :lkey!, 
                      :rkey!, :grth!, :lsth!, :grthe!, :lsthe!, :exeq!, :and!, 
                      :or!, :eqls!, :qts!, :program!, :if!, :else!, :while!, 
                      :out!, :in!, :t__41!, :t__42!, :t__43!, :t__44!, :t__45!, 
-                     :t__46!, :t__47!, :bool!, :number!, :float!, :id!, 
-                     :string!, :noncontrol_char!, :letter!, :integer!, :lower!, 
-                     :upper!, :digit!, :space!, :symbol!, :ws! ].freeze
+                     :t__46!, :bool!, :number!, :float!, :id!, :string!, 
+                     :noncontrol_char!, :letter!, :integer!, :lower!, :upper!, 
+                     :digit!, :space!, :symbol!, :ws! ].freeze
 
     
     def initialize( input=nil, options = {} )
@@ -725,8 +725,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 34:9: 'var'
-      match( "var" )
+      # at line 34:9: 'int'
+      match( "int" )
 
       
       @state.type = type
@@ -749,8 +749,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 35:9: 'int'
-      match( "int" )
+      # at line 35:9: 'float'
+      match( "float" )
 
       
       @state.type = type
@@ -773,8 +773,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 36:9: 'float'
-      match( "float" )
+      # at line 36:9: 'string'
+      match( "string" )
 
       
       @state.type = type
@@ -797,8 +797,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 37:9: 'string'
-      match( "string" )
+      # at line 37:9: 'boolean'
+      match( "boolean" )
 
       
       @state.type = type
@@ -810,35 +810,11 @@ module Rapier
 
     end
 
-    # lexer rule t__47! (T__47)
-    # (in Rapier.g)
-    def t__47!
-      # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 30 )
-
-      type = T__47
-      channel = ANTLR3::DEFAULT_CHANNEL
-
-      
-      # - - - - main rule block - - - -
-      # at line 38:9: 'boolean'
-      match( "boolean" )
-
-      
-      @state.type = type
-      @state.channel = channel
-
-    ensure
-      # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 30 )
-
-    end
-
     # lexer rule bool! (BOOL)
     # (in Rapier.g)
     def bool!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 31 )
+      # trace_in( __method__, 30 )
 
       type = BOOL
       channel = ANTLR3::DEFAULT_CHANNEL
@@ -872,7 +848,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 31 )
+      # trace_out( __method__, 30 )
 
     end
 
@@ -880,7 +856,7 @@ module Rapier
     # (in Rapier.g)
     def number!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 32 )
+      # trace_in( __method__, 31 )
 
       type = NUMBER
       channel = ANTLR3::DEFAULT_CHANNEL
@@ -920,7 +896,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 32 )
+      # trace_out( __method__, 31 )
 
     end
 
@@ -928,7 +904,7 @@ module Rapier
     # (in Rapier.g)
     def float!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 33 )
+      # trace_in( __method__, 32 )
 
       type = FLOAT
       channel = ANTLR3::DEFAULT_CHANNEL
@@ -994,7 +970,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 33 )
+      # trace_out( __method__, 32 )
 
     end
 
@@ -1002,7 +978,7 @@ module Rapier
     # (in Rapier.g)
     def id!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 34 )
+      # trace_in( __method__, 33 )
 
       type = ID
       channel = ANTLR3::DEFAULT_CHANNEL
@@ -1044,7 +1020,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 34 )
+      # trace_out( __method__, 33 )
 
     end
 
@@ -1052,7 +1028,7 @@ module Rapier
     # (in Rapier.g)
     def string!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 35 )
+      # trace_in( __method__, 34 )
 
       type = STRING
       channel = ANTLR3::DEFAULT_CHANNEL
@@ -1066,7 +1042,7 @@ module Rapier
         alt_6 = 2
         look_6_0 = @input.peek( 1 )
 
-        if ( look_6_0 == 0x9 || look_6_0.between?( 0x20, 0x21 ) || look_6_0.between?( 0x23, 0x7e ) || look_6_0 == 0xe1 || look_6_0 == 0xe9 || look_6_0 == 0xed || look_6_0 == 0xf3 || look_6_0 == 0xfa )
+        if ( look_6_0 == 0x9 || look_6_0.between?( 0x20, 0x21 ) || look_6_0.between?( 0x23, 0x7e ) || look_6_0 == 0xe1 || look_6_0 == 0xe9 || look_6_0 == 0xed || look_6_0 == 0xf1 || look_6_0 == 0xf3 || look_6_0 == 0xfa )
           alt_6 = 1
 
         end
@@ -1087,7 +1063,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 35 )
+      # trace_out( __method__, 34 )
 
     end
 
@@ -1095,7 +1071,7 @@ module Rapier
     # (in Rapier.g)
     def noncontrol_char!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 36 )
+      # trace_in( __method__, 35 )
 
       
       # - - - - main rule block - - - -
@@ -1104,7 +1080,7 @@ module Rapier
       case look_7 = @input.peek( 1 )
       when 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f, 0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7a then alt_7 = 1
       when 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39 then alt_7 = 2
-      when 0x21, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f, 0x40, 0x5b, 0x5c, 0x5d, 0x5e, 0x5f, 0x60, 0x7b, 0x7c, 0x7d, 0x7e, 0xe1, 0xe9, 0xed, 0xf3, 0xfa then alt_7 = 3
+      when 0x21, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f, 0x40, 0x5b, 0x5c, 0x5d, 0x5e, 0x5f, 0x60, 0x7b, 0x7c, 0x7d, 0x7e, 0xe1, 0xe9, 0xed, 0xf1, 0xf3, 0xfa then alt_7 = 3
       when 0x9, 0x20 then alt_7 = 4
       else
         raise NoViableAlternative( "", 7, 0 )
@@ -1129,7 +1105,7 @@ module Rapier
       end
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 36 )
+      # trace_out( __method__, 35 )
 
     end
 
@@ -1137,7 +1113,7 @@ module Rapier
     # (in Rapier.g)
     def letter!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 37 )
+      # trace_in( __method__, 36 )
 
       
       # - - - - main rule block - - - -
@@ -1154,7 +1130,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 37 )
+      # trace_out( __method__, 36 )
 
     end
 
@@ -1162,7 +1138,7 @@ module Rapier
     # (in Rapier.g)
     def integer!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 38 )
+      # trace_in( __method__, 37 )
 
       
       # - - - - main rule block - - - -
@@ -1171,7 +1147,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 38 )
+      # trace_out( __method__, 37 )
 
     end
 
@@ -1179,7 +1155,7 @@ module Rapier
     # (in Rapier.g)
     def lower!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 39 )
+      # trace_in( __method__, 38 )
 
       
       # - - - - main rule block - - - -
@@ -1188,7 +1164,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 39 )
+      # trace_out( __method__, 38 )
 
     end
 
@@ -1196,7 +1172,7 @@ module Rapier
     # (in Rapier.g)
     def upper!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 40 )
+      # trace_in( __method__, 39 )
 
       
       # - - - - main rule block - - - -
@@ -1205,7 +1181,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 40 )
+      # trace_out( __method__, 39 )
 
     end
 
@@ -1213,7 +1189,7 @@ module Rapier
     # (in Rapier.g)
     def digit!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 41 )
+      # trace_in( __method__, 40 )
 
       
       # - - - - main rule block - - - -
@@ -1222,7 +1198,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 41 )
+      # trace_out( __method__, 40 )
 
     end
 
@@ -1230,7 +1206,7 @@ module Rapier
     # (in Rapier.g)
     def space!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 42 )
+      # trace_in( __method__, 41 )
 
       
       # - - - - main rule block - - - -
@@ -1247,7 +1223,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 42 )
+      # trace_out( __method__, 41 )
 
     end
 
@@ -1255,12 +1231,12 @@ module Rapier
     # (in Rapier.g)
     def symbol!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 43 )
+      # trace_in( __method__, 42 )
 
       
       # - - - - main rule block - - - -
-      # at line 70:16: ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' )
-      alt_8 = 11
+      # at line 70:16: ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' | 'ñ' )
+      alt_8 = 12
       alt_8 = @dfa8.predict( @input )
       case alt_8
       when 1
@@ -1307,10 +1283,14 @@ module Rapier
         # at line 70:98: 'ú'
         match( 0xfa )
 
+      when 12
+        # at line 70:103: 'ñ'
+        match( 0xf1 )
+
       end
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 43 )
+      # trace_out( __method__, 42 )
 
     end
 
@@ -1318,7 +1298,7 @@ module Rapier
     # (in Rapier.g)
     def ws!
       # -> uncomment the next line to manually enable rule tracing
-      # trace_in( __method__, 44 )
+      # trace_in( __method__, 43 )
 
       type = WS
       channel = ANTLR3::DEFAULT_CHANNEL
@@ -1345,7 +1325,7 @@ module Rapier
 
     ensure
       # -> uncomment the next line to manually enable rule tracing
-      # trace_out( __method__, 44 )
+      # trace_out( __method__, 43 )
 
     end
 
@@ -1357,8 +1337,8 @@ module Rapier
     # but instead use the next_token method, which will
     # build and emit the actual next token
     def token!
-      # at line 1:8: ( PLUS | MINUS | MULT | DIV | LPAR | RPAR | LKEY | RKEY | GRTH | LSTH | GRTHE | LSTHE | EXEQ | AND | OR | EQLS | QTS | PROGRAM | IF | ELSE | WHILE | OUT | IN | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | BOOL | NUMBER | FLOAT | ID | STRING | WS )
-      alt_9 = 36
+      # at line 1:8: ( PLUS | MINUS | MULT | DIV | LPAR | RPAR | LKEY | RKEY | GRTH | LSTH | GRTHE | LSTHE | EXEQ | AND | OR | EQLS | QTS | PROGRAM | IF | ELSE | WHILE | OUT | IN | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | BOOL | NUMBER | FLOAT | ID | STRING | WS )
+      alt_9 = 35
       alt_9 = @dfa9.predict( @input )
       case alt_9
       when 1
@@ -1478,31 +1458,27 @@ module Rapier
         t__46!
 
       when 30
-        # at line 1:158: T__47
-        t__47!
-
-      when 31
-        # at line 1:164: BOOL
+        # at line 1:158: BOOL
         bool!
 
-      when 32
-        # at line 1:169: NUMBER
+      when 31
+        # at line 1:163: NUMBER
         number!
 
-      when 33
-        # at line 1:176: FLOAT
+      when 32
+        # at line 1:170: FLOAT
         float!
 
-      when 34
-        # at line 1:182: ID
+      when 33
+        # at line 1:176: ID
         id!
 
-      when 35
-        # at line 1:185: STRING
+      when 34
+        # at line 1:179: STRING
         string!
 
-      when 36
-        # at line 1:192: WS
+      when 35
+        # at line 1:186: WS
         ws!
 
       end
@@ -1511,21 +1487,22 @@ module Rapier
     
     # - - - - - - - - - - DFA definitions - - - - - - - - - - -
     class DFA8 < ANTLR3::DFA
-      EOT = unpack( 4, -1, 1, 6, 8, -1 )
-      EOF = unpack( 13, -1 )
-      MIN = unpack( 1, 33, 3, -1, 1, 34, 8, -1 )
-      MAX = unpack( 1, 250, 3, -1, 1, 34, 8, -1 )
+      EOT = unpack( 4, -1, 1, 6, 9, -1 )
+      EOF = unpack( 14, -1 )
+      MIN = unpack( 1, 33, 3, -1, 1, 34, 9, -1 )
+      MAX = unpack( 1, 250, 3, -1, 1, 34, 9, -1 )
       ACCEPT = unpack( 1, -1, 1, 1, 1, 2, 1, 3, 1, -1, 1, 5, 1, 4, 1, 7, 
-                       1, 8, 1, 9, 1, 10, 1, 11, 1, 6 )
-      SPECIAL = unpack( 13, -1 )
+                       1, 8, 1, 9, 1, 10, 1, 11, 1, 12, 1, 6 )
+      SPECIAL = unpack( 14, -1 )
       TRANSITION = [
         unpack( 1, 1, 1, -1, 13, 2, 10, -1, 7, 3, 26, -1, 1, 6, 1, 4, 4, 
                 6, 26, -1, 4, 5, 98, -1, 1, 7, 7, -1, 1, 8, 3, -1, 1, 9, 
-                5, -1, 1, 10, 6, -1, 1, 11 ),
+                3, -1, 1, 12, 1, -1, 1, 10, 6, -1, 1, 11 ),
         unpack(  ),
         unpack(  ),
         unpack(  ),
-        unpack( 1, 12 ),
+        unpack( 1, 13 ),
+        unpack(  ),
         unpack(  ),
         unpack(  ),
         unpack(  ),
@@ -1547,53 +1524,52 @@ module Rapier
 
       def description
         <<-'__dfa_description__'.strip!
-          70:10: fragment SYMBOL : ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' );
+          70:10: fragment SYMBOL : ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' | 'ñ' );
         __dfa_description__
       end
     end
     class DFA9 < ANTLR3::DFA
-      EOT = unpack( 9, -1, 1, 31, 1, 33, 1, 35, 2, -1, 1, 36, 5, 28, 2, 
-                    -1, 5, 28, 1, 50, 10, -1, 1, 28, 1, 53, 1, 55, 9, 28, 
-                    2, -1, 1, 28, 1, -1, 1, 66, 1, -1, 2, 28, 1, 69, 1, 
-                    70, 6, 28, 1, -1, 1, 77, 1, 28, 2, -1, 4, 28, 1, 83, 
-                    1, 28, 1, -1, 1, 85, 1, 86, 1, 83, 2, 28, 1, -1, 1, 
-                    28, 2, -1, 1, 90, 1, 28, 1, 92, 1, -1, 1, 93, 2, -1 )
-      EOF = unpack( 94, -1 )
+      EOT = unpack( 9, -1, 1, 30, 1, 32, 1, 34, 2, -1, 1, 35, 5, 27, 2, 
+                    -1, 4, 27, 1, 48, 10, -1, 1, 27, 1, 51, 1, 53, 8, 27, 
+                    2, -1, 1, 27, 1, -1, 1, 63, 1, -1, 2, 27, 1, 66, 6, 
+                    27, 1, -1, 1, 73, 1, 27, 1, -1, 4, 27, 1, 79, 1, 27, 
+                    1, -1, 1, 81, 1, 82, 1, 79, 2, 27, 1, -1, 1, 27, 2, 
+                    -1, 1, 86, 1, 27, 1, 88, 1, -1, 1, 89, 2, -1 )
+      EOF = unpack( 90, -1 )
       MIN = unpack( 1, 9, 8, -1, 3, 61, 2, -1, 1, 9, 1, 114, 1, 102, 1, 
-                    108, 1, 104, 1, 117, 2, -1, 2, 97, 1, 116, 1, 111, 1, 
+                    108, 1, 104, 1, 117, 2, -1, 1, 97, 1, 116, 1, 111, 1, 
                     114, 1, 46, 10, -1, 1, 111, 2, 48, 1, 115, 1, 105, 1, 
-                    116, 1, 114, 1, 111, 1, 108, 1, 114, 1, 111, 1, 117, 
-                    2, -1, 1, 103, 1, -1, 1, 48, 1, -1, 1, 101, 1, 108, 
-                    2, 48, 1, 97, 1, 115, 1, 105, 1, 108, 1, 101, 1, 114, 
-                    1, -1, 1, 48, 1, 101, 2, -1, 1, 116, 1, 101, 1, 110, 
-                    1, 101, 1, 48, 1, 97, 1, -1, 3, 48, 1, 103, 1, 97, 1, 
-                    -1, 1, 109, 2, -1, 1, 48, 1, 110, 1, 48, 1, -1, 1, 48, 
-                    2, -1 )
+                    116, 1, 111, 1, 108, 1, 114, 1, 111, 1, 117, 2, -1, 
+                    1, 103, 1, -1, 1, 48, 1, -1, 1, 101, 1, 108, 1, 48, 
+                    1, 97, 1, 115, 1, 105, 1, 108, 1, 101, 1, 114, 1, -1, 
+                    1, 48, 1, 101, 1, -1, 1, 116, 1, 101, 1, 110, 1, 101, 
+                    1, 48, 1, 97, 1, -1, 3, 48, 1, 103, 1, 97, 1, -1, 1, 
+                    109, 2, -1, 1, 48, 1, 110, 1, 48, 1, -1, 1, 48, 2, -1 )
       MAX = unpack( 1, 125, 8, -1, 3, 61, 2, -1, 1, 250, 1, 114, 1, 110, 
-                    1, 108, 1, 104, 1, 117, 2, -1, 1, 97, 1, 108, 1, 116, 
-                    1, 111, 1, 114, 1, 57, 10, -1, 1, 111, 2, 122, 1, 115, 
-                    1, 105, 1, 116, 1, 114, 1, 111, 1, 108, 1, 114, 1, 111, 
-                    1, 117, 2, -1, 1, 103, 1, -1, 1, 122, 1, -1, 1, 101, 
-                    1, 108, 2, 122, 1, 97, 1, 115, 1, 105, 1, 108, 1, 101, 
-                    1, 114, 1, -1, 1, 122, 1, 101, 2, -1, 1, 116, 1, 101, 
-                    1, 110, 1, 101, 1, 122, 1, 97, 1, -1, 3, 122, 1, 103, 
-                    1, 97, 1, -1, 1, 109, 2, -1, 1, 122, 1, 110, 1, 122, 
-                    1, -1, 1, 122, 2, -1 )
+                    1, 108, 1, 104, 1, 117, 2, -1, 1, 108, 1, 116, 1, 111, 
+                    1, 114, 1, 57, 10, -1, 1, 111, 2, 122, 1, 115, 1, 105, 
+                    1, 116, 1, 111, 1, 108, 1, 114, 1, 111, 1, 117, 2, -1, 
+                    1, 103, 1, -1, 1, 122, 1, -1, 1, 101, 1, 108, 1, 122, 
+                    1, 97, 1, 115, 1, 105, 1, 108, 1, 101, 1, 114, 1, -1, 
+                    1, 122, 1, 101, 1, -1, 1, 116, 1, 101, 1, 110, 1, 101, 
+                    1, 122, 1, 97, 1, -1, 3, 122, 1, 103, 1, 97, 1, -1, 
+                    1, 109, 2, -1, 1, 122, 1, 110, 1, 122, 1, -1, 1, 122, 
+                    2, -1 )
       ACCEPT = unpack( 1, -1, 1, 1, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 
-                       1, 8, 3, -1, 1, 14, 1, 15, 6, -1, 1, 24, 1, 25, 6, 
-                       -1, 1, 34, 1, 36, 1, 11, 1, 9, 1, 12, 1, 10, 1, 13, 
-                       1, 16, 1, 17, 1, 35, 12, -1, 1, 32, 1, 33, 1, -1, 
-                       1, 19, 1, -1, 1, 23, 10, -1, 1, 27, 2, -1, 1, 22, 
-                       1, 26, 6, -1, 1, 20, 5, -1, 1, 31, 1, -1, 1, 21, 
-                       1, 28, 3, -1, 1, 29, 1, -1, 1, 18, 1, 30 )
-      SPECIAL = unpack( 94, -1 )
+                       1, 8, 3, -1, 1, 14, 1, 15, 6, -1, 1, 24, 1, 25, 5, 
+                       -1, 1, 33, 1, 35, 1, 11, 1, 9, 1, 12, 1, 10, 1, 13, 
+                       1, 16, 1, 17, 1, 34, 11, -1, 1, 31, 1, 32, 1, -1, 
+                       1, 19, 1, -1, 1, 23, 9, -1, 1, 26, 2, -1, 1, 22, 
+                       6, -1, 1, 20, 5, -1, 1, 30, 1, -1, 1, 21, 1, 27, 
+                       3, -1, 1, 28, 1, -1, 1, 18, 1, 29 )
+      SPECIAL = unpack( 90, -1 )
       TRANSITION = [
-        unpack( 2, 29, 2, -1, 1, 29, 18, -1, 1, 29, 1, -1, 1, 14, 3, -1, 
+        unpack( 2, 28, 2, -1, 1, 28, 18, -1, 1, 28, 1, -1, 1, 14, 3, -1, 
                 1, 12, 1, -1, 1, 5, 1, 6, 1, 3, 1, 1, 1, -1, 1, 2, 1, -1, 
-                1, 4, 10, 27, 1, 20, 1, 21, 1, 10, 1, 11, 1, 9, 2, -1, 26, 
-                28, 6, -1, 1, 28, 1, 25, 2, 28, 1, 17, 1, 23, 2, 28, 1, 
-                16, 5, 28, 1, 19, 1, 15, 2, 28, 1, 24, 1, 26, 1, 28, 1, 
-                22, 1, 18, 3, 28, 1, 7, 1, 13, 1, 8 ),
+                1, 4, 10, 26, 1, 20, 1, 21, 1, 10, 1, 11, 1, 9, 2, -1, 26, 
+                27, 6, -1, 1, 27, 1, 24, 2, 27, 1, 17, 1, 22, 2, 27, 1, 
+                16, 5, 27, 1, 19, 1, 15, 2, 27, 1, 23, 1, 25, 2, 27, 1, 
+                18, 3, 27, 1, 7, 1, 13, 1, 8 ),
         unpack(  ),
         unpack(  ),
         unpack(  ),
@@ -1602,26 +1578,25 @@ module Rapier
         unpack(  ),
         unpack(  ),
         unpack(  ),
-        unpack( 1, 30 ),
-        unpack( 1, 32 ),
-        unpack( 1, 34 ),
+        unpack( 1, 29 ),
+        unpack( 1, 31 ),
+        unpack( 1, 33 ),
         unpack(  ),
         unpack(  ),
-        unpack( 1, 37, 22, -1, 95, 37, 98, -1, 1, 37, 7, -1, 1, 37, 3, 
-                 -1, 1, 37, 5, -1, 1, 37, 6, -1, 1, 37 ),
-        unpack( 1, 38 ),
-        unpack( 1, 39, 7, -1, 1, 40 ),
+        unpack( 1, 36, 22, -1, 95, 36, 98, -1, 1, 36, 7, -1, 1, 36, 3, 
+                 -1, 1, 36, 3, -1, 1, 36, 1, -1, 1, 36, 6, -1, 1, 36 ),
+        unpack( 1, 37 ),
+        unpack( 1, 38, 7, -1, 1, 39 ),
+        unpack( 1, 40 ),
         unpack( 1, 41 ),
         unpack( 1, 42 ),
-        unpack( 1, 43 ),
         unpack(  ),
         unpack(  ),
-        unpack( 1, 44 ),
-        unpack( 1, 46, 10, -1, 1, 45 ),
+        unpack( 1, 44, 10, -1, 1, 43 ),
+        unpack( 1, 45 ),
+        unpack( 1, 46 ),
         unpack( 1, 47 ),
-        unpack( 1, 48 ),
-        unpack( 1, 49 ),
-        unpack( 1, 51, 1, -1, 10, 27 ),
+        unpack( 1, 49, 1, -1, 10, 26 ),
         unpack(  ),
         unpack(  ),
         unpack(  ),
@@ -1632,61 +1607,58 @@ module Rapier
         unpack(  ),
         unpack(  ),
         unpack(  ),
-        unpack( 1, 52 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 19, 28, 1, 
-                 54, 6, 28 ),
+        unpack( 1, 50 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 19, 27, 1, 
+                 52, 6, 27 ),
+        unpack( 1, 54 ),
+        unpack( 1, 55 ),
         unpack( 1, 56 ),
         unpack( 1, 57 ),
         unpack( 1, 58 ),
         unpack( 1, 59 ),
         unpack( 1, 60 ),
         unpack( 1, 61 ),
+        unpack(  ),
+        unpack(  ),
         unpack( 1, 62 ),
-        unpack( 1, 63 ),
+        unpack(  ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
+        unpack(  ),
         unpack( 1, 64 ),
-        unpack(  ),
-        unpack(  ),
         unpack( 1, 65 ),
-        unpack(  ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack(  ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
         unpack( 1, 67 ),
         unpack( 1, 68 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
+        unpack( 1, 69 ),
+        unpack( 1, 70 ),
         unpack( 1, 71 ),
         unpack( 1, 72 ),
-        unpack( 1, 73 ),
+        unpack(  ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
         unpack( 1, 74 ),
+        unpack(  ),
         unpack( 1, 75 ),
         unpack( 1, 76 ),
-        unpack(  ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
+        unpack( 1, 77 ),
         unpack( 1, 78 ),
-        unpack(  ),
-        unpack(  ),
-        unpack( 1, 79 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
         unpack( 1, 80 ),
-        unpack( 1, 81 ),
-        unpack( 1, 82 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
+        unpack(  ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
+        unpack( 1, 83 ),
         unpack( 1, 84 ),
         unpack(  ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
+        unpack( 1, 85 ),
+        unpack(  ),
+        unpack(  ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
         unpack( 1, 87 ),
-        unpack( 1, 88 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
         unpack(  ),
-        unpack( 1, 89 ),
-        unpack(  ),
-        unpack(  ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack( 1, 91 ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
-        unpack(  ),
-        unpack( 10, 28, 7, -1, 26, 28, 4, -1, 1, 28, 1, -1, 26, 28 ),
+        unpack( 10, 27, 7, -1, 26, 27, 4, -1, 1, 27, 1, -1, 26, 27 ),
         unpack(  ),
         unpack(  )
       ].freeze
@@ -1702,7 +1674,7 @@ module Rapier
 
       def description
         <<-'__dfa_description__'.strip!
-          1:1: Tokens : ( PLUS | MINUS | MULT | DIV | LPAR | RPAR | LKEY | RKEY | GRTH | LSTH | GRTHE | LSTHE | EXEQ | AND | OR | EQLS | QTS | PROGRAM | IF | ELSE | WHILE | OUT | IN | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | BOOL | NUMBER | FLOAT | ID | STRING | WS );
+          1:1: Tokens : ( PLUS | MINUS | MULT | DIV | LPAR | RPAR | LKEY | RKEY | GRTH | LSTH | GRTHE | LSTHE | EXEQ | AND | OR | EQLS | QTS | PROGRAM | IF | ELSE | WHILE | OUT | IN | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | BOOL | NUMBER | FLOAT | ID | STRING | WS );
         __dfa_description__
       end
     end

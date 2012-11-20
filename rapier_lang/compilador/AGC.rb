@@ -23,13 +23,15 @@ def agc_2(operador)
 end
 
 #crea cuadruplos para las expreciones matemáticas
-def agc_3(operador=[])
+def agc_3(operador=[],tipo="int")
   if @pOper[-1] == '('
     @pOper.pop
   elsif operador == 'out'
     @cuadruplos << Cuadruplo.new('out',[],[],@pilaO.last)
   elsif operador == 'in'
-    @cuadruplos << Cuadruplo.new('in',[],[],@pilaO.last)
+    @cuadruplos << Cuadruplo.new('in',[],[],[nil,nil,"t:#{tipo[0]}:#{@c_t}"])
+    agc_1("t_#{@c_t}", tipo,false,false,true)
+    @c_t +=1
   elsif operador == '='
     @cuadruplos << Cuadruplo.new(@pOper.pop,[],@pilaO.pop,@pilaO.pop)
     res_type(@cuadruplos.last)
@@ -38,7 +40,6 @@ def agc_3(operador=[])
     agc_1("t_#{@c_t}", res_type(@cuadruplos.last),false,false,true)
     @c_t +=1
     @cuadruplos.last.respuesta = @pilaO[-1]
-
   end
 end
 
