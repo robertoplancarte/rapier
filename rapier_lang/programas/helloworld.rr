@@ -1,5 +1,8 @@
 program{
   int:main(){
-    out("\"\"");
+    out("Hola Mundo! o \"Hello World!\" en inglés.");
+    out(3+1);
+    out(4.2);
+    out(true);
   }
 }

@@ -66,7 +66,7 @@ fragment LOWER: 'a'..'z';
 fragment UPPER: 'A'..'Z';
 fragment DIGIT: '0'..'9';
 fragment SPACE: ' ' | '\t';
-fragment SYMBOL: '!' | '#'..'/' | ':'..'@' | '['..'`' | '{'..'~' | '\\\"';
+fragment SYMBOL: '!' | '#'..'/' | ':'..'@' | '['..'`' | '{'..'~' | '\\\"' | 'á'| 'é'| 'í'| 'ó' | 'ú';
 WS : ( ' '| '\t'| '\r'| '\n' ) {$channel=HIDDEN;};
 
 /*

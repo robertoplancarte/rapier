@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-11-20 00:41:30
+# Generated at: 2012-11-20 01:49:41
 # 
 
 # ~~~> start load path setup
@@ -1066,7 +1066,7 @@ module Rapier
         alt_6 = 2
         look_6_0 = @input.peek( 1 )
 
-        if ( look_6_0 == 0x9 || look_6_0.between?( 0x20, 0x21 ) || look_6_0.between?( 0x23, 0x7e ) )
+        if ( look_6_0 == 0x9 || look_6_0.between?( 0x20, 0x21 ) || look_6_0.between?( 0x23, 0x7e ) || look_6_0 == 0xe1 || look_6_0 == 0xe9 || look_6_0 == 0xed || look_6_0 == 0xf3 || look_6_0 == 0xfa )
           alt_6 = 1
 
         end
@@ -1104,7 +1104,7 @@ module Rapier
       case look_7 = @input.peek( 1 )
       when 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f, 0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7a then alt_7 = 1
       when 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39 then alt_7 = 2
-      when 0x21, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f, 0x40, 0x5b, 0x5c, 0x5d, 0x5e, 0x5f, 0x60, 0x7b, 0x7c, 0x7d, 0x7e then alt_7 = 3
+      when 0x21, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f, 0x40, 0x5b, 0x5c, 0x5d, 0x5e, 0x5f, 0x60, 0x7b, 0x7c, 0x7d, 0x7e, 0xe1, 0xe9, 0xed, 0xf3, 0xfa then alt_7 = 3
       when 0x9, 0x20 then alt_7 = 4
       else
         raise NoViableAlternative( "", 7, 0 )
@@ -1259,24 +1259,9 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 69:16: ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' )
-      alt_8 = 6
-      case look_8 = @input.peek( 1 )
-      when 0x21 then alt_8 = 1
-      when 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f then alt_8 = 2
-      when 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f, 0x40 then alt_8 = 3
-      when 0x5c then look_8_4 = @input.peek( 2 )
-
-      if ( look_8_4 == 0x22 )
-        alt_8 = 6
-      else
-        alt_8 = 4
-      end
-      when 0x7b, 0x7c, 0x7d, 0x7e then alt_8 = 5
-      when 0x5b, 0x5d, 0x5e, 0x5f, 0x60 then alt_8 = 4
-      else
-        raise NoViableAlternative( "", 8, 0 )
-      end
+      # at line 69:16: ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' )
+      alt_8 = 11
+      alt_8 = @dfa8.predict( @input )
       case alt_8
       when 1
         # at line 69:18: '!'
@@ -1301,6 +1286,26 @@ module Rapier
       when 6
         # at line 69:68: '\\\\\\\"'
         match( "\\\"" )
+
+      when 7
+        # at line 69:77: 'á'
+        match( 0xe1 )
+
+      when 8
+        # at line 69:82: 'é'
+        match( 0xe9 )
+
+      when 9
+        # at line 69:87: 'í'
+        match( 0xed )
+
+      when 10
+        # at line 69:92: 'ó'
+        match( 0xf3 )
+
+      when 11
+        # at line 69:98: 'ú'
+        match( 0xfa )
 
       end
     ensure
@@ -1505,6 +1510,47 @@ module Rapier
 
     
     # - - - - - - - - - - DFA definitions - - - - - - - - - - -
+    class DFA8 < ANTLR3::DFA
+      EOT = unpack( 4, -1, 1, 6, 8, -1 )
+      EOF = unpack( 13, -1 )
+      MIN = unpack( 1, 33, 3, -1, 1, 34, 8, -1 )
+      MAX = unpack( 1, 250, 3, -1, 1, 34, 8, -1 )
+      ACCEPT = unpack( 1, -1, 1, 1, 1, 2, 1, 3, 1, -1, 1, 5, 1, 4, 1, 7, 
+                       1, 8, 1, 9, 1, 10, 1, 11, 1, 6 )
+      SPECIAL = unpack( 13, -1 )
+      TRANSITION = [
+        unpack( 1, 1, 1, -1, 13, 2, 10, -1, 7, 3, 26, -1, 1, 6, 1, 4, 4, 
+                6, 26, -1, 4, 5, 98, -1, 1, 7, 7, -1, 1, 8, 3, -1, 1, 9, 
+                5, -1, 1, 10, 6, -1, 1, 11 ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack( 1, 12 ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  ),
+        unpack(  )
+      ].freeze
+      
+      ( 0 ... MIN.length ).zip( MIN, MAX ) do | i, a, z |
+        if a > 0 and z < 0
+          MAX[ i ] %= 0x10000
+        end
+      end
+      
+      @decision = 8
+      
+
+      def description
+        <<-'__dfa_description__'.strip!
+          69:10: fragment SYMBOL : ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' );
+        __dfa_description__
+      end
+    end
     class DFA9 < ANTLR3::DFA
       EOT = unpack( 9, -1, 1, 31, 1, 33, 1, 35, 2, -1, 1, 36, 5, 28, 2, 
                     -1, 5, 28, 1, 50, 10, -1, 1, 28, 1, 53, 1, 55, 9, 28, 
@@ -1523,7 +1569,7 @@ module Rapier
                     1, 101, 1, 48, 1, 97, 1, -1, 3, 48, 1, 103, 1, 97, 1, 
                     -1, 1, 109, 2, -1, 1, 48, 1, 110, 1, 48, 1, -1, 1, 48, 
                     2, -1 )
-      MAX = unpack( 1, 125, 8, -1, 3, 61, 2, -1, 1, 126, 1, 114, 1, 110, 
+      MAX = unpack( 1, 125, 8, -1, 3, 61, 2, -1, 1, 250, 1, 114, 1, 110, 
                     1, 108, 1, 104, 1, 117, 2, -1, 1, 97, 1, 108, 1, 116, 
                     1, 111, 1, 114, 1, 57, 10, -1, 1, 111, 2, 122, 1, 115, 
                     1, 105, 1, 116, 1, 114, 1, 111, 1, 108, 1, 114, 1, 111, 
@@ -1561,7 +1607,8 @@ module Rapier
         unpack( 1, 34 ),
         unpack(  ),
         unpack(  ),
-        unpack( 1, 37, 22, -1, 95, 37 ),
+        unpack( 1, 37, 22, -1, 95, 37, 98, -1, 1, 37, 7, -1, 1, 37, 3, 
+                 -1, 1, 37, 5, -1, 1, 37, 6, -1, 1, 37 ),
         unpack( 1, 38 ),
         unpack( 1, 39, 7, -1, 1, 40 ),
         unpack( 1, 41 ),
@@ -1665,6 +1712,7 @@ module Rapier
     
     def initialize_dfas
       super rescue nil
+      @dfa8 = DFA8.new( self, 8 )
       @dfa9 = DFA9.new( self, 9 )
 
     end
