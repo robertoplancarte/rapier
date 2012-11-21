@@ -36,14 +36,15 @@ tokens {
   require_relative 'AGC.rb'
 }
 
-prog    : PROGRAM LKEY fun* RKEY  {agc_8} ;
-fun     : b=type ':' a=ID LPAR RPAR bloq ;
+prog    : PROGRAM LKEY (dclrG';')* fun* RKEY  {agc_8} ;
+fun     : b=type ':' a=ID LPAR RPAR bloq {agc_6};
 bloq    : LKEY ((est(';'|')'))| sIf | sWhile)* RKEY ;
 est     : (dclr | asign | comp | prt | red );
 prt     : (OUT LPAR comp? RPAR {agc_3('out')})|(OUTS LPAR comp? RPAR {agc_3('outln')}) ;
 red     : (a=ID {agc_1(a)} EQLS {agc_2('=')})? IN LPAR b=type RPAR {agc_3('in',b)} {agc_3('=')} ;
 sIf     : IF LPAR comp RPAR {agc_4('if')} bloq {agc_5('if')} {agc_4('else')} (ELSE bloq)? {agc_5('else')} ;
 sWhile  : WHILE {agc_4()} LPAR comp? RPAR {agc_4('while')} bloq {agc_5('while')} ;
+dclrG   : b=type a=ID {agc_1(a,b,true,false,false,true)} ('='  {agc_2('=')} comp {agc_3('=')})? ;
 dclr    : b=type a=ID {agc_1(a,b,true)} ('='  {agc_2('=')} comp {agc_3('=')})? ;
 asign   : a=ID {agc_1(a)} EQLS {agc_2('=')} comp {agc_3('=')} ;
 comp    : (expr{agc_3(['<','>','>=','<=','==','&','|'])})

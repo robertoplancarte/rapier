@@ -1,6 +1,6 @@
 
 #mete operndo a la pila de operandos
-def agc_1(operando, tipo='ini', declaracion=false, constante=false, temporal=false)
+def agc_1(operando, tipo='ini', declaracion=false, constante=false, temporal=false, global=false)
   operando = operando.to_s
   abort("Ya tenias #{operando} declarado") if (@tab_var[operando] && declaracion)
   if constante
@@ -62,6 +62,7 @@ def agc_5(estatuto)
 end
 
 def agc_6
+  #@tab_var={}
 end
 
 def agc_7

@@ -1,5 +1,11 @@
 program {
+  int x=19;
   int:main(){
-    out(true & false);
+    int y=14;
+    outln(y);
+  }
+  int:not(){
+    int y=16;
+    outln(y);
   }
 }

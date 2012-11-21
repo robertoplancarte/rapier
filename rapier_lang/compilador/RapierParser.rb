@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-11-21 00:46:49
+# Generated at: 2012-11-21 02:09:50
 # 
 
 # ~~~> start load path setup
@@ -89,7 +89,7 @@ module Rapier
                     "OR", "EQLS", "QTS", "PROGRAM", "IF", "ELSE", "WHILE", 
                     "OUT", "OUTS", "IN", "ID", "NUMBER", "FLOAT", "BOOL", 
                     "STRING", "INTEGER", "LETTER", "DIGIT", "NONCONTROL_CHAR", 
-                    "SYMBOL", "SPACE", "LOWER", "UPPER", "WS", "':'", "';'", 
+                    "SYMBOL", "SPACE", "LOWER", "UPPER", "WS", "';'", "':'", 
                     "'int'", "'float'", "'string'", "'boolean'" )
     
   end
@@ -99,8 +99,8 @@ module Rapier
     @grammar_home = Rapier
 
     RULE_METHODS = [ :prog, :fun, :bloq, :est, :prt, :red, :sIf, :sWhile, 
-                     :dclr, :asign, :comp, :expr, :term, :factor, :elem, 
-                     :type ].freeze
+                     :dclrG, :dclr, :asign, :comp, :expr, :term, :factor, 
+                     :elem, :type ].freeze
 
 
     include TokenData
@@ -156,37 +156,78 @@ module Rapier
     # parser rule prog
     # 
     # (in Rapier.g)
-    # 39:1: prog : PROGRAM LKEY ( fun )* RKEY ;
+    # 39:1: prog : PROGRAM LKEY ( dclrG ';' )* ( fun )* RKEY ;
     # 
     def prog
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 1 )
 
       begin
-        # at line 39:11: PROGRAM LKEY ( fun )* RKEY
+        # at line 39:11: PROGRAM LKEY ( dclrG ';' )* ( fun )* RKEY
         match( PROGRAM, TOKENS_FOLLOWING_PROGRAM_IN_prog_143 )
         match( LKEY, TOKENS_FOLLOWING_LKEY_IN_prog_145 )
-        # at line 39:24: ( fun )*
+        # at line 39:24: ( dclrG ';' )*
         while true # decision 1
           alt_1 = 2
-          look_1_0 = @input.peek( 1 )
+          case look_1 = @input.peek( 1 )
+          when T__44 then look_1_1 = @input.peek( 2 )
 
-          if ( look_1_0.between?( T__44, T__47 ) )
+          if ( look_1_1 == ID )
             alt_1 = 1
 
           end
+          when T__45 then look_1_2 = @input.peek( 2 )
+
+          if ( look_1_2 == ID )
+            alt_1 = 1
+
+          end
+          when T__46 then look_1_3 = @input.peek( 2 )
+
+          if ( look_1_3 == ID )
+            alt_1 = 1
+
+          end
+          when T__47 then look_1_4 = @input.peek( 2 )
+
+          if ( look_1_4 == ID )
+            alt_1 = 1
+
+          end
+          end
           case alt_1
           when 1
-            # at line 39:24: fun
-            @state.following.push( TOKENS_FOLLOWING_fun_IN_prog_147 )
-            fun
+            # at line 39:25: dclrG ';'
+            @state.following.push( TOKENS_FOLLOWING_dclrG_IN_prog_148 )
+            dclrG
             @state.following.pop
+            match( T__42, TOKENS_FOLLOWING_T__42_IN_prog_149 )
 
           else
             break # out of loop for decision 1
           end
         end # loop for decision 1
-        match( RKEY, TOKENS_FOLLOWING_RKEY_IN_prog_150 )
+        # at line 39:36: ( fun )*
+        while true # decision 2
+          alt_2 = 2
+          look_2_0 = @input.peek( 1 )
+
+          if ( look_2_0.between?( T__44, T__47 ) )
+            alt_2 = 1
+
+          end
+          case alt_2
+          when 1
+            # at line 39:36: fun
+            @state.following.push( TOKENS_FOLLOWING_fun_IN_prog_153 )
+            fun
+            @state.following.pop
+
+          else
+            break # out of loop for decision 2
+          end
+        end # loop for decision 2
+        match( RKEY, TOKENS_FOLLOWING_RKEY_IN_prog_156 )
         # --> action
         agc_8
         # <-- action
@@ -219,16 +260,19 @@ module Rapier
 
       begin
         # at line 40:11: b= type ':' a= ID LPAR RPAR bloq
-        @state.following.push( TOKENS_FOLLOWING_type_IN_fun_167 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_fun_173 )
         b = type
         @state.following.pop
-        match( T__42, TOKENS_FOLLOWING_T__42_IN_fun_169 )
-        a = match( ID, TOKENS_FOLLOWING_ID_IN_fun_173 )
-        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_fun_175 )
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_fun_177 )
-        @state.following.push( TOKENS_FOLLOWING_bloq_IN_fun_179 )
+        match( T__43, TOKENS_FOLLOWING_T__43_IN_fun_175 )
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_fun_179 )
+        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_fun_181 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_fun_183 )
+        @state.following.push( TOKENS_FOLLOWING_bloq_IN_fun_185 )
         bloq
         @state.following.pop
+        # --> action
+        agc_6
+        # <-- action
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -256,24 +300,24 @@ module Rapier
 
       begin
         # at line 41:11: LKEY ( ( est ( ';' | ')' ) ) | sIf | sWhile )* RKEY
-        match( LKEY, TOKENS_FOLLOWING_LKEY_IN_bloq_190 )
+        match( LKEY, TOKENS_FOLLOWING_LKEY_IN_bloq_197 )
         # at line 41:16: ( ( est ( ';' | ')' ) ) | sIf | sWhile )*
-        while true # decision 2
-          alt_2 = 4
-          case look_2 = @input.peek( 1 )
-          when MINUS, LPAR, OUT, OUTS, IN, ID, NUMBER, FLOAT, BOOL, STRING, T__44, T__45, T__46, T__47 then alt_2 = 1
-          when IF then alt_2 = 2
-          when WHILE then alt_2 = 3
+        while true # decision 3
+          alt_3 = 4
+          case look_3 = @input.peek( 1 )
+          when MINUS, LPAR, OUT, OUTS, IN, ID, NUMBER, FLOAT, BOOL, STRING, T__44, T__45, T__46, T__47 then alt_3 = 1
+          when IF then alt_3 = 2
+          when WHILE then alt_3 = 3
           end
-          case alt_2
+          case alt_3
           when 1
             # at line 41:17: ( est ( ';' | ')' ) )
             # at line 41:17: ( est ( ';' | ')' ) )
             # at line 41:18: est ( ';' | ')' )
-            @state.following.push( TOKENS_FOLLOWING_est_IN_bloq_194 )
+            @state.following.push( TOKENS_FOLLOWING_est_IN_bloq_201 )
             est
             @state.following.pop
-            if @input.peek(1) == RPAR || @input.peek(1) == T__43
+            if @input.peek(1) == RPAR || @input.peek(1) == T__42
               @input.consume
               @state.error_recovery = false
             else
@@ -286,21 +330,21 @@ module Rapier
 
           when 2
             # at line 41:33: sIf
-            @state.following.push( TOKENS_FOLLOWING_sIf_IN_bloq_203 )
+            @state.following.push( TOKENS_FOLLOWING_sIf_IN_bloq_210 )
             sIf
             @state.following.pop
 
           when 3
             # at line 41:39: sWhile
-            @state.following.push( TOKENS_FOLLOWING_sWhile_IN_bloq_207 )
+            @state.following.push( TOKENS_FOLLOWING_sWhile_IN_bloq_214 )
             sWhile
             @state.following.pop
 
           else
-            break # out of loop for decision 2
+            break # out of loop for decision 3
           end
-        end # loop for decision 2
-        match( RKEY, TOKENS_FOLLOWING_RKEY_IN_bloq_211 )
+        end # loop for decision 3
+        match( RKEY, TOKENS_FOLLOWING_RKEY_IN_bloq_218 )
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -329,60 +373,60 @@ module Rapier
       begin
         # at line 42:11: ( dclr | asign | comp | prt | red )
         # at line 42:11: ( dclr | asign | comp | prt | red )
-        alt_3 = 5
-        case look_3 = @input.peek( 1 )
-        when T__44, T__45, T__46, T__47 then alt_3 = 1
-        when ID then look_3_2 = @input.peek( 2 )
+        alt_4 = 5
+        case look_4 = @input.peek( 1 )
+        when T__44, T__45, T__46, T__47 then alt_4 = 1
+        when ID then look_4_2 = @input.peek( 2 )
 
-        if ( look_3_2 == EQLS )
-          look_3_6 = @input.peek( 3 )
+        if ( look_4_2 == EQLS )
+          look_4_6 = @input.peek( 3 )
 
-          if ( look_3_6 == MINUS || look_3_6 == LPAR || look_3_6.between?( ID, STRING ) )
-            alt_3 = 2
-          elsif ( look_3_6 == IN )
-            alt_3 = 5
+          if ( look_4_6 == MINUS || look_4_6 == LPAR || look_4_6.between?( ID, STRING ) )
+            alt_4 = 2
+          elsif ( look_4_6 == IN )
+            alt_4 = 5
           else
-            raise NoViableAlternative( "", 3, 6 )
+            raise NoViableAlternative( "", 4, 6 )
           end
-        elsif ( look_3_2.between?( PLUS, DIV ) || look_3_2 == RPAR || look_3_2.between?( GRTH, OR ) || look_3_2 == T__43 )
-          alt_3 = 3
+        elsif ( look_4_2.between?( PLUS, DIV ) || look_4_2 == RPAR || look_4_2.between?( GRTH, OR ) || look_4_2 == T__42 )
+          alt_4 = 3
         else
-          raise NoViableAlternative( "", 3, 2 )
+          raise NoViableAlternative( "", 4, 2 )
         end
-        when MINUS, LPAR, NUMBER, FLOAT, BOOL, STRING then alt_3 = 3
-        when OUT, OUTS then alt_3 = 4
-        when IN then alt_3 = 5
+        when MINUS, LPAR, NUMBER, FLOAT, BOOL, STRING then alt_4 = 3
+        when OUT, OUTS then alt_4 = 4
+        when IN then alt_4 = 5
         else
-          raise NoViableAlternative( "", 3, 0 )
+          raise NoViableAlternative( "", 4, 0 )
         end
-        case alt_3
+        case alt_4
         when 1
           # at line 42:12: dclr
-          @state.following.push( TOKENS_FOLLOWING_dclr_IN_est_224 )
+          @state.following.push( TOKENS_FOLLOWING_dclr_IN_est_231 )
           dclr
           @state.following.pop
 
         when 2
           # at line 42:19: asign
-          @state.following.push( TOKENS_FOLLOWING_asign_IN_est_228 )
+          @state.following.push( TOKENS_FOLLOWING_asign_IN_est_235 )
           asign
           @state.following.pop
 
         when 3
           # at line 42:27: comp
-          @state.following.push( TOKENS_FOLLOWING_comp_IN_est_232 )
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_est_239 )
           comp
           @state.following.pop
 
         when 4
           # at line 42:34: prt
-          @state.following.push( TOKENS_FOLLOWING_prt_IN_est_236 )
+          @state.following.push( TOKENS_FOLLOWING_prt_IN_est_243 )
           prt
           @state.following.pop
 
         when 5
           # at line 42:40: red
-          @state.following.push( TOKENS_FOLLOWING_red_IN_est_240 )
+          @state.following.push( TOKENS_FOLLOWING_red_IN_est_247 )
           red
           @state.following.pop
 
@@ -414,39 +458,39 @@ module Rapier
 
       begin
         # at line 43:9: ( ( OUT LPAR ( comp )? RPAR ) | ( OUTS LPAR ( comp )? RPAR ) )
-        alt_6 = 2
-        look_6_0 = @input.peek( 1 )
+        alt_7 = 2
+        look_7_0 = @input.peek( 1 )
 
-        if ( look_6_0 == OUT )
-          alt_6 = 1
-        elsif ( look_6_0 == OUTS )
-          alt_6 = 2
+        if ( look_7_0 == OUT )
+          alt_7 = 1
+        elsif ( look_7_0 == OUTS )
+          alt_7 = 2
         else
-          raise NoViableAlternative( "", 6, 0 )
+          raise NoViableAlternative( "", 7, 0 )
         end
-        case alt_6
+        case alt_7
         when 1
           # at line 43:11: ( OUT LPAR ( comp )? RPAR )
           # at line 43:11: ( OUT LPAR ( comp )? RPAR )
           # at line 43:12: OUT LPAR ( comp )? RPAR
-          match( OUT, TOKENS_FOLLOWING_OUT_IN_prt_254 )
-          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_prt_256 )
+          match( OUT, TOKENS_FOLLOWING_OUT_IN_prt_261 )
+          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_prt_263 )
           # at line 43:21: ( comp )?
-          alt_4 = 2
-          look_4_0 = @input.peek( 1 )
+          alt_5 = 2
+          look_5_0 = @input.peek( 1 )
 
-          if ( look_4_0 == MINUS || look_4_0 == LPAR || look_4_0.between?( ID, STRING ) )
-            alt_4 = 1
+          if ( look_5_0 == MINUS || look_5_0 == LPAR || look_5_0.between?( ID, STRING ) )
+            alt_5 = 1
           end
-          case alt_4
+          case alt_5
           when 1
             # at line 43:21: comp
-            @state.following.push( TOKENS_FOLLOWING_comp_IN_prt_258 )
+            @state.following.push( TOKENS_FOLLOWING_comp_IN_prt_265 )
             comp
             @state.following.pop
 
           end
-          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_prt_261 )
+          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_prt_268 )
           # --> action
           agc_3('out')
           # <-- action
@@ -456,24 +500,24 @@ module Rapier
           # at line 43:48: ( OUTS LPAR ( comp )? RPAR )
           # at line 43:48: ( OUTS LPAR ( comp )? RPAR )
           # at line 43:49: OUTS LPAR ( comp )? RPAR
-          match( OUTS, TOKENS_FOLLOWING_OUTS_IN_prt_267 )
-          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_prt_269 )
+          match( OUTS, TOKENS_FOLLOWING_OUTS_IN_prt_274 )
+          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_prt_276 )
           # at line 43:59: ( comp )?
-          alt_5 = 2
-          look_5_0 = @input.peek( 1 )
+          alt_6 = 2
+          look_6_0 = @input.peek( 1 )
 
-          if ( look_5_0 == MINUS || look_5_0 == LPAR || look_5_0.between?( ID, STRING ) )
-            alt_5 = 1
+          if ( look_6_0 == MINUS || look_6_0 == LPAR || look_6_0.between?( ID, STRING ) )
+            alt_6 = 1
           end
-          case alt_5
+          case alt_6
           when 1
             # at line 43:59: comp
-            @state.following.push( TOKENS_FOLLOWING_comp_IN_prt_271 )
+            @state.following.push( TOKENS_FOLLOWING_comp_IN_prt_278 )
             comp
             @state.following.pop
 
           end
-          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_prt_274 )
+          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_prt_281 )
           # --> action
           agc_3('outln')
           # <-- action
@@ -509,31 +553,31 @@ module Rapier
       begin
         # at line 44:11: (a= ID EQLS )? IN LPAR b= type RPAR
         # at line 44:11: (a= ID EQLS )?
-        alt_7 = 2
-        look_7_0 = @input.peek( 1 )
+        alt_8 = 2
+        look_8_0 = @input.peek( 1 )
 
-        if ( look_7_0 == ID )
-          alt_7 = 1
+        if ( look_8_0 == ID )
+          alt_8 = 1
         end
-        case alt_7
+        case alt_8
         when 1
           # at line 44:12: a= ID EQLS
-          a = match( ID, TOKENS_FOLLOWING_ID_IN_red_292 )
+          a = match( ID, TOKENS_FOLLOWING_ID_IN_red_299 )
           # --> action
           agc_1(a)
           # <-- action
-          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_red_296 )
+          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_red_303 )
           # --> action
           agc_2('=')
           # <-- action
 
         end
-        match( IN, TOKENS_FOLLOWING_IN_IN_red_302 )
-        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_red_304 )
-        @state.following.push( TOKENS_FOLLOWING_type_IN_red_308 )
+        match( IN, TOKENS_FOLLOWING_IN_IN_red_309 )
+        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_red_311 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_red_315 )
         b = type
         @state.following.pop
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_red_310 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_red_317 )
         # --> action
         agc_3('in',b)
         # <-- action
@@ -567,16 +611,16 @@ module Rapier
 
       begin
         # at line 45:11: IF LPAR comp RPAR bloq ( ELSE bloq )?
-        match( IF, TOKENS_FOLLOWING_IF_IN_sIf_326 )
-        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_sIf_328 )
-        @state.following.push( TOKENS_FOLLOWING_comp_IN_sIf_330 )
+        match( IF, TOKENS_FOLLOWING_IF_IN_sIf_333 )
+        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_sIf_335 )
+        @state.following.push( TOKENS_FOLLOWING_comp_IN_sIf_337 )
         comp
         @state.following.pop
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_sIf_332 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_sIf_339 )
         # --> action
         agc_4('if')
         # <-- action
-        @state.following.push( TOKENS_FOLLOWING_bloq_IN_sIf_336 )
+        @state.following.push( TOKENS_FOLLOWING_bloq_IN_sIf_343 )
         bloq
         @state.following.pop
         # --> action
@@ -586,17 +630,17 @@ module Rapier
         agc_4('else')
         # <-- action
         # at line 45:78: ( ELSE bloq )?
-        alt_8 = 2
-        look_8_0 = @input.peek( 1 )
+        alt_9 = 2
+        look_9_0 = @input.peek( 1 )
 
-        if ( look_8_0 == ELSE )
-          alt_8 = 1
+        if ( look_9_0 == ELSE )
+          alt_9 = 1
         end
-        case alt_8
+        case alt_9
         when 1
           # at line 45:79: ELSE bloq
-          match( ELSE, TOKENS_FOLLOWING_ELSE_IN_sIf_343 )
-          @state.following.push( TOKENS_FOLLOWING_bloq_IN_sIf_345 )
+          match( ELSE, TOKENS_FOLLOWING_ELSE_IN_sIf_350 )
+          @state.following.push( TOKENS_FOLLOWING_bloq_IN_sIf_352 )
           bloq
           @state.following.pop
 
@@ -631,31 +675,31 @@ module Rapier
 
       begin
         # at line 46:11: WHILE LPAR ( comp )? RPAR bloq
-        match( WHILE, TOKENS_FOLLOWING_WHILE_IN_sWhile_358 )
+        match( WHILE, TOKENS_FOLLOWING_WHILE_IN_sWhile_365 )
         # --> action
         agc_4()
         # <-- action
-        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_sWhile_362 )
+        match( LPAR, TOKENS_FOLLOWING_LPAR_IN_sWhile_369 )
         # at line 46:32: ( comp )?
-        alt_9 = 2
-        look_9_0 = @input.peek( 1 )
+        alt_10 = 2
+        look_10_0 = @input.peek( 1 )
 
-        if ( look_9_0 == MINUS || look_9_0 == LPAR || look_9_0.between?( ID, STRING ) )
-          alt_9 = 1
+        if ( look_10_0 == MINUS || look_10_0 == LPAR || look_10_0.between?( ID, STRING ) )
+          alt_10 = 1
         end
-        case alt_9
+        case alt_10
         when 1
           # at line 46:32: comp
-          @state.following.push( TOKENS_FOLLOWING_comp_IN_sWhile_364 )
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_sWhile_371 )
           comp
           @state.following.pop
 
         end
-        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_sWhile_367 )
+        match( RPAR, TOKENS_FOLLOWING_RPAR_IN_sWhile_374 )
         # --> action
         agc_4('while')
         # <-- action
-        @state.following.push( TOKENS_FOLLOWING_bloq_IN_sWhile_371 )
+        @state.following.push( TOKENS_FOLLOWING_bloq_IN_sWhile_378 )
         bloq
         @state.following.pop
         # --> action
@@ -677,12 +721,12 @@ module Rapier
 
 
     # 
-    # parser rule dclr
+    # parser rule dclrG
     # 
     # (in Rapier.g)
-    # 47:1: dclr : b= type a= ID ( '=' comp )? ;
+    # 47:1: dclrG : b= type a= ID ( '=' comp )? ;
     # 
-    def dclr
+    def dclrG
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 9 )
       a = nil
@@ -690,28 +734,28 @@ module Rapier
 
       begin
         # at line 47:11: b= type a= ID ( '=' comp )?
-        @state.following.push( TOKENS_FOLLOWING_type_IN_dclr_386 )
+        @state.following.push( TOKENS_FOLLOWING_type_IN_dclrG_392 )
         b = type
         @state.following.pop
-        a = match( ID, TOKENS_FOLLOWING_ID_IN_dclr_390 )
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_dclrG_396 )
         # --> action
-        agc_1(a,b,true)
+        agc_1(a,b,true,false,false,true)
         # <-- action
-        # at line 47:41: ( '=' comp )?
-        alt_10 = 2
-        look_10_0 = @input.peek( 1 )
+        # at line 47:58: ( '=' comp )?
+        alt_11 = 2
+        look_11_0 = @input.peek( 1 )
 
-        if ( look_10_0 == EQLS )
-          alt_10 = 1
+        if ( look_11_0 == EQLS )
+          alt_11 = 1
         end
-        case alt_10
+        case alt_11
         when 1
-          # at line 47:42: '=' comp
-          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclr_395 )
+          # at line 47:59: '=' comp
+          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclrG_401 )
           # --> action
           agc_2('=')
           # <-- action
-          @state.following.push( TOKENS_FOLLOWING_comp_IN_dclr_400 )
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_dclrG_406 )
           comp
           @state.following.pop
           # --> action
@@ -735,32 +779,48 @@ module Rapier
 
 
     # 
-    # parser rule asign
+    # parser rule dclr
     # 
     # (in Rapier.g)
-    # 48:1: asign : a= ID EQLS comp ;
+    # 48:1: dclr : b= type a= ID ( '=' comp )? ;
     # 
-    def asign
+    def dclr
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 10 )
       a = nil
+      b = nil
 
       begin
-        # at line 48:11: a= ID EQLS comp
-        a = match( ID, TOKENS_FOLLOWING_ID_IN_asign_416 )
-        # --> action
-        agc_1(a)
-        # <-- action
-        match( EQLS, TOKENS_FOLLOWING_EQLS_IN_asign_420 )
-        # --> action
-        agc_2('=')
-        # <-- action
-        @state.following.push( TOKENS_FOLLOWING_comp_IN_asign_424 )
-        comp
+        # at line 48:11: b= type a= ID ( '=' comp )?
+        @state.following.push( TOKENS_FOLLOWING_type_IN_dclr_423 )
+        b = type
         @state.following.pop
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_dclr_427 )
         # --> action
-        agc_3('=')
+        agc_1(a,b,true)
         # <-- action
+        # at line 48:41: ( '=' comp )?
+        alt_12 = 2
+        look_12_0 = @input.peek( 1 )
+
+        if ( look_12_0 == EQLS )
+          alt_12 = 1
+        end
+        case alt_12
+        when 1
+          # at line 48:42: '=' comp
+          match( EQLS, TOKENS_FOLLOWING_EQLS_IN_dclr_432 )
+          # --> action
+          agc_2('=')
+          # <-- action
+          @state.following.push( TOKENS_FOLLOWING_comp_IN_dclr_437 )
+          comp
+          @state.following.pop
+          # --> action
+          agc_3('=')
+          # <-- action
+
+        end
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -777,119 +837,32 @@ module Rapier
 
 
     # 
-    # parser rule comp
+    # parser rule asign
     # 
     # (in Rapier.g)
-    # 49:1: comp : ( expr ) ( ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr ) )* ;
+    # 49:1: asign : a= ID EQLS comp ;
     # 
-    def comp
+    def asign
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 11 )
+      a = nil
 
       begin
-        # at line 49:11: ( expr ) ( ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr ) )*
-        # at line 49:11: ( expr )
-        # at line 49:12: expr
-        @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_438 )
-        expr
+        # at line 49:11: a= ID EQLS comp
+        a = match( ID, TOKENS_FOLLOWING_ID_IN_asign_453 )
+        # --> action
+        agc_1(a)
+        # <-- action
+        match( EQLS, TOKENS_FOLLOWING_EQLS_IN_asign_457 )
+        # --> action
+        agc_2('=')
+        # <-- action
+        @state.following.push( TOKENS_FOLLOWING_comp_IN_asign_461 )
+        comp
         @state.following.pop
         # --> action
-        agc_3(['<','>','>=','<=','==','&','|'])
+        agc_3('=')
         # <-- action
-
-        # at line 50:11: ( ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr ) )*
-        while true # decision 12
-          alt_12 = 2
-          look_12_0 = @input.peek( 1 )
-
-          if ( look_12_0.between?( GRTH, OR ) )
-            alt_12 = 1
-
-          end
-          case alt_12
-          when 1
-            # at line 50:12: ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr )
-            # at line 50:12: ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) )
-            # at line 50:13: ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR )
-            # at line 50:13: ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR )
-            alt_11 = 7
-            case look_11 = @input.peek( 1 )
-            when LSTHE then alt_11 = 1
-            when GRTHE then alt_11 = 2
-            when LSTH then alt_11 = 3
-            when GRTH then alt_11 = 4
-            when EXEQ then alt_11 = 5
-            when AND then alt_11 = 6
-            when OR then alt_11 = 7
-            else
-              raise NoViableAlternative( "", 11, 0 )
-            end
-            case alt_11
-            when 1
-              # at line 50:14: LSTHE
-              match( LSTHE, TOKENS_FOLLOWING_LSTHE_IN_comp_455 )
-              # --> action
-              agc_2('<=')
-              # <-- action
-
-            when 2
-              # at line 50:34: GRTHE
-              match( GRTHE, TOKENS_FOLLOWING_GRTHE_IN_comp_459 )
-              # --> action
-              agc_2('>=')
-              # <-- action
-
-            when 3
-              # at line 50:53: LSTH
-              match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_462 )
-              # --> action
-              agc_2('<')
-              # <-- action
-
-            when 4
-              # at line 50:70: GRTH
-              match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_465 )
-              # --> action
-              agc_2('>')
-              # <-- action
-
-            when 5
-              # at line 50:87: EXEQ
-              match( EXEQ, TOKENS_FOLLOWING_EXEQ_IN_comp_468 )
-              # --> action
-              agc_2('==')
-              # <-- action
-
-            when 6
-              # at line 50:105: AND
-              match( AND, TOKENS_FOLLOWING_AND_IN_comp_471 )
-              # --> action
-              agc_2('&')
-              # <-- action
-
-            when 7
-              # at line 50:121: OR
-              match( OR, TOKENS_FOLLOWING_OR_IN_comp_474 )
-              # --> action
-              agc_2('|')
-              # <-- action
-
-            end
-
-            # at line 51:11: ( expr )
-            # at line 51:12: expr
-            @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_490 )
-            expr
-            @state.following.pop
-            # --> action
-            agc_3(['<','>','>=','<=','==','&','|'])
-            # <-- action
-
-
-          else
-            break # out of loop for decision 12
-          end
-        end # loop for decision 12
 
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
@@ -906,75 +879,112 @@ module Rapier
 
 
     # 
-    # parser rule expr
+    # parser rule comp
     # 
     # (in Rapier.g)
-    # 52:1: expr : term ( ( ( PLUS | MINUS ) ) ( term ) )* ;
+    # 50:1: comp : ( expr ) ( ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr ) )* ;
     # 
-    def expr
+    def comp
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 12 )
 
       begin
-        # at line 52:11: term ( ( ( PLUS | MINUS ) ) ( term ) )*
-        @state.following.push( TOKENS_FOLLOWING_term_IN_expr_504 )
-        term
+        # at line 50:11: ( expr ) ( ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr ) )*
+        # at line 50:11: ( expr )
+        # at line 50:12: expr
+        @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_475 )
+        expr
         @state.following.pop
-        # at line 52:16: ( ( ( PLUS | MINUS ) ) ( term ) )*
+        # --> action
+        agc_3(['<','>','>=','<=','==','&','|'])
+        # <-- action
+
+        # at line 51:11: ( ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr ) )*
         while true # decision 14
           alt_14 = 2
           look_14_0 = @input.peek( 1 )
 
-          if ( look_14_0.between?( PLUS, MINUS ) )
+          if ( look_14_0.between?( GRTH, OR ) )
             alt_14 = 1
 
           end
           case alt_14
           when 1
-            # at line 52:17: ( ( PLUS | MINUS ) ) ( term )
-            # at line 52:17: ( ( PLUS | MINUS ) )
-            # at line 52:18: ( PLUS | MINUS )
-            # at line 52:18: ( PLUS | MINUS )
-            alt_13 = 2
-            look_13_0 = @input.peek( 1 )
-
-            if ( look_13_0 == PLUS )
-              alt_13 = 1
-            elsif ( look_13_0 == MINUS )
-              alt_13 = 2
+            # at line 51:12: ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) ) ( expr )
+            # at line 51:12: ( ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR ) )
+            # at line 51:13: ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR )
+            # at line 51:13: ( LSTHE | GRTHE | LSTH | GRTH | EXEQ | AND | OR )
+            alt_13 = 7
+            case look_13 = @input.peek( 1 )
+            when LSTHE then alt_13 = 1
+            when GRTHE then alt_13 = 2
+            when LSTH then alt_13 = 3
+            when GRTH then alt_13 = 4
+            when EXEQ then alt_13 = 5
+            when AND then alt_13 = 6
+            when OR then alt_13 = 7
             else
               raise NoViableAlternative( "", 13, 0 )
             end
             case alt_13
             when 1
-              # at line 52:20: PLUS
-              match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_510 )
+              # at line 51:14: LSTHE
+              match( LSTHE, TOKENS_FOLLOWING_LSTHE_IN_comp_492 )
               # --> action
-              agc_3(['+','-'])
-              # <-- action
-              # --> action
-              agc_2('+')
+              agc_2('<=')
               # <-- action
 
             when 2
-              # at line 52:57: MINUS
-              match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_516 )
+              # at line 51:34: GRTHE
+              match( GRTHE, TOKENS_FOLLOWING_GRTHE_IN_comp_496 )
               # --> action
-              agc_3(['+','-'])
+              agc_2('>=')
               # <-- action
+
+            when 3
+              # at line 51:53: LSTH
+              match( LSTH, TOKENS_FOLLOWING_LSTH_IN_comp_499 )
               # --> action
-              agc_2('-')
+              agc_2('<')
+              # <-- action
+
+            when 4
+              # at line 51:70: GRTH
+              match( GRTH, TOKENS_FOLLOWING_GRTH_IN_comp_502 )
+              # --> action
+              agc_2('>')
+              # <-- action
+
+            when 5
+              # at line 51:87: EXEQ
+              match( EXEQ, TOKENS_FOLLOWING_EXEQ_IN_comp_505 )
+              # --> action
+              agc_2('==')
+              # <-- action
+
+            when 6
+              # at line 51:105: AND
+              match( AND, TOKENS_FOLLOWING_AND_IN_comp_508 )
+              # --> action
+              agc_2('&')
+              # <-- action
+
+            when 7
+              # at line 51:121: OR
+              match( OR, TOKENS_FOLLOWING_OR_IN_comp_511 )
+              # --> action
+              agc_2('|')
               # <-- action
 
             end
 
-            # at line 52:95: ( term )
-            # at line 52:96: term
-            @state.following.push( TOKENS_FOLLOWING_term_IN_expr_523 )
-            term
+            # at line 52:11: ( expr )
+            # at line 52:12: expr
+            @state.following.push( TOKENS_FOLLOWING_expr_IN_comp_527 )
+            expr
             @state.following.pop
             # --> action
-            agc_3(['+','-'])
+            agc_3(['<','>','>=','<=','==','&','|'])
             # <-- action
 
 
@@ -998,75 +1008,75 @@ module Rapier
 
 
     # 
-    # parser rule term
+    # parser rule expr
     # 
     # (in Rapier.g)
-    # 53:1: term : factor ( ( ( MULT | DIV ) ) ( factor ) )* ;
+    # 53:1: expr : term ( ( ( PLUS | MINUS ) ) ( term ) )* ;
     # 
-    def term
+    def expr
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 13 )
 
       begin
-        # at line 53:11: factor ( ( ( MULT | DIV ) ) ( factor ) )*
-        @state.following.push( TOKENS_FOLLOWING_factor_IN_term_541 )
-        factor
+        # at line 53:11: term ( ( ( PLUS | MINUS ) ) ( term ) )*
+        @state.following.push( TOKENS_FOLLOWING_term_IN_expr_541 )
+        term
         @state.following.pop
-        # at line 53:17: ( ( ( MULT | DIV ) ) ( factor ) )*
+        # at line 53:16: ( ( ( PLUS | MINUS ) ) ( term ) )*
         while true # decision 16
           alt_16 = 2
           look_16_0 = @input.peek( 1 )
 
-          if ( look_16_0.between?( MULT, DIV ) )
+          if ( look_16_0.between?( PLUS, MINUS ) )
             alt_16 = 1
 
           end
           case alt_16
           when 1
-            # at line 53:18: ( ( MULT | DIV ) ) ( factor )
-            # at line 53:18: ( ( MULT | DIV ) )
-            # at line 53:19: ( MULT | DIV )
-            # at line 53:19: ( MULT | DIV )
+            # at line 53:17: ( ( PLUS | MINUS ) ) ( term )
+            # at line 53:17: ( ( PLUS | MINUS ) )
+            # at line 53:18: ( PLUS | MINUS )
+            # at line 53:18: ( PLUS | MINUS )
             alt_15 = 2
             look_15_0 = @input.peek( 1 )
 
-            if ( look_15_0 == MULT )
+            if ( look_15_0 == PLUS )
               alt_15 = 1
-            elsif ( look_15_0 == DIV )
+            elsif ( look_15_0 == MINUS )
               alt_15 = 2
             else
               raise NoViableAlternative( "", 15, 0 )
             end
             case alt_15
             when 1
-              # at line 53:21: MULT
-              match( MULT, TOKENS_FOLLOWING_MULT_IN_term_546 )
+              # at line 53:20: PLUS
+              match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expr_547 )
               # --> action
-              agc_3(['*','/'])
+              agc_3(['+','-'])
               # <-- action
               # --> action
-              agc_2('*')
+              agc_2('+')
               # <-- action
 
             when 2
-              # at line 53:58: DIV
-              match( DIV, TOKENS_FOLLOWING_DIV_IN_term_552 )
+              # at line 53:57: MINUS
+              match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expr_553 )
               # --> action
-              agc_3(['*','/'])
+              agc_3(['+','-'])
               # <-- action
               # --> action
-              agc_2('/')
+              agc_2('-')
               # <-- action
 
             end
 
-            # at line 53:94: ( factor )
-            # at line 53:95: factor
-            @state.following.push( TOKENS_FOLLOWING_factor_IN_term_559 )
-            factor
+            # at line 53:95: ( term )
+            # at line 53:96: term
+            @state.following.push( TOKENS_FOLLOWING_term_IN_expr_560 )
+            term
             @state.following.pop
             # --> action
-            agc_3(['*','/'])
+            agc_3(['+','-'])
             # <-- action
 
 
@@ -1090,49 +1100,83 @@ module Rapier
 
 
     # 
-    # parser rule factor
+    # parser rule term
     # 
     # (in Rapier.g)
-    # 54:1: factor : ( elem | LPAR expr RPAR );
+    # 54:1: term : factor ( ( ( MULT | DIV ) ) ( factor ) )* ;
     # 
-    def factor
+    def term
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 14 )
 
       begin
-        # at line 54:9: ( elem | LPAR expr RPAR )
-        alt_17 = 2
-        look_17_0 = @input.peek( 1 )
+        # at line 54:11: factor ( ( ( MULT | DIV ) ) ( factor ) )*
+        @state.following.push( TOKENS_FOLLOWING_factor_IN_term_578 )
+        factor
+        @state.following.pop
+        # at line 54:17: ( ( ( MULT | DIV ) ) ( factor ) )*
+        while true # decision 18
+          alt_18 = 2
+          look_18_0 = @input.peek( 1 )
 
-        if ( look_17_0 == MINUS || look_17_0.between?( ID, STRING ) )
-          alt_17 = 1
-        elsif ( look_17_0 == LPAR )
-          alt_17 = 2
-        else
-          raise NoViableAlternative( "", 17, 0 )
-        end
-        case alt_17
-        when 1
-          # at line 54:11: elem
-          @state.following.push( TOKENS_FOLLOWING_elem_IN_factor_573 )
-          elem
-          @state.following.pop
+          if ( look_18_0.between?( MULT, DIV ) )
+            alt_18 = 1
 
-        when 2
-          # at line 54:18: LPAR expr RPAR
-          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_577 )
-          # --> action
-          agc_2('(')
-          # <-- action
-          @state.following.push( TOKENS_FOLLOWING_expr_IN_factor_581 )
-          expr
-          @state.following.pop
-          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_583 )
-          # --> action
-          agc_3
-          # <-- action
+          end
+          case alt_18
+          when 1
+            # at line 54:18: ( ( MULT | DIV ) ) ( factor )
+            # at line 54:18: ( ( MULT | DIV ) )
+            # at line 54:19: ( MULT | DIV )
+            # at line 54:19: ( MULT | DIV )
+            alt_17 = 2
+            look_17_0 = @input.peek( 1 )
 
-        end
+            if ( look_17_0 == MULT )
+              alt_17 = 1
+            elsif ( look_17_0 == DIV )
+              alt_17 = 2
+            else
+              raise NoViableAlternative( "", 17, 0 )
+            end
+            case alt_17
+            when 1
+              # at line 54:21: MULT
+              match( MULT, TOKENS_FOLLOWING_MULT_IN_term_583 )
+              # --> action
+              agc_3(['*','/'])
+              # <-- action
+              # --> action
+              agc_2('*')
+              # <-- action
+
+            when 2
+              # at line 54:58: DIV
+              match( DIV, TOKENS_FOLLOWING_DIV_IN_term_589 )
+              # --> action
+              agc_3(['*','/'])
+              # <-- action
+              # --> action
+              agc_2('/')
+              # <-- action
+
+            end
+
+            # at line 54:94: ( factor )
+            # at line 54:95: factor
+            @state.following.push( TOKENS_FOLLOWING_factor_IN_term_596 )
+            factor
+            @state.following.pop
+            # --> action
+            agc_3(['*','/'])
+            # <-- action
+
+
+          else
+            break # out of loop for decision 18
+          end
+        end # loop for decision 18
+
       rescue ANTLR3::Error::RecognitionError => re
         report_error(re)
         recover(re)
@@ -1148,145 +1192,46 @@ module Rapier
 
 
     # 
-    # parser rule elem
+    # parser rule factor
     # 
     # (in Rapier.g)
-    # 55:1: elem : ( ( '-' ) (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) | (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) );
+    # 55:1: factor : ( elem | LPAR expr RPAR );
     # 
-    def elem
+    def factor
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 15 )
-      a = nil
 
       begin
-        # at line 55:9: ( ( '-' ) (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) | (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) )
-        alt_20 = 2
-        look_20_0 = @input.peek( 1 )
+        # at line 55:9: ( elem | LPAR expr RPAR )
+        alt_19 = 2
+        look_19_0 = @input.peek( 1 )
 
-        if ( look_20_0 == MINUS )
-          alt_20 = 1
-        elsif ( look_20_0.between?( ID, STRING ) )
-          alt_20 = 2
+        if ( look_19_0 == MINUS || look_19_0.between?( ID, STRING ) )
+          alt_19 = 1
+        elsif ( look_19_0 == LPAR )
+          alt_19 = 2
         else
-          raise NoViableAlternative( "", 20, 0 )
+          raise NoViableAlternative( "", 19, 0 )
         end
-        case alt_20
+        case alt_19
         when 1
-          # at line 55:10: ( '-' ) (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
-          # at line 55:10: ( '-' )
-          # at line 55:11: '-'
-          match( MINUS, TOKENS_FOLLOWING_MINUS_IN_elem_596 )
-          # --> action
-          agc_1('-1','int',false,true)
-          # <-- action
-          # --> action
-          agc_2('*')
-          # <-- action
-
-          # at line 55:58: (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
-          alt_18 = 5
-          case look_18 = @input.peek( 1 )
-          when NUMBER then alt_18 = 1
-          when FLOAT then alt_18 = 2
-          when BOOL then alt_18 = 3
-          when STRING then alt_18 = 4
-          when ID then alt_18 = 5
-          else
-            raise NoViableAlternative( "", 18, 0 )
-          end
-          case alt_18
-          when 1
-            # at line 55:60: a= NUMBER
-            a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_605 )
-            # --> action
-            agc_1(a, 'int',false,true)
-            # <-- action
-
-          when 2
-            # at line 55:99: a= FLOAT
-            a = match( FLOAT, TOKENS_FOLLOWING_FLOAT_IN_elem_612 )
-            # --> action
-            agc_1(a, 'float',false,true)
-            # <-- action
-
-          when 3
-            # at line 55:139: a= BOOL
-            a = match( BOOL, TOKENS_FOLLOWING_BOOL_IN_elem_619 )
-            # --> action
-            agc_1(a, 'boolean',false,true)
-            # <-- action
-
-          when 4
-            # at line 55:180: a= STRING
-            a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_626 )
-            # --> action
-            agc_1(a, 'string',false,true)
-            # <-- action
-
-          when 5
-            # at line 55:222: a= ID
-            a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_633 )
-            # --> action
-            agc_1(a)
-            # <-- action
-
-          end
-          # --> action
-          agc_3(['*'])
-          # <-- action
+          # at line 55:11: elem
+          @state.following.push( TOKENS_FOLLOWING_elem_IN_factor_610 )
+          elem
+          @state.following.pop
 
         when 2
-          # at line 55:253: (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
-          # at line 55:253: (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
-          alt_19 = 5
-          case look_19 = @input.peek( 1 )
-          when NUMBER then alt_19 = 1
-          when FLOAT then alt_19 = 2
-          when BOOL then alt_19 = 3
-          when STRING then alt_19 = 4
-          when ID then alt_19 = 5
-          else
-            raise NoViableAlternative( "", 19, 0 )
-          end
-          case alt_19
-          when 1
-            # at line 55:255: a= NUMBER
-            a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_643 )
-            # --> action
-            agc_1(a, 'int',false,true)
-            # <-- action
-
-          when 2
-            # at line 55:294: a= FLOAT
-            a = match( FLOAT, TOKENS_FOLLOWING_FLOAT_IN_elem_650 )
-            # --> action
-            agc_1(a, 'float',false,true)
-            # <-- action
-
-          when 3
-            # at line 55:334: a= BOOL
-            a = match( BOOL, TOKENS_FOLLOWING_BOOL_IN_elem_657 )
-            # --> action
-            agc_1(a, 'boolean',false,true)
-            # <-- action
-
-          when 4
-            # at line 55:375: a= STRING
-            a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_664 )
-            # --> action
-            agc_1(a, 'string',false,true)
-            # <-- action
-
-          when 5
-            # at line 55:417: a= ID
-            a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_671 )
-            # --> action
-            agc_1(a)
-            # <-- action
-
-          end
+          # at line 55:18: LPAR expr RPAR
+          match( LPAR, TOKENS_FOLLOWING_LPAR_IN_factor_614 )
           # --> action
-          agc_3(['*'])
+          agc_2('(')
+          # <-- action
+          @state.following.push( TOKENS_FOLLOWING_expr_IN_factor_618 )
+          expr
+          @state.following.pop
+          match( RPAR, TOKENS_FOLLOWING_RPAR_IN_factor_620 )
+          # --> action
+          agc_3
           # <-- action
 
         end
@@ -1305,54 +1250,145 @@ module Rapier
 
 
     # 
-    # parser rule type
+    # parser rule elem
     # 
     # (in Rapier.g)
-    # 56:1: type returns [string t] : ( 'int' | 'float' | 'string' | 'boolean' );
+    # 56:1: elem : ( ( '-' ) (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) | (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) );
     # 
-    def type
+    def elem
       # -> uncomment the next line to manually enable rule tracing
       # trace_in( __method__, 16 )
-      t = nil
+      a = nil
 
       begin
-        # at line 56:25: ( 'int' | 'float' | 'string' | 'boolean' )
-        alt_21 = 4
-        case look_21 = @input.peek( 1 )
-        when T__44 then alt_21 = 1
-        when T__45 then alt_21 = 2
-        when T__46 then alt_21 = 3
-        when T__47 then alt_21 = 4
+        # at line 56:9: ( ( '-' ) (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) | (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID ) )
+        alt_22 = 2
+        look_22_0 = @input.peek( 1 )
+
+        if ( look_22_0 == MINUS )
+          alt_22 = 1
+        elsif ( look_22_0.between?( ID, STRING ) )
+          alt_22 = 2
         else
-          raise NoViableAlternative( "", 21, 0 )
+          raise NoViableAlternative( "", 22, 0 )
         end
-        case alt_21
+        case alt_22
         when 1
-          # at line 56:27: 'int'
-          match( T__44, TOKENS_FOLLOWING_T__44_IN_type_687 )
+          # at line 56:10: ( '-' ) (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
+          # at line 56:10: ( '-' )
+          # at line 56:11: '-'
+          match( MINUS, TOKENS_FOLLOWING_MINUS_IN_elem_633 )
           # --> action
-          t='int'
+          agc_1('-1','int',false,true)
+          # <-- action
+          # --> action
+          agc_2('*')
+          # <-- action
+
+          # at line 56:58: (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
+          alt_20 = 5
+          case look_20 = @input.peek( 1 )
+          when NUMBER then alt_20 = 1
+          when FLOAT then alt_20 = 2
+          when BOOL then alt_20 = 3
+          when STRING then alt_20 = 4
+          when ID then alt_20 = 5
+          else
+            raise NoViableAlternative( "", 20, 0 )
+          end
+          case alt_20
+          when 1
+            # at line 56:60: a= NUMBER
+            a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_642 )
+            # --> action
+            agc_1(a, 'int',false,true)
+            # <-- action
+
+          when 2
+            # at line 56:99: a= FLOAT
+            a = match( FLOAT, TOKENS_FOLLOWING_FLOAT_IN_elem_649 )
+            # --> action
+            agc_1(a, 'float',false,true)
+            # <-- action
+
+          when 3
+            # at line 56:139: a= BOOL
+            a = match( BOOL, TOKENS_FOLLOWING_BOOL_IN_elem_656 )
+            # --> action
+            agc_1(a, 'boolean',false,true)
+            # <-- action
+
+          when 4
+            # at line 56:180: a= STRING
+            a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_663 )
+            # --> action
+            agc_1(a, 'string',false,true)
+            # <-- action
+
+          when 5
+            # at line 56:222: a= ID
+            a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_670 )
+            # --> action
+            agc_1(a)
+            # <-- action
+
+          end
+          # --> action
+          agc_3(['*'])
           # <-- action
 
         when 2
-          # at line 56:46: 'float'
-          match( T__45, TOKENS_FOLLOWING_T__45_IN_type_693 )
-          # --> action
-          t='float'
-          # <-- action
+          # at line 56:253: (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
+          # at line 56:253: (a= NUMBER | a= FLOAT | a= BOOL | a= STRING | a= ID )
+          alt_21 = 5
+          case look_21 = @input.peek( 1 )
+          when NUMBER then alt_21 = 1
+          when FLOAT then alt_21 = 2
+          when BOOL then alt_21 = 3
+          when STRING then alt_21 = 4
+          when ID then alt_21 = 5
+          else
+            raise NoViableAlternative( "", 21, 0 )
+          end
+          case alt_21
+          when 1
+            # at line 56:255: a= NUMBER
+            a = match( NUMBER, TOKENS_FOLLOWING_NUMBER_IN_elem_680 )
+            # --> action
+            agc_1(a, 'int',false,true)
+            # <-- action
 
-        when 3
-          # at line 56:69: 'string'
-          match( T__46, TOKENS_FOLLOWING_T__46_IN_type_699 )
-          # --> action
-          t='string'
-          # <-- action
+          when 2
+            # at line 56:294: a= FLOAT
+            a = match( FLOAT, TOKENS_FOLLOWING_FLOAT_IN_elem_687 )
+            # --> action
+            agc_1(a, 'float',false,true)
+            # <-- action
 
-        when 4
-          # at line 56:94: 'boolean'
-          match( T__47, TOKENS_FOLLOWING_T__47_IN_type_705 )
+          when 3
+            # at line 56:334: a= BOOL
+            a = match( BOOL, TOKENS_FOLLOWING_BOOL_IN_elem_694 )
+            # --> action
+            agc_1(a, 'boolean',false,true)
+            # <-- action
+
+          when 4
+            # at line 56:375: a= STRING
+            a = match( STRING, TOKENS_FOLLOWING_STRING_IN_elem_701 )
+            # --> action
+            agc_1(a, 'string',false,true)
+            # <-- action
+
+          when 5
+            # at line 56:417: a= ID
+            a = match( ID, TOKENS_FOLLOWING_ID_IN_elem_708 )
+            # --> action
+            agc_1(a)
+            # <-- action
+
+          end
           # --> action
-          t='boolean'
+          agc_3(['*'])
           # <-- action
 
         end
@@ -1366,6 +1402,72 @@ module Rapier
 
       end
       
+      return 
+    end
+
+
+    # 
+    # parser rule type
+    # 
+    # (in Rapier.g)
+    # 57:1: type returns [string t] : ( 'int' | 'float' | 'string' | 'boolean' );
+    # 
+    def type
+      # -> uncomment the next line to manually enable rule tracing
+      # trace_in( __method__, 17 )
+      t = nil
+
+      begin
+        # at line 57:25: ( 'int' | 'float' | 'string' | 'boolean' )
+        alt_23 = 4
+        case look_23 = @input.peek( 1 )
+        when T__44 then alt_23 = 1
+        when T__45 then alt_23 = 2
+        when T__46 then alt_23 = 3
+        when T__47 then alt_23 = 4
+        else
+          raise NoViableAlternative( "", 23, 0 )
+        end
+        case alt_23
+        when 1
+          # at line 57:27: 'int'
+          match( T__44, TOKENS_FOLLOWING_T__44_IN_type_724 )
+          # --> action
+          t='int'
+          # <-- action
+
+        when 2
+          # at line 57:46: 'float'
+          match( T__45, TOKENS_FOLLOWING_T__45_IN_type_730 )
+          # --> action
+          t='float'
+          # <-- action
+
+        when 3
+          # at line 57:69: 'string'
+          match( T__46, TOKENS_FOLLOWING_T__46_IN_type_736 )
+          # --> action
+          t='string'
+          # <-- action
+
+        when 4
+          # at line 57:94: 'boolean'
+          match( T__47, TOKENS_FOLLOWING_T__47_IN_type_742 )
+          # --> action
+          t='boolean'
+          # <-- action
+
+        end
+      rescue ANTLR3::Error::RecognitionError => re
+        report_error(re)
+        recover(re)
+
+      ensure
+        # -> uncomment the next line to manually enable rule tracing
+        # trace_out( __method__, 17 )
+
+      end
+      
       return t
     end
 
@@ -1373,94 +1475,100 @@ module Rapier
 
     TOKENS_FOLLOWING_PROGRAM_IN_prog_143 = Set[ 10 ]
     TOKENS_FOLLOWING_LKEY_IN_prog_145 = Set[ 11, 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_fun_IN_prog_147 = Set[ 11, 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_RKEY_IN_prog_150 = Set[ 1 ]
-    TOKENS_FOLLOWING_type_IN_fun_167 = Set[ 42 ]
-    TOKENS_FOLLOWING_T__42_IN_fun_169 = Set[ 28 ]
-    TOKENS_FOLLOWING_ID_IN_fun_173 = Set[ 8 ]
-    TOKENS_FOLLOWING_LPAR_IN_fun_175 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_fun_177 = Set[ 10 ]
-    TOKENS_FOLLOWING_bloq_IN_fun_179 = Set[ 1 ]
-    TOKENS_FOLLOWING_LKEY_IN_bloq_190 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_est_IN_bloq_194 = Set[ 9, 43 ]
-    TOKENS_FOLLOWING_set_IN_bloq_195 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_sIf_IN_bloq_203 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_sWhile_IN_bloq_207 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_RKEY_IN_bloq_211 = Set[ 1 ]
-    TOKENS_FOLLOWING_dclr_IN_est_224 = Set[ 1 ]
-    TOKENS_FOLLOWING_asign_IN_est_228 = Set[ 1 ]
-    TOKENS_FOLLOWING_comp_IN_est_232 = Set[ 1 ]
-    TOKENS_FOLLOWING_prt_IN_est_236 = Set[ 1 ]
-    TOKENS_FOLLOWING_red_IN_est_240 = Set[ 1 ]
-    TOKENS_FOLLOWING_OUT_IN_prt_254 = Set[ 8 ]
-    TOKENS_FOLLOWING_LPAR_IN_prt_256 = Set[ 5, 8, 9, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_comp_IN_prt_258 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_prt_261 = Set[ 1 ]
-    TOKENS_FOLLOWING_OUTS_IN_prt_267 = Set[ 8 ]
-    TOKENS_FOLLOWING_LPAR_IN_prt_269 = Set[ 5, 8, 9, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_comp_IN_prt_271 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_prt_274 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_red_292 = Set[ 19 ]
-    TOKENS_FOLLOWING_EQLS_IN_red_296 = Set[ 27 ]
-    TOKENS_FOLLOWING_IN_IN_red_302 = Set[ 8 ]
-    TOKENS_FOLLOWING_LPAR_IN_red_304 = Set[ 44, 45, 46, 47 ]
-    TOKENS_FOLLOWING_type_IN_red_308 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_red_310 = Set[ 1 ]
-    TOKENS_FOLLOWING_IF_IN_sIf_326 = Set[ 8 ]
-    TOKENS_FOLLOWING_LPAR_IN_sIf_328 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_comp_IN_sIf_330 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_sIf_332 = Set[ 10 ]
-    TOKENS_FOLLOWING_bloq_IN_sIf_336 = Set[ 1, 23 ]
-    TOKENS_FOLLOWING_ELSE_IN_sIf_343 = Set[ 10 ]
-    TOKENS_FOLLOWING_bloq_IN_sIf_345 = Set[ 1 ]
-    TOKENS_FOLLOWING_WHILE_IN_sWhile_358 = Set[ 8 ]
-    TOKENS_FOLLOWING_LPAR_IN_sWhile_362 = Set[ 5, 8, 9, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_comp_IN_sWhile_364 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_sWhile_367 = Set[ 10 ]
-    TOKENS_FOLLOWING_bloq_IN_sWhile_371 = Set[ 1 ]
-    TOKENS_FOLLOWING_type_IN_dclr_386 = Set[ 28 ]
-    TOKENS_FOLLOWING_ID_IN_dclr_390 = Set[ 1, 19 ]
-    TOKENS_FOLLOWING_EQLS_IN_dclr_395 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_comp_IN_dclr_400 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_asign_416 = Set[ 19 ]
-    TOKENS_FOLLOWING_EQLS_IN_asign_420 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_comp_IN_asign_424 = Set[ 1 ]
-    TOKENS_FOLLOWING_expr_IN_comp_438 = Set[ 1, 12, 13, 14, 15, 16, 17, 18 ]
-    TOKENS_FOLLOWING_LSTHE_IN_comp_455 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_GRTHE_IN_comp_459 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_LSTH_IN_comp_462 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_GRTH_IN_comp_465 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_EXEQ_IN_comp_468 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_AND_IN_comp_471 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_OR_IN_comp_474 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_expr_IN_comp_490 = Set[ 1, 12, 13, 14, 15, 16, 17, 18 ]
-    TOKENS_FOLLOWING_term_IN_expr_504 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_PLUS_IN_expr_510 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_MINUS_IN_expr_516 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_term_IN_expr_523 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_factor_IN_term_541 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_MULT_IN_term_546 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_DIV_IN_term_552 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_factor_IN_term_559 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_elem_IN_factor_573 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAR_IN_factor_577 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_expr_IN_factor_581 = Set[ 9 ]
-    TOKENS_FOLLOWING_RPAR_IN_factor_583 = Set[ 1 ]
-    TOKENS_FOLLOWING_MINUS_IN_elem_596 = Set[ 28, 29, 30, 31, 32 ]
-    TOKENS_FOLLOWING_NUMBER_IN_elem_605 = Set[ 1 ]
-    TOKENS_FOLLOWING_FLOAT_IN_elem_612 = Set[ 1 ]
-    TOKENS_FOLLOWING_BOOL_IN_elem_619 = Set[ 1 ]
-    TOKENS_FOLLOWING_STRING_IN_elem_626 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_elem_633 = Set[ 1 ]
-    TOKENS_FOLLOWING_NUMBER_IN_elem_643 = Set[ 1 ]
-    TOKENS_FOLLOWING_FLOAT_IN_elem_650 = Set[ 1 ]
-    TOKENS_FOLLOWING_BOOL_IN_elem_657 = Set[ 1 ]
-    TOKENS_FOLLOWING_STRING_IN_elem_664 = Set[ 1 ]
-    TOKENS_FOLLOWING_ID_IN_elem_671 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__44_IN_type_687 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__45_IN_type_693 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__46_IN_type_699 = Set[ 1 ]
-    TOKENS_FOLLOWING_T__47_IN_type_705 = Set[ 1 ]
+    TOKENS_FOLLOWING_dclrG_IN_prog_148 = Set[ 42 ]
+    TOKENS_FOLLOWING_T__42_IN_prog_149 = Set[ 11, 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_fun_IN_prog_153 = Set[ 11, 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_RKEY_IN_prog_156 = Set[ 1 ]
+    TOKENS_FOLLOWING_type_IN_fun_173 = Set[ 43 ]
+    TOKENS_FOLLOWING_T__43_IN_fun_175 = Set[ 28 ]
+    TOKENS_FOLLOWING_ID_IN_fun_179 = Set[ 8 ]
+    TOKENS_FOLLOWING_LPAR_IN_fun_181 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_fun_183 = Set[ 10 ]
+    TOKENS_FOLLOWING_bloq_IN_fun_185 = Set[ 1 ]
+    TOKENS_FOLLOWING_LKEY_IN_bloq_197 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_est_IN_bloq_201 = Set[ 9, 42 ]
+    TOKENS_FOLLOWING_set_IN_bloq_202 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_sIf_IN_bloq_210 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_sWhile_IN_bloq_214 = Set[ 5, 8, 11, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_RKEY_IN_bloq_218 = Set[ 1 ]
+    TOKENS_FOLLOWING_dclr_IN_est_231 = Set[ 1 ]
+    TOKENS_FOLLOWING_asign_IN_est_235 = Set[ 1 ]
+    TOKENS_FOLLOWING_comp_IN_est_239 = Set[ 1 ]
+    TOKENS_FOLLOWING_prt_IN_est_243 = Set[ 1 ]
+    TOKENS_FOLLOWING_red_IN_est_247 = Set[ 1 ]
+    TOKENS_FOLLOWING_OUT_IN_prt_261 = Set[ 8 ]
+    TOKENS_FOLLOWING_LPAR_IN_prt_263 = Set[ 5, 8, 9, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_prt_265 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_prt_268 = Set[ 1 ]
+    TOKENS_FOLLOWING_OUTS_IN_prt_274 = Set[ 8 ]
+    TOKENS_FOLLOWING_LPAR_IN_prt_276 = Set[ 5, 8, 9, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_prt_278 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_prt_281 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_red_299 = Set[ 19 ]
+    TOKENS_FOLLOWING_EQLS_IN_red_303 = Set[ 27 ]
+    TOKENS_FOLLOWING_IN_IN_red_309 = Set[ 8 ]
+    TOKENS_FOLLOWING_LPAR_IN_red_311 = Set[ 44, 45, 46, 47 ]
+    TOKENS_FOLLOWING_type_IN_red_315 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_red_317 = Set[ 1 ]
+    TOKENS_FOLLOWING_IF_IN_sIf_333 = Set[ 8 ]
+    TOKENS_FOLLOWING_LPAR_IN_sIf_335 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_sIf_337 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_sIf_339 = Set[ 10 ]
+    TOKENS_FOLLOWING_bloq_IN_sIf_343 = Set[ 1, 23 ]
+    TOKENS_FOLLOWING_ELSE_IN_sIf_350 = Set[ 10 ]
+    TOKENS_FOLLOWING_bloq_IN_sIf_352 = Set[ 1 ]
+    TOKENS_FOLLOWING_WHILE_IN_sWhile_365 = Set[ 8 ]
+    TOKENS_FOLLOWING_LPAR_IN_sWhile_369 = Set[ 5, 8, 9, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_sWhile_371 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_sWhile_374 = Set[ 10 ]
+    TOKENS_FOLLOWING_bloq_IN_sWhile_378 = Set[ 1 ]
+    TOKENS_FOLLOWING_type_IN_dclrG_392 = Set[ 28 ]
+    TOKENS_FOLLOWING_ID_IN_dclrG_396 = Set[ 1, 19 ]
+    TOKENS_FOLLOWING_EQLS_IN_dclrG_401 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_dclrG_406 = Set[ 1 ]
+    TOKENS_FOLLOWING_type_IN_dclr_423 = Set[ 28 ]
+    TOKENS_FOLLOWING_ID_IN_dclr_427 = Set[ 1, 19 ]
+    TOKENS_FOLLOWING_EQLS_IN_dclr_432 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_dclr_437 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_asign_453 = Set[ 19 ]
+    TOKENS_FOLLOWING_EQLS_IN_asign_457 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_comp_IN_asign_461 = Set[ 1 ]
+    TOKENS_FOLLOWING_expr_IN_comp_475 = Set[ 1, 12, 13, 14, 15, 16, 17, 18 ]
+    TOKENS_FOLLOWING_LSTHE_IN_comp_492 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_GRTHE_IN_comp_496 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_LSTH_IN_comp_499 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_GRTH_IN_comp_502 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_EXEQ_IN_comp_505 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_AND_IN_comp_508 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_OR_IN_comp_511 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_expr_IN_comp_527 = Set[ 1, 12, 13, 14, 15, 16, 17, 18 ]
+    TOKENS_FOLLOWING_term_IN_expr_541 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_PLUS_IN_expr_547 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_MINUS_IN_expr_553 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_term_IN_expr_560 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_factor_IN_term_578 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_MULT_IN_term_583 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_DIV_IN_term_589 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_factor_IN_term_596 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_elem_IN_factor_610 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAR_IN_factor_614 = Set[ 5, 8, 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_expr_IN_factor_618 = Set[ 9 ]
+    TOKENS_FOLLOWING_RPAR_IN_factor_620 = Set[ 1 ]
+    TOKENS_FOLLOWING_MINUS_IN_elem_633 = Set[ 28, 29, 30, 31, 32 ]
+    TOKENS_FOLLOWING_NUMBER_IN_elem_642 = Set[ 1 ]
+    TOKENS_FOLLOWING_FLOAT_IN_elem_649 = Set[ 1 ]
+    TOKENS_FOLLOWING_BOOL_IN_elem_656 = Set[ 1 ]
+    TOKENS_FOLLOWING_STRING_IN_elem_663 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_elem_670 = Set[ 1 ]
+    TOKENS_FOLLOWING_NUMBER_IN_elem_680 = Set[ 1 ]
+    TOKENS_FOLLOWING_FLOAT_IN_elem_687 = Set[ 1 ]
+    TOKENS_FOLLOWING_BOOL_IN_elem_694 = Set[ 1 ]
+    TOKENS_FOLLOWING_STRING_IN_elem_701 = Set[ 1 ]
+    TOKENS_FOLLOWING_ID_IN_elem_708 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__44_IN_type_724 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__45_IN_type_730 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__46_IN_type_736 = Set[ 1 ]
+    TOKENS_FOLLOWING_T__47_IN_type_742 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 

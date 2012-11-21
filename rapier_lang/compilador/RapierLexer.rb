@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: Rapier.g
-# Generated at: 2012-11-21 00:46:50
+# Generated at: 2012-11-21 02:09:50
 # 
 
 # ~~~> start load path setup
@@ -701,8 +701,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 33:9: ':'
-      match( 0x3a )
+      # at line 33:9: ';'
+      match( 0x3b )
 
       
       @state.type = type
@@ -725,8 +725,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 34:9: ';'
-      match( 0x3b )
+      # at line 34:9: ':'
+      match( 0x3a )
 
       
       @state.type = type
@@ -845,7 +845,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 58:9: ( 'true' | 'false' )
+      # at line 59:9: ( 'true' | 'false' )
       alt_1 = 2
       look_1_0 = @input.peek( 1 )
 
@@ -858,11 +858,11 @@ module Rapier
       end
       case alt_1
       when 1
-        # at line 58:11: 'true'
+        # at line 59:11: 'true'
         match( "true" )
 
       when 2
-        # at line 58:20: 'false'
+        # at line 59:20: 'false'
         match( "false" )
 
       end
@@ -887,8 +887,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 59:12: ( INTEGER )+
-      # at file 59:12: ( INTEGER )+
+      # at line 60:12: ( INTEGER )+
+      # at file 60:12: ( INTEGER )+
       match_count_2 = 0
       while true
         alt_2 = 2
@@ -900,7 +900,7 @@ module Rapier
         end
         case alt_2
         when 1
-          # at line 59:12: INTEGER
+          # at line 60:12: INTEGER
           integer!
 
         else
@@ -935,8 +935,8 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 60:12: ( INTEGER )+ '.' ( INTEGER )+
-      # at file 60:12: ( INTEGER )+
+      # at line 61:12: ( INTEGER )+ '.' ( INTEGER )+
+      # at file 61:12: ( INTEGER )+
       match_count_3 = 0
       while true
         alt_3 = 2
@@ -948,7 +948,7 @@ module Rapier
         end
         case alt_3
         when 1
-          # at line 60:12: INTEGER
+          # at line 61:12: INTEGER
           integer!
 
         else
@@ -962,7 +962,7 @@ module Rapier
       end
 
       match( 0x2e )
-      # at file 60:25: ( INTEGER )+
+      # at file 61:25: ( INTEGER )+
       match_count_4 = 0
       while true
         alt_4 = 2
@@ -974,7 +974,7 @@ module Rapier
         end
         case alt_4
         when 1
-          # at line 60:25: INTEGER
+          # at line 61:25: INTEGER
           integer!
 
         else
@@ -1009,9 +1009,9 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 61:5: LETTER ( LETTER | DIGIT | '_' )*
+      # at line 62:5: LETTER ( LETTER | DIGIT | '_' )*
       letter!
-      # at line 61:12: ( LETTER | DIGIT | '_' )*
+      # at line 62:12: ( LETTER | DIGIT | '_' )*
       while true # decision 5
         alt_5 = 2
         look_5_0 = @input.peek( 1 )
@@ -1059,9 +1059,9 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 62:9: '\"' ( NONCONTROL_CHAR )* '\"'
+      # at line 63:9: '\"' ( NONCONTROL_CHAR )* '\"'
       match( 0x22 )
-      # at line 62:13: ( NONCONTROL_CHAR )*
+      # at line 63:13: ( NONCONTROL_CHAR )*
       while true # decision 6
         alt_6 = 2
         look_6_0 = @input.peek( 1 )
@@ -1072,7 +1072,7 @@ module Rapier
         end
         case alt_6
         when 1
-          # at line 62:13: NONCONTROL_CHAR
+          # at line 63:13: NONCONTROL_CHAR
           noncontrol_char!
 
         else
@@ -1099,7 +1099,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 63:25: ( LETTER | DIGIT | SYMBOL | SPACE )
+      # at line 64:25: ( LETTER | DIGIT | SYMBOL | SPACE )
       alt_7 = 4
       case look_7 = @input.peek( 1 )
       when 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f, 0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7a then alt_7 = 1
@@ -1111,19 +1111,19 @@ module Rapier
       end
       case alt_7
       when 1
-        # at line 63:27: LETTER
+        # at line 64:27: LETTER
         letter!
 
       when 2
-        # at line 63:36: DIGIT
+        # at line 64:36: DIGIT
         digit!
 
       when 3
-        # at line 63:44: SYMBOL
+        # at line 64:44: SYMBOL
         symbol!
 
       when 4
-        # at line 63:53: SPACE
+        # at line 64:53: SPACE
         space!
 
       end
@@ -1166,7 +1166,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 65:19: '0' .. '9'
+      # at line 66:19: '0' .. '9'
       match_range( 0x30, 0x39 )
 
     ensure
@@ -1183,7 +1183,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 66:17: 'a' .. 'z'
+      # at line 67:17: 'a' .. 'z'
       match_range( 0x61, 0x7a )
 
     ensure
@@ -1200,7 +1200,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 67:17: 'A' .. 'Z'
+      # at line 68:17: 'A' .. 'Z'
       match_range( 0x41, 0x5a )
 
     ensure
@@ -1217,7 +1217,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 68:17: '0' .. '9'
+      # at line 69:17: '0' .. '9'
       match_range( 0x30, 0x39 )
 
     ensure
@@ -1259,56 +1259,56 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 70:16: ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' | 'ñ' )
+      # at line 71:16: ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' | 'ñ' )
       alt_8 = 12
       alt_8 = @dfa8.predict( @input )
       case alt_8
       when 1
-        # at line 70:18: '!'
+        # at line 71:18: '!'
         match( 0x21 )
 
       when 2
-        # at line 70:24: '#' .. '/'
+        # at line 71:24: '#' .. '/'
         match_range( 0x23, 0x2f )
 
       when 3
-        # at line 70:35: ':' .. '@'
+        # at line 71:35: ':' .. '@'
         match_range( 0x3a, 0x40 )
 
       when 4
-        # at line 70:46: '[' .. '`'
+        # at line 71:46: '[' .. '`'
         match_range( 0x5b, 0x60 )
 
       when 5
-        # at line 70:57: '{' .. '~'
+        # at line 71:57: '{' .. '~'
         match_range( 0x7b, 0x7e )
 
       when 6
-        # at line 70:68: '\\\\\\\"'
+        # at line 71:68: '\\\\\\\"'
         match( "\\\"" )
 
       when 7
-        # at line 70:77: 'á'
+        # at line 71:77: 'á'
         match( 0xe1 )
 
       when 8
-        # at line 70:82: 'é'
+        # at line 71:82: 'é'
         match( 0xe9 )
 
       when 9
-        # at line 70:87: 'í'
+        # at line 71:87: 'í'
         match( 0xed )
 
       when 10
-        # at line 70:92: 'ó'
+        # at line 71:92: 'ó'
         match( 0xf3 )
 
       when 11
-        # at line 70:98: 'ú'
+        # at line 71:98: 'ú'
         match( 0xfa )
 
       when 12
-        # at line 70:103: 'ñ'
+        # at line 71:103: 'ñ'
         match( 0xf1 )
 
       end
@@ -1329,7 +1329,7 @@ module Rapier
 
       
       # - - - - main rule block - - - -
-      # at line 71:6: ( ' ' | '\\t' | '\\r' | '\\n' )
+      # at line 72:6: ( ' ' | '\\t' | '\\r' | '\\n' )
       if @input.peek( 1 ).between?( 0x9, 0xa ) || @input.peek(1) == 0xd || @input.peek(1) == 0x20
         @input.consume
       else
@@ -1552,7 +1552,7 @@ module Rapier
 
       def description
         <<-'__dfa_description__'.strip!
-          70:10: fragment SYMBOL : ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' | 'ñ' );
+          71:10: fragment SYMBOL : ( '!' | '#' .. '/' | ':' .. '@' | '[' .. '`' | '{' .. '~' | '\\\\\\\"' | 'á' | 'é' | 'í' | 'ó' | 'ú' | 'ñ' );
         __dfa_description__
       end
     end
@@ -1595,7 +1595,7 @@ module Rapier
       TRANSITION = [
         unpack( 2, 28, 2, -1, 1, 28, 18, -1, 1, 28, 1, -1, 1, 14, 3, -1, 
                 1, 12, 1, -1, 1, 5, 1, 6, 1, 3, 1, 1, 1, -1, 1, 2, 1, -1, 
-                1, 4, 10, 26, 1, 20, 1, 21, 1, 10, 1, 11, 1, 9, 2, -1, 26, 
+                1, 4, 10, 26, 1, 21, 1, 20, 1, 10, 1, 11, 1, 9, 2, -1, 26, 
                 27, 6, -1, 1, 27, 1, 24, 2, 27, 1, 17, 1, 22, 2, 27, 1, 
                 16, 5, 27, 1, 19, 1, 15, 2, 27, 1, 23, 1, 25, 2, 27, 1, 
                 18, 3, 27, 1, 7, 1, 13, 1, 8 ),
