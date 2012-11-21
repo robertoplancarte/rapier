@@ -3,7 +3,7 @@ grammar Rapier;
 options {language = Ruby;}
 
 tokens {
-  PLUS='+';MINUS='-';MULT='*';DIV='/';LPAR='(';RPAR=')';LKEY='{';RKEY='}';GRTH='>';LSTH='<';GRTHE='>=';LSTHE='<=';EXEQ='==';AND ='&';OR='|';EQLS='=';QTS ='"';PROGRAM='program';IF='if';ELSE='else';WHILE='while';OUT='out';IN='in';
+  PLUS='+';MINUS='-';MULT='*';DIV='/';LPAR='(';RPAR=')';LKEY='{';RKEY='}';GRTH='>';LSTH='<';GRTHE='>=';LSTHE='<=';EXEQ='==';AND ='&';OR='|';EQLS='=';QTS ='"';PROGRAM='program';IF='if';ELSE='else';WHILE='while';OUT='out';OUTS='outln';IN='in';
 }
 @lexer::init{}
 @parser::init{
@@ -17,7 +17,7 @@ tokens {
   @c_c = 0 #constantes
   @c_l = 0 #locales
   @c_t = 0 #temporales
-  @cubo= {'+'=>{'int'=>{'int'=> 'int','float'=>'float'},'float'=>{'int'=> 'float','float'=>'float'},
+  @cubo= {'+'=>{'int'=>{'int'=> 'int','float'=>'float','string'=>'string'},'float'=>{'int'=> 'float','float'=>'float'},
                 'string'=>{'string'=> 'string', 'int' => 'string', 'float'=>'string', 'boolean'=>'string'}},
          '-'=>{'int'=>{'int'=> 'int','float'=>'float'},'float'=>{'int'=> 'float','float'=>'float'}},
          '*'=>{'int'=>{'int'=> 'int','float'=>'float'},'float'=>{'int'=> 'float','float'=>'float'}},
@@ -40,7 +40,7 @@ prog    : PROGRAM LKEY fun* RKEY  {agc_8} ;
 fun     : b=type ':' a=ID LPAR RPAR bloq ;
 bloq    : LKEY ((est(';'|')'))| sIf | sWhile)* RKEY ;
 est     : (dclr | asign | comp | prt | red );
-prt     : OUT LPAR comp? RPAR {agc_3('out')} ;
+prt     : (OUT LPAR comp? RPAR {agc_3('out')})|(OUTS LPAR comp? RPAR {agc_3('outln')}) ;
 red     : (a=ID {agc_1(a)} EQLS {agc_2('=')})? IN LPAR b=type RPAR {agc_3('in',b)} {agc_3('=')} ;
 sIf     : IF LPAR comp RPAR {agc_4('if')} bloq {agc_5('if')} {agc_4('else')} (ELSE bloq)? {agc_5('else')} ;
 sWhile  : WHILE {agc_4()} LPAR comp? RPAR {agc_4('while')} bloq {agc_5('while')} ;

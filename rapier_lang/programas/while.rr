@@ -1,0 +1,9 @@
+program{
+  int:main(){
+    int x = 5;
+    while(x>=0){
+      out(x);
+      x = x-1;
+    }
+  }
+}

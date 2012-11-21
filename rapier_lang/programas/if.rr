@@ -1,0 +1,12 @@
+program{
+  int:main(){
+    boolean x;
+    out("dame un boolean y correré un if con el:");
+    x = in(boolean);
+    if(x){
+      out("tu boolean tiene valor: "+x);
+    }else{
+      out("tu boolean tiene valor: "+x);
+    }
+  }
+}

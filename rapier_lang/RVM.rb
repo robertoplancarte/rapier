@@ -18,7 +18,14 @@ def run
     case @cuadruplos[@c_pointer][0]
     when "out"
       x = @memoria[@cuadruplos[@c_pointer][3]]
-      if x[0].class == String
+      if x.class == String
+        x = x.gsub('\"', '"')
+      end
+      print x
+      @c_pointer += 1
+    when "outln"
+      x = @memoria[@cuadruplos[@c_pointer][3]]
+      if x.class == String
         x = x.gsub('\"', '"')
       end
       puts x
@@ -27,7 +34,7 @@ def run
       @memoria[@cuadruplos[@c_pointer][3]] = parserr(@cuadruplos[@c_pointer][3],$stdin.gets.chomp!)
       @c_pointer += 1
     when "+"
-      if @memoria[@cuadruplos[@c_pointer][1]].class == String ||@memoria[@cuadruplos[@c_pointer][2]] == String
+      if(@memoria[@cuadruplos[@c_pointer][1]].class == String || @memoria[@cuadruplos[@c_pointer][2]].class == String)
         @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]].to_s + @memoria[@cuadruplos[@c_pointer][2]].to_s
       else
         @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]] + @memoria[@cuadruplos[@c_pointer][2]]
@@ -51,6 +58,26 @@ def run
     when "="
       @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]]
       @c_pointer += 1
+    when ">"
+      @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]] > @memoria[@cuadruplos[@c_pointer][2]]
+      @c_pointer += 1
+    when "<"
+      @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]] < @memoria[@cuadruplos[@c_pointer][2]]
+      @c_pointer += 1
+    when ">="
+      @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]] >= @memoria[@cuadruplos[@c_pointer][2]]
+      @c_pointer += 1
+    when "<="
+      @memoria[@cuadruplos[@c_pointer][3]] = @memoria[@cuadruplos[@c_pointer][1]] <= @memoria[@cuadruplos[@c_pointer][2]]
+      @c_pointer += 1
+    when "GoF"
+      if !@memoria[@cuadruplos[@c_pointer][2]]
+        @c_pointer = @cuadruplos[@c_pointer][3]
+      else
+        @c_pointer += 1
+      end
+    when "Go"
+       @c_pointer = @cuadruplos[@c_pointer][3]
     end
   end
 end
@@ -59,6 +86,7 @@ end
 @c_pointer = 0
 @memoria = {}
 programa = Marshal.load(IO.read(ARGV.last))
+#puts programa.inspect
 @constantes = programa[0]
 @cuadruplos = programa[1]
 loader()

@@ -1,6 +1,6 @@
 program{
   int:main(){
     out("So Long... "+"and thanks for all the fish!");
-    out("exp: "+ (5*3.32) + true  );
+    out("exp: "+ (5*3.32) + true);
   }
 }

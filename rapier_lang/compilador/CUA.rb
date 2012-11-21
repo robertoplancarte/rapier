@@ -14,6 +14,10 @@ class Cuadruplo
     "[#{operador}, #{operando1}, #{operando2}, #{respuesta}]"
   end
   def compiler_prt
-    [operador, operando1[2], operando2[2], respuesta[2]]
+    if operador == "GoF" || operador == "Go"
+      [operador, operando1[2], operando2[2], respuesta]
+    else
+      [operador, operando1[2], operando2[2], respuesta[2]]
+    end
   end
 end

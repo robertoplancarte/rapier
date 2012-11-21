@@ -1,0 +1,11 @@
+program{
+  int:main(){
+    out("Hola, dime tu nombre:");
+    string nombre;
+    nombre = in(string);
+    out("Hola "+nombre+" dime cuantos años tienes:");
+    int edad;
+    edad = in(int);
+    out("Adios "+nombre+" de "+edad+" años");
+  }
+}

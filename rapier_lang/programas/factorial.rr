@@ -1,0 +1,17 @@
+program {
+  int:main(){
+    int respuesta = 1;
+    out("Factorial de:");
+    int x;
+    x = in(int);
+    if(x<2){
+     respuesta = 1;
+    }else{
+     while(x>1){
+        respuesta = respuesta*x;
+        x=x-1;
+      }
+    }
+    out(respuesta);
+  }
+}

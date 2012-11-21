@@ -28,6 +28,8 @@ def agc_3(operador=[],tipo="int")
     @pOper.pop
   elsif operador == 'out'
     @cuadruplos << Cuadruplo.new('out',[],[],@pilaO.last)
+  elsif operador == 'outln'
+    @cuadruplos << Cuadruplo.new('outln',[],[],@pilaO.last)
   elsif operador == 'in'
     @cuadruplos << Cuadruplo.new('in',[],[],[nil,nil,"t:#{tipo[0]}:#{@c_t}"])
     agc_1("t_#{@c_t}", tipo,false,false,true)
@@ -69,5 +71,6 @@ def agc_8
   @cuadruplos.each_with_index do |c,i|
     @cuadruplos[i] = c.compiler_prt
   end
+  #puts @cuadruplos.inspect
   puts Marshal.dump([@tab_con, @cuadruplos])
 end
